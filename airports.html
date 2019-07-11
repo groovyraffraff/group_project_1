@@ -48,10 +48,6 @@
       </div>
       <div id="weather" class="card-body"></div>
     </div>
-
-
-
-
     <!-- End Container Div -->
   </div>
 
@@ -88,10 +84,10 @@
     // Setup Variables
     // *********************************************
 
-    //State variable - will limit to TX
+    //State variable - will limit weather info to TX
     var state = "TX";
 
-    // constructing a queryURL variable
+    // Constructing a queryURL variable for the "All Stations in TX" api call
     var queryURL = "https://api.weather.gov/stations?state=" + state;
 
     // Functions
@@ -104,16 +100,16 @@
       //Clear the weather div
       $("#weather").empty();
 
-      //Get the value of the selected airport
+      //Get the value of the selected airport and its coordinates
       var station = $(this).val();
       console.log(station);
       var coordinates = $('#airports option:selected').attr('coordinates');
       console.log(coordinates);
 
-      // constructing a queryURL variable
+      // Constructing a queryURL variable for the "Latest Observation" api call
       var queryURL = "https://api.weather.gov/stations/" + station + "/observations/latest";
 
-      //Get the selected airports latest weather
+      //Get the selected airport's latest weather
       $.ajax({
         url: queryURL,
         method: "GET"
@@ -200,17 +196,23 @@
           "name": featuresArray[i].properties.name,
           "coordinates": featuresArray[i].geometry.coordinates
         })
-      }
+      } //End create new array from api result
 
-      //Sort the new array
+      //Sort the new array by the name of the town
       sortedStations.sort(function (a, b) {
         var a1 = a.name,
           b1 = b.name;
         if (a1 == b1) return 0;
         return a1 > b1 ? 1 : -1;
-      });
+      }); //End sort airport array
 
-      //Add to the select element on the aiports.html page
+      //Loop through sorted array of airports and display airport identifier, name, and coordinates
+      for (var i = 0; i < sortedStations.length; i++) {
+        console.log(sortedStations[i].station + " - " + sortedStations[i].name + " - " + sortedStations[i]
+          .coordinates);
+      } //End loop through sorted airports
+
+      //Add to the Select Element on the aiports.html page
       $.each(sortedStations, function (key, value) {
         $('#airports')
           .append($("<option></option>")
@@ -224,7 +226,7 @@
     // Pseudocode
     // 1. Get all the airports in TX with there station identifier, name, and coordinates
     // 2. Put those airports in a select
-    // 3. Choose an airport, get that value, send to the api to get the latest weather observation
+    // 3. Choose an airport from the select element, get that value, send to the api to get the latest weather observation
     // 4. Display info on the page
 
     // ToDos
