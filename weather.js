@@ -23,7 +23,7 @@ $(document).ready(() => {
   let cloudAmount = "";
 
   // State variable - will limit weather info to TX
-  let state = "LA";
+  let state = "TX";
 
   // Constructing a queryURL variable for the "All Stations in TX" api call
   let queryURL = "https://api.weather.gov/stations?state=" + state;
@@ -83,57 +83,61 @@ $(document).ready(() => {
   // VFR = >3000′ and >5 miles - Green
   function calculateCat(visibility, cloudAmount, cloudBase, description) {
     console.log("Vis: " + visibility + ", Amount: " + cloudAmount + ", Ceiling: " + cloudBase +
-      " Description: " + description);
+      ", Description: " + description);
+
+      console.log(typeof cloudBase);
 
     // Check for LIFR using visibility
     // Is Rounding affecting*************************
     if (visibility != "Not Reported" && visibility < 1) {
       console.log("LIFR-vis");
-      return "LIFR"
+      return "LIFR";
     }
     // Check for LIFR using ceiling
-    if (cloudBase != null && cloudBase < 500) {
+    if (cloudBase != 'null' && cloudBase < 500) {
       console.log("LIFR-ceil");
-      return "LIFR"
+      return "LIFR";
     }
 
     // Check for IFR using visibility
     if (visibility != "Not Reported" && visibility >= 1 && visibility < 3) {
       console.log("IFR-vis");
-      return "IFR"
+      return "IFR";
     }
     // Check for IFR using ceiling
-    if (cloudBase != null && cloudBase >= 500 && cloudBase < 1000) {
+    if (cloudBase != 'null' && cloudBase >= 500 && cloudBase < 1000) {
       console.log("IFR-ceil");
-      return "IFR"
+      return "IFR";
     }
 
     // Check for MVFR using visibility
     if (visibility != "Not Reported" && visibility >= 3 && visibility <= 5) {
       console.log("MVFR-vis");
-      return "MVFR"
+      return "MVFR";
     }
     // Check for MVFR using ceiling
-    if (cloudBase != null && cloudBase >= 1000 && cloudBase <= 3000) {
+    if (cloudBase != 'null' && cloudBase >= 1000 && cloudBase <= 3000) {
       console.log("MVFR-ceil");
-      return "MVFR"
+      return "MVFR";
     }
 
     // Check for VFR
-    if (visibility != "Not Reported" && visibility > 5 && cloudBase != null && cloudBase > 3000) {
+    if (visibility != "Not Reported" && visibility > 5 && cloudBase > 3000) {
       console.log("VFR - Have Vis and Ceil");
-      return "VFR"
+      return "VFR";
     }
 
-    if (visibility != "Not Reported" && visibility > 5 && cloudBase === null) {
+    if (visibility != "Not Reported" && visibility > 5 && cloudBase === 'null') {
       console.log("VFR - Have Vis, but No Ceil");
-      return "VFR"
+      return "VFR";
     }
 
-    if (visibility === "Not Reported" && cloudBase === null && desc === "Clear") {
-      console.log("VFR - No Vis or Ceil, only have Desc of Clear");
-      return "VFR"
+    if (visibility === "Not Reported" && cloudBase === 'null' && description === "Clear") {
+      console.log("VFR - No Vis or Ceil, only have Description of Clear");
+      return "VFR";
     }
+
+    
   } // End calculate weather categories
 
   // When the aiports select changes
@@ -346,9 +350,7 @@ $(document).ready(() => {
           "<strong>Cloud Layers: ",
           "Clear Below 12,000 ft",
         );
-      }
-
-
+      }//End Check if cloud array is populated
     }); //End Get the selected weather info
   }); //End Airport Select Change Function
 
@@ -399,7 +401,7 @@ $(document).ready(() => {
       );
     } //End loop through sorted airports
 
-    //Add to the Select Element on the aiports.html page
+    //Add to the Select Element on the index.html page
     $.each(sortedStations, function (key, value) {
       $("#airports").append(
         $("<option></option>")
