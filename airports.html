@@ -1,85 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Normalize CSS -->
+    <!-- <link rel="stylesheet" href="assets/css/normalize.css" /> -->
 
-  <!-- Normalize CSS -->
-  <!-- <link rel="stylesheet" href="assets/css/normalize.css" /> -->
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <!-- Custom CSS -->
+    <!-- <link rel="stylesheet" href="assets/css/styles.css" /> -->
 
-  <!-- Custom CSS -->
-  <!-- <link rel="stylesheet" href="assets/css/styles.css" /> -->
+    <title>Airports</title>
+  </head>
 
-  <title>Airports</title>
-</head>
+  <body>
+    <!-- Main container div -->
+    <div class="container">
+      <!-- Jombotron div -->
+      <div class="jumbotron text-center">
+        <h1 class="display-4">Airports</h1>
+        <p class="lead">Get the Airports and Weather Info</p>
+        <!-- End Jumbotron -->
+      </div>
 
-<body>
-  <!-- Main container div -->
-  <div class="container">
-    <!-- Jombotron div -->
-    <div class="jumbotron text-center">
-      <h1 class="display-4">Airports</h1>
-      <p class="lead">Get the Airports and Weather Info</p>
-      <!-- End Jumbotron -->
+      <!-- Div to hold the select -->
+      <div class="card my-2">
+        <div class="card-header">
+          Airports
+        </div>
+        <div class="card-body">
+          <select id="airports">
+            <option value="">Choose an Airport</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Weather info div for selected airport -->
+      <div class="card">
+        <div class="card-header">
+          Current Weather Information
+        </div>
+        <div id="weather" class="card-body"></div>
+      </div>
+      <!-- End Container Div -->
     </div>
 
-    <!-- Div to hold the select -->
-    <div class="card my-2">
-      <div class="card-header">
-        Airports
-      </div>
-      <div class="card-body">
-        <select id='airports'>
-          <option value="">Choose an Airport</option>
-        </select>
-      </div>
-    </div>
+    <!-- JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
 
-    <!-- Weather info div for selected airport -->
-    <div class="card">
-      <div class="card-header">
-        Current Weather Information
-      </div>
-      <div id="weather" class="card-body"></div>
-    </div>
-    <!-- End Container Div -->
-  </div>
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
-  <!-- JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-  </script>
+    <!-- Firebase -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script> -->
 
-  <!-- Moment.js -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> -->
-
-  <!-- Firebase -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script> -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script> -->
-
-  <!-- Custom js -->
-  <!-- <script src="assets/js/app.js"></script> -->
-</body>
-
+    <!-- Custom js -->
+    <!-- <script src="assets/js/app.js"></script> -->
+  </body>
 </html>
 
 <!-- Javascript -->
 <script>
   // Wait for the page to load before running js
   $(document).ready(() => {
-    console.log('Document is Ready!');
+    console.log("Document is Ready!");
 
     // Setup Variables
     // *********************************************
@@ -93,8 +105,54 @@
     // Functions
     // ***********************************************
 
+    //Function to convert Meters to Feet
+    function convertMetersToFeet(meters) {
+      if (meters < 0) {
+        return "input cannot be less than zero";
+      } else {
+        return meters / 0.3048;
+      }
+    } //End convert meters to feet
+
+    //Function to convert celsius to fahrenheit
+    function convertToF(celsius) {
+      var fahrenheit;
+      fahrenheit = (celsius * 9) / 5 + 32;
+      return fahrenheit;
+    } //End convert to Farenheit
+
+    //Function to convert Pa to mmHg
+    function convertToInHg(pascal) {
+      inHg = pascal * 0.0002953;
+      return inHg;
+    } //End convert to mmHg
+
+    //Convert meters/sec to mph
+    function convertMph(mps) {
+      mph = mps * 2.23694;
+      return mph;
+    } //End convert to mph
+
+    // Calculate Weather Categories
+    //
+    //Clouds have to be overcast??
+    //
+    // Low Instrument Flight Rules (LIFR):
+    // Ceilings are less than 500 feet above ground level and/or visibility is less than 1 mile.
+    // LIFR = <500′ and/or <1 mile - Magenta
+    //
+    // Instrument Flight Rules (IFR): Ceilings 500 to less than 1,000 feet and/or visibility 1 to less than 3 miles.
+    // IFR = 500-1000′ and/or 1-3 miles - Red
+    //
+    // Marginal VFR (MVFR): Ceilings 1,000 to 3,000 feet and/or visibility is 3-5 miles inclusive.
+    // MVFR = 1000-3000′ and/or 3-5 miles - Blue
+    //
+    // VFR: Ceiling greater than 3000 feet and visibility greater than 5 miles (includes sky clear).
+    // VFR = >3000′ and >5 miles - Green
+    function calculateCat(visibility, clouds) {} //End calculate weather categories
+
     //When the aiports select changes
-    $("#airports").change(function () {
+    $("#airports").change(function() {
       console.log("Airport was Selected.");
 
       //Clear the weather div
@@ -103,72 +161,102 @@
       //Get the value of the selected airport and its coordinates
       var station = $(this).val();
       console.log(station);
-      var coordinates = $('#airports option:selected').attr('coordinates');
+      var coordinates = $("#airports option:selected").attr("coordinates");
       console.log(coordinates);
 
       // Constructing a queryURL variable for the "Latest Observation" api call
-      var queryURL = "https://api.weather.gov/stations/" + station + "/observations/latest";
+      var queryURL =
+        "https://api.weather.gov/stations/" + station + "/observations/latest";
 
       //Get the selected airport's latest weather
       $.ajax({
         url: queryURL,
         method: "GET"
-      }).then(function (response) {
+      }).then(function(response) {
         //console.log(response);
         console.log(response.properties);
+
+        //Calculate the weather category, VFR, MVFR
+        calculateCat(
+          convertMetersToFeet(response.properties.visibility.value),
+          convertMetersToFeet(response.properties.cloudLayers[0].base.value)
+        );
+
         //Update the page
         $("#weather").append(
-          "<strong>Station:</strong> ", station,
+          "<strong>Station:</strong> ",
+          station,
           "<br>",
-          "<strong>Timestamp:</strong> ", response.properties.timestamp,
+          "<strong>Timestamp:</strong> ",
+          moment(response.properties.timestamp).format("LLLL"),
           "<br>",
-          "<strong>Coordinates:</strong> ", coordinates,
+          "<strong>Coordinates:</strong> ",
+          coordinates,
           "<br>",
-          "<strong>Field Elevation:</strong> ", response.properties.elevation.value, " ", response
-          .properties.elevation
-          .unitCode,
+          "<strong>Field Elevation:</strong> ",
+          convertMetersToFeet(response.properties.elevation.value),
+          " ft",
+          //response.properties.elevation.unitCode,
           "<br>",
-          "<strong>Temperature:</strong> ", response.properties.temperature.value, " ", response
-          .properties.temperature
-          .unitCode,
+          "<strong>Temperature:</strong> ",
+          response.properties.temperature.value,
+          " ",
+          response.properties.temperature.unitCode,
+          " - ",
+          convertToF(response.properties.temperature.value),
+          " F",
           "<br>",
-          "<strong>Dew Point:</strong> ", response.properties.dewpoint.value, " ", response.properties
-          .dewpoint.unitCode,
+          "<strong>Dew Point:</strong> ",
+          response.properties.dewpoint.value,
+          " ",
+          response.properties.dewpoint.unitCode,
+          " - ",
+          convertToF(response.properties.dewpoint.value),
+          " F",
           "<br>",
-          "<strong>Barometric Pressure:</strong> ", response.properties.barometricPressure.value, " ",
-          response.properties
-          .barometricPressure.unitCode,
+          "<strong>Barometric Pressure:</strong> ",
+          response.properties.barometricPressure.value,
+          " ",
+          response.properties.barometricPressure.unitCode,
+          " - ",
+          convertToInHg(response.properties.barometricPressure.value),
+          " inHg",
           "<br>",
-          "<strong>Wind Speed:</strong> ", response.properties.windSpeed.value, " ", response.properties
-          .windSpeed
-          .unitCode,
+          "<strong>Wind Speed:</strong> ",
+          convertMph(response.properties.windSpeed.value),
+          " mph",
+          //response.properties.windSpeed.unitCode,
           "<br>",
-          "<strong>Wind Direction:</strong> ", response.properties.windDirection.value, " ", response
-          .properties
-          .windDirection
-          .unitCode,
+          "<strong>Wind Direction:</strong> ",
+          response.properties.windDirection.value,
+          " ",
+          response.properties.windDirection.unitCode,
           "<br>",
-          "<strong>Wind Gust:</strong> ", response.properties.windGust.value, " ", response.properties
-          .windGust
-          .unitCode,
+          "<strong>Wind Gust:</strong> ",
+          convertMph(response.properties.windGust.value),
+          " mph",
+          //response.properties.windGust.unitCode,
           "<br>",
-          "<strong>Visiblility:</strong> ", response.properties.visibility.value, " ", response.properties
-          .visibility
-          .unitCode,
-          "<br>",
+          "<strong>Visiblility:</strong> ",
+          convertMetersToFeet(response.properties.visibility.value),
+          " ft",
+          //response.properties.visibility.unitCode,
+          "<br>"
         );
 
         //Cloud Layers returns an array, can have multiple cloud layers
         for (var i = 0; i < response.properties.cloudLayers.length; i++) {
           $("#weather").append(
-            "<strong>Cloud Layers: ", response.properties.cloudLayers[i].amount, " - ", response
-            .properties
-            .cloudLayers[i].base.value, " ", response.properties.cloudLayers[i].base.unitCode,
+            "<strong>Cloud Layers: ",
+            response.properties.cloudLayers[i].amount,
+            " - ",
+            convertMetersToFeet(response.properties.cloudLayers[i].base.value),
+            " ft"
+            //response.properties.cloudLayers[i].base.unitCode
           );
         } //End loop through cloud layers
       }); //End Get the selected weather info
     }); //End Airport Select Change Function
-
 
     // Main Processes
     // *******************************************************
@@ -177,7 +265,7 @@
     $.ajax({
       url: queryURL,
       method: "GET"
-    }).then(function (response) {
+    }).then(function(response) {
       //console.log(response);
       //console.log(response.features);
 
@@ -192,14 +280,14 @@
         // console.log(featuresArray[i].properties.stationIdentifier + " - " + featuresArray[i].properties.name +
         //   " - " + featuresArray[i].geometry.coordinates);
         sortedStations.push({
-          "station": featuresArray[i].properties.stationIdentifier,
-          "name": featuresArray[i].properties.name,
-          "coordinates": featuresArray[i].geometry.coordinates
-        })
+          station: featuresArray[i].properties.stationIdentifier,
+          name: featuresArray[i].properties.name,
+          coordinates: featuresArray[i].geometry.coordinates
+        });
       } //End create new array from api result
 
       //Sort the new array by the name of the town
-      sortedStations.sort(function (a, b) {
+      sortedStations.sort(function(a, b) {
         var a1 = a.name,
           b1 = b.name;
         if (a1 == b1) return 0;
@@ -208,20 +296,25 @@
 
       //Loop through sorted array of airports and display airport identifier, name, and coordinates
       for (var i = 0; i < sortedStations.length; i++) {
-        console.log(sortedStations[i].station + " - " + sortedStations[i].name + " - " + sortedStations[i]
-          .coordinates);
+        console.log(
+          sortedStations[i].station +
+            " - " +
+            sortedStations[i].name +
+            " : " +
+            sortedStations[i].coordinates
+        );
       } //End loop through sorted airports
 
       //Add to the Select Element on the aiports.html page
-      $.each(sortedStations, function (key, value) {
-        $('#airports')
-          .append($("<option></option>")
+      $.each(sortedStations, function(key, value) {
+        $("#airports").append(
+          $("<option></option>")
             .attr("value", value.station)
             .attr("coordinates", value.coordinates)
-            .text(value.station + " - " + value.name));
+            .text(value.station + " - " + value.name)
+        );
       });
     });
-
 
     // Pseudocode
     // 1. Get all the airports in TX with there station identifier, name, and coordinates
@@ -233,17 +326,16 @@
     // Need to convert units
     // Need to calculate density altitude
     // Pressure altitude = (29.92 - current altimeter) x 1,000 + field elevation in feet
-    // Let’s say our current altimeter setting is 29.45 and the field elevation is 5,000 feet. 
+    // Let’s say our current altimeter setting is 29.45 and the field elevation is 5,000 feet.
     // That means Pressure Altitude = (29.92 - 29.45) x 1,000 + 5,000 = 5,470 feet.
     // OAT is degrees Celsius read off our thermometer (let’s say it’s a balmy 35 °C today) and ISA Temp is always 15 °C at sea level
     // Density altitude = pressure altitude + [120 x (OAT in Celsius - ISA Temp in deg celsius)]
-    // Calculate ISA Temp: 
-    // The first step is to check what the standard (ISA) temperature is for your chosen altitude. 
-    // Remember that according to ISA, the temperature will decrease by 1.98°C per 1000ft from mean sea level (MSL). 
-    // For practical, and exam purposes, we can safely use a 2°C decrease per 1000ft that we climb. 
+    // Calculate ISA Temp:
+    // The first step is to check what the standard (ISA) temperature is for your chosen altitude.
+    // Remember that according to ISA, the temperature will decrease by 1.98°C per 1000ft from mean sea level (MSL).
+    // For practical, and exam purposes, we can safely use a 2°C decrease per 1000ft that we climb.
     // So, as an example, if the chosen altitude is 8000ft then we calculate it like this:
     // 5 x -2 = -10 now add +15 (15 is the ISA temperature at MSL) = 5°C
     // Density altitude = 5,470 + [120 x (35 - 5)] = 9070
-
   }); // End Document Ready
 </script>
