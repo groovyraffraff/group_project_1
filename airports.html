@@ -1,90 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
 
-    <!-- Normalize CSS -->
-    <!-- <link rel="stylesheet" href="assets/css/normalize.css" /> -->
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
+  <!-- Normalize CSS -->
+  <!-- <link rel="stylesheet" href="assets/css/normalize.css" /> -->
 
-    <!-- Custom CSS -->
-    <!-- <link rel="stylesheet" href="assets/css/styles.css" /> -->
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 
-    <title>Airports</title>
-  </head>
+  <!-- Custom CSS -->
+  <!-- <link rel="stylesheet" href="assets/css/styles.css" /> -->
 
-  <body>
-    <!-- Main container div -->
-    <div class="container">
-      <!-- Jombotron div -->
-      <div class="jumbotron text-center">
-        <h1 class="display-4">Airports</h1>
-        <p class="lead">Get the Airports and Weather Info</p>
-        <!-- End Jumbotron -->
-      </div>
+  <title>Airports</title>
+</head>
 
-      <!-- Div to hold the select -->
-      <div class="card my-2">
-        <div class="card-header">
-          Airports
-        </div>
-        <div class="card-body">
-          <select id="airports">
-            <option value="">Choose an Airport</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Weather info div for selected airport -->
-      <div class="card">
-        <div class="card-header">
-          Current Weather Information
-        </div>
-        <div id="weather" class="card-body"></div>
-      </div>
-      <!-- End Container Div -->
+<body>
+  <!-- Main container div -->
+  <div class="container">
+    <!-- Jombotron div -->
+    <div class="jumbotron text-center">
+      <h1 class="display-4">Airports</h1>
+      <p class="lead">Get the Airports and Weather Info</p>
+      <!-- End Jumbotron -->
     </div>
 
-    <!-- JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
+    <!-- Div to hold the select -->
+    <div class="card my-2">
+      <div class="card-header">
+        Airports
+      </div>
+      <div class="card-body">
+        <select id="airports">
+          <option value="">Choose an Airport</option>
+        </select>
+      </div>
+    </div>
 
-    <!-- Moment.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- Weather info div for selected airport -->
+    <div class="card">
+      <div class="card-header">
+        Current Weather Information
+      </div>
+      <div id="weather" class="card-body"></div>
+    </div>
+    <!-- End Container Div -->
+  </div>
 
-    <!-- Firebase -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script> -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script> -->
+  <!-- JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
 
-    <!-- Custom js -->
-    <!-- <script src="assets/js/app.js"></script> -->
-  </body>
+  <!-- Moment.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+  <!-- Firebase -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script> -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script> -->
+
+  <!-- Custom js -->
+  <!-- <script src="assets/js/app.js"></script> -->
+</body>
+
 </html>
 
 <!-- Javascript -->
@@ -128,10 +116,16 @@
     } //End convert to mmHg
 
     //Convert meters/sec to mph
-    function convertMph(mps) {
+    function convertToMph(mps) {
       mph = mps * 2.23694;
       return mph;
     } //End convert to mph
+
+    //Convert Meters to Miles
+    function convertToMiles(meters) {
+      miles = meters / 1609.344;
+      return miles;
+    }
 
     // Calculate Weather Categories
     //
@@ -149,10 +143,62 @@
     //
     // VFR: Ceiling greater than 3000 feet and visibility greater than 5 miles (includes sky clear).
     // VFR = >3000′ and >5 miles - Green
-    function calculateCat(visibility, clouds) {} //End calculate weather categories
+    function calculateCat(visibility, cloudBase, description) {
+      console.log("Vis: " + visibility + " Ceiling: " + cloudBase + " Description: " + description);
+
+      //Check for LIFR using visibility
+      //Is Rounding affecting*************************
+      if (visibility != "Not Reported" && visibility < 1) {
+        console.log("LIFR-vis");
+        return "LIFR"
+      }
+      //Check for LIFR using ceiling
+      if (cloudBase != null && cloudBase < 500) {
+        console.log("LIFR-ceil");
+        return "LIFR"
+      }
+
+      //Check for IFR using visibility
+      if (visibility != "Not Reported" && visibility >= 1 && visibility < 3) {
+        console.log("IFR-vis");
+        return "IFR"
+      }
+      //Check for IFR using ceiling
+      if (cloudBase != null && cloudBase >= 500 && cloudBase < 1000) {
+        console.log("IFR-ceil");
+        return "IFR"
+      }
+
+      //Check for MVFR using visibility
+      if (visibility != "Not Reported" && visibility >= 3 && visibility <= 5) {
+        console.log("MVFR-vis");
+        return "MVFR-vis"
+      }
+      //Check for MVFR using ceiling
+      if (cloudBase != null && cloudBase >= 1000 && cloudBase <= 3000) {
+        console.log("MVFR-ceil");
+        return "MVFR-ceil"
+      }
+
+      //Check for VFR
+      if (visibility != "Not Reported" && visibility > 5 && cloudBase != null && cloudBase > 3000) {
+        console.log("VFR - Have Vis and Ceil");
+        return "VFR"
+      }
+
+      if (visibility != "Not Reported" && visibility > 5 && cloudBase === null) {
+        console.log("VFR - Have Vis, but No Ceil");
+        return "VFR"
+      }
+
+      if (visibility === "Not Reported" && cloudBase === null && desc === "Clear") {
+        console.log("VFR - No Vis or Ceil, only have Desc of Clear");
+        return "VFR"
+      }
+    } //End calculate weather categories
 
     //When the aiports select changes
-    $("#airports").change(function() {
+    $("#airports").change(function () {
       console.log("Airport was Selected.");
 
       //Clear the weather div
@@ -172,15 +218,53 @@
       $.ajax({
         url: queryURL,
         method: "GET"
-      }).then(function(response) {
+      }).then(function (response) {
         //console.log(response);
         console.log(response.properties);
 
+
+        //Get all the variables and do the calculations
+        //Timestamp
+        var reportTime = moment(response.properties.timestamp).format("LLLL");
+        var reportTimeFromNow = moment(response.properties.timestamp).fromNow();
+        var fieldElev = Math.round(convertMetersToFeet(response.properties.elevation.value));
+        //For Farenheit - &#8451; , Celsius - &#8451;, For Degrees - &deg;
+        var tempC = Math.round(response.properties.temperature.value);
+        var tempF = Math.round(convertToF(response.properties.temperature.value));
+        var dewpointC = Math.round(response.properties.dewpoint.value);
+        var dewpointF = Math.round(convertToF(response.properties.dewpoint.value));
+        var baro = convertToInHg(response.properties.barometricPressure.value).toFixed(2);
+        var windSpeed = Math.round(convertToMph(response.properties.windSpeed.value));
+        var windDir = Math.round(response.properties.windDirection.value);
+        var windGust = Math.round(convertToMph(response.properties.windGust.value));
+
+        if (response.properties.visibility.value != null) {
+          var visibility = Math.round(convertToMiles(response.properties.visibility.value));
+          Math.round(convertToMiles(response.properties.visibility.value));
+        } else {
+          var visibility = "Not Reported";
+        }
+
+
+        var clouds = response.properties.cloudLayers;
+        //Check if there is a cloud array returned, then assign the cloudBase variable to send to calculateCat function
+        if (clouds.length > 0) {
+          var cloudBase = clouds[0].base.value;
+        } else {
+          cloudBase = "null";
+        }
+        var description = response.properties.textDescription;
+
         //Calculate the weather category, VFR, MVFR
-        calculateCat(
-          convertMetersToFeet(response.properties.visibility.value),
-          convertMetersToFeet(response.properties.cloudLayers[0].base.value)
+        let flightCat = calculateCat(visibility, cloudBase, description);
+        console.log(flightCat);
+
+        $("#weather").append(
+          "<strong>Flight Category:</strong> ",
+          flightCat,
+          "<br><br>",
         );
+
 
         //Update the page
         $("#weather").append(
@@ -188,73 +272,79 @@
           station,
           "<br>",
           "<strong>Timestamp:</strong> ",
-          moment(response.properties.timestamp).format("LLLL"),
+          reportTime,
+          " - ",
+          reportTimeFromNow,
           "<br>",
           "<strong>Coordinates:</strong> ",
           coordinates,
           "<br>",
           "<strong>Field Elevation:</strong> ",
-          convertMetersToFeet(response.properties.elevation.value),
+          fieldElev,
           " ft",
-          //response.properties.elevation.unitCode,
           "<br>",
           "<strong>Temperature:</strong> ",
-          response.properties.temperature.value,
-          " ",
-          response.properties.temperature.unitCode,
+          tempC,
+          " &#8451;",
           " - ",
-          convertToF(response.properties.temperature.value),
-          " F",
+          tempF,
+          " &#8457;",
           "<br>",
           "<strong>Dew Point:</strong> ",
-          response.properties.dewpoint.value,
-          " ",
-          response.properties.dewpoint.unitCode,
+          dewpointC,
+          " &#8451;",
           " - ",
-          convertToF(response.properties.dewpoint.value),
-          " F",
+          dewpointF,
+          " &#8451;",
           "<br>",
           "<strong>Barometric Pressure:</strong> ",
-          response.properties.barometricPressure.value,
-          " ",
-          response.properties.barometricPressure.unitCode,
-          " - ",
-          convertToInHg(response.properties.barometricPressure.value),
+          baro,
           " inHg",
           "<br>",
           "<strong>Wind Speed:</strong> ",
-          convertMph(response.properties.windSpeed.value),
+          windSpeed,
           " mph",
-          //response.properties.windSpeed.unitCode,
           "<br>",
           "<strong>Wind Direction:</strong> ",
-          response.properties.windDirection.value,
-          " ",
-          response.properties.windDirection.unitCode,
+          windDir,
+          " &deg;",
           "<br>",
           "<strong>Wind Gust:</strong> ",
-          convertMph(response.properties.windGust.value),
+          windGust,
           " mph",
-          //response.properties.windGust.unitCode,
           "<br>",
           "<strong>Visiblility:</strong> ",
-          convertMetersToFeet(response.properties.visibility.value),
-          " ft",
-          //response.properties.visibility.unitCode,
-          "<br>"
+          visibility,
+          " sm",
+          "<br>",
+          "<strong>Description:</strong> ",
+          description,
+          "<br>",
         );
 
-        //Cloud Layers returns an array, can have multiple cloud layers
-        for (var i = 0; i < response.properties.cloudLayers.length; i++) {
+        //Check if clouds array has anything in it
+        if (clouds.length > 0) {
+          //Cloud Layers returns an array, can have multiple cloud layers
+          for (var i = 0; i < clouds.length; i++) {
+            $("#weather").append(
+              "<strong>Cloud Layers: ",
+              clouds[i].amount,
+              " - ",
+              Math.round(convertMetersToFeet(clouds[i].base.value)),
+              " ft",
+              " : ",
+            );
+          } //End loop through cloud layers
+
+          //No Clouds reported
+        } else {
           $("#weather").append(
             "<strong>Cloud Layers: ",
-            response.properties.cloudLayers[i].amount,
-            " - ",
-            convertMetersToFeet(response.properties.cloudLayers[i].base.value),
-            " ft"
-            //response.properties.cloudLayers[i].base.unitCode
+            "Clear Below 12,000 ft",
           );
-        } //End loop through cloud layers
+        }
+
+
       }); //End Get the selected weather info
     }); //End Airport Select Change Function
 
@@ -265,7 +355,7 @@
     $.ajax({
       url: queryURL,
       method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
       //console.log(response);
       //console.log(response.features);
 
@@ -287,7 +377,7 @@
       } //End create new array from api result
 
       //Sort the new array by the name of the town
-      sortedStations.sort(function(a, b) {
+      sortedStations.sort(function (a, b) {
         var a1 = a.name,
           b1 = b.name;
         if (a1 == b1) return 0;
@@ -298,20 +388,20 @@
       for (var i = 0; i < sortedStations.length; i++) {
         console.log(
           sortedStations[i].station +
-            " - " +
-            sortedStations[i].name +
-            " : " +
-            sortedStations[i].coordinates
+          " - " +
+          sortedStations[i].name +
+          " : " +
+          sortedStations[i].coordinates
         );
       } //End loop through sorted airports
 
       //Add to the Select Element on the aiports.html page
-      $.each(sortedStations, function(key, value) {
+      $.each(sortedStations, function (key, value) {
         $("#airports").append(
           $("<option></option>")
-            .attr("value", value.station)
-            .attr("coordinates", value.coordinates)
-            .text(value.station + " - " + value.name)
+          .attr("value", value.station)
+          .attr("coordinates", value.coordinates)
+          .text(value.station + " - " + value.name)
         );
       });
     });
