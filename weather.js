@@ -65,9 +65,7 @@ $(document).ready(() => {
     return miles;
   }
 
-  // Calculate Weather Categories
-  //
-  // Clouds have to be overcast??
+  // Calculate Flight Categories
   //
   // Low Instrument Flight Rules (LIFR):
   // Ceilings are less than 500 feet above ground level and/or visibility is less than 1 mile.
@@ -85,7 +83,7 @@ $(document).ready(() => {
     console.log("Vis: " + visibility + ", Amount: " + cloudAmount + ", Ceiling: " + cloudBase +
       ", Description: " + description);
 
-      console.log(typeof cloudBase);
+    //console.log(typeof cloudBase);
 
     // Check for LIFR using visibility
     // Is Rounding affecting*************************
@@ -136,9 +134,69 @@ $(document).ready(() => {
       console.log("VFR - No Vis or Ceil, only have Description of Clear");
       return "VFR";
     }
+  } // End calculate weather categories
+
+  //Function to calculate Density Altitude
+  function calcDensityAlt(baro, fieldElev, temp) {
+    console.log("Baro: " +  baro + " - Elev: " + fieldElev + " - Temp: " + temp);
 
     
-  } // End calculate weather categories
+
+    // Need to calculate density altitude
+    // Pressure altitude = (29.92 - current altimeter) x 1,000 + field elevation in feet
+    // Let’s say our current altimeter setting is 29.45 and the field elevation is 5,000 feet.
+    // That means Pressure Altitude = (29.92 - 29.45) x 1,000 + 5,000 = 5,470 feet.
+    // OAT is degrees Celsius read off our thermometer (let’s say it’s a balmy 35 °C today) and ISA Temp is always 15 °C at sea level
+    // Density altitude = pressure altitude + [120 x (OAT in Celsius - ISA Temp in deg celsius)]
+    // Calculate ISA Temp:
+    // The first step is to check what the standard (ISA) temperature is for your chosen altitude.
+    // Remember that according to ISA, the temperature will decrease by 1.98°C per 1000ft from mean sea level (MSL).
+    // For practical, and exam purposes, we can safely use a 2°C decrease per 1000ft that we climb.
+    
+    //Now, before your eyes glaze over, here’s how simple this density formula is: 
+    //We already have the value for pressure altitude from our last calculation; 
+    //OAT is degrees Celsius read off our thermometer (let’s say it’s a balmy 35 °C today) and 
+    //ISA Temp is always 15 °C at sea level. 
+    //To find ISA standard temperature for a given altitude, here’s a rule of thumb: 
+    //double the altitude, subtract 15 and place a - sign in front of it. 
+    //(For example, to find ISA Temp at 10,000 feet, 
+    //we multiply the altitude by 2 to get 20; 
+    //we then subtract 15 to get 5; finally, we add a - sign to get -5.)
+    
+    // Density altitude = 5,470 + [120 x (35 - 5)] = 9070
+
+    //The first step is to check what the standard (ISA) temperature is for your chosen altitude. 
+    //Remember that according to ISA, the temperature will decrease by 1.98°C per 1000ft from mean sea level (MSL). 
+    //For practical, and exam purposes, we can safely use a 2°C decrease per 1000ft that we climb. 
+    //So, as an example, if the chosen altitude is 8000ft then we calculate it like this:
+    //8 x -2 = -16 now add +15 (which is the ISA temperature at MSL) = -1°C
+    
+
+    //Calc Pressure Altitude
+    pressAlt = Math.round((29.92 - baro) * 1000 + fieldElev);
+    console.log("Press. Alt.: " + pressAlt);
+
+    //Get the elevation and check if it is at least 1000
+    if (fieldElev >= 1000){
+      //Convert to String and get the 1st Character
+      let strElev = fieldElev.toString()[0];
+      //Convert back to number
+      let intElev = parseInt(strElev);
+      console.log(strElev);
+      intElev = 2 * intElev;
+
+      isaTemp = (intElev * -2) + 15; 
+    }else{
+      //MSL ISA Temp
+      isaTemp = 15; 
+    }
+
+    densityAlt = pressAlt + (120 * (temp - isaTemp));
+
+    return densityAlt; 
+    
+  }
+
 
   // When the aiports select changes
   $("#airports").change(function () {
@@ -259,12 +317,30 @@ $(document).ready(() => {
       //Calculate the weather category, VFR, MVFR
       let flightCat = calculateCat(visibility, cloudAmount, cloudBase, description);
       console.log(flightCat);
-
+      
       //Append the Flight Category
       $("#weather").append(
         "<strong>Flight Category:</strong> ",
         flightCat,
         " (VFR-Green, MVFR-Blue, IFR-Red, LIFR-Magenta)",
+        "<br><br>",
+      );
+
+      //Calculate Density Altitude
+      let densityAlt = calcDensityAlt(baro,convertMetersToFeet(response.properties.elevation.value), tempC);
+      console.log(densityAlt);
+      
+      if (isNaN(densityAlt)){
+        densityAlt = "Not Reported";
+      }else{
+        densityAlt = densityAlt.toLocaleString();
+      }
+      console.log("Density Altitude: " + densityAlt);
+
+      //Append Density Altitude
+      $("#weather").append(
+        "<strong>Density Altitude:</strong> ",
+        densityAlt, " ft",
         "<br><br>",
       );
 
