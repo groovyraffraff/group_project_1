@@ -1,12 +1,104 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content=" ">
+    <meta property="og:description" content=" ">
+    <meta property="og:image" content=" ">
+    <meta property="og:url" content=" ">
+    <link rel="shortcut icon" type="image/png" href="" />
     <title>Project 1</title>
-  </head>
-  <body>
-    <h1>Project 1</h1>
-  </body>
+
+
+    <!-- Linking Material Design Bootstrap -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
+
+    <!-- Linking Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Abel|Dosis|Faster+One|Julius+Sans+One|Lily+Script+One|Lobster|Meddon|Montez|Open+Sans|Open+Sans+Condensed:300|Damion|Pacifico|Satisfy&display=swap" rel="stylesheet">
+    <!-- Linking jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!-- Linking CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+
+    <!-- Firebase References -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script> -->
+
+
+    <!-- Linking jQuery UI-->
+    <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>Airports</h1>
+        </div>
+        <!-- Card -->
+        <div class="card" id="cardbox" style="display:none;">
+            <div class="innercard">
+                <form>
+                    <!-- Point A input -->
+                    <div class="form-group bmd-form-group">
+
+                        <label for="departureInput" class="bmd-label-floating">Flying from</label>
+                        <input type="text" class="form-control" id="pointA" required="required">
+                    </div>
+                    <!-- End of Point A input -->
+                    <!-- Point B input -->
+                    <div class="form-group bmd-form-group">
+                        <label for="arrivalInput" class="bmd-label-floating">Flying To</label>
+                        <input type="text" class="form-control" id="pointB" required="required">
+                    </div>
+                    <!-- End of Point B input -->
+
+                    <!--Submit button -->
+
+                    <div class="submit">
+                        <button type="button" class="btn btn-raised" id="submitbtn">Let's go</button>
+                    </div>
+                    <!--End of Submit button -->
+                </form>
+            </div>
+        </div>
+        <!-- Card -->
+    </div>
+
+    <!-- Linking JavaScript file -->
+    <script type="text/javascript " src="assets/javascript/app.js"></script>
+
+    <button onclick="topFunction()" id="topBtn" title="Go to top"><b>⌃</b></button>
+
+    <!-- Linking Popup JavaScript file -->
+    <!-- <script type="text/javascript" src="assets/javascript/bPopup.js"></script> -->
+    <!-- Linking JavaScript file -->
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('body').bootstrapMaterialDesign();
+        });
+    </script>
+
+
+    <!-- Element to pop up -->
+    <div id="popup"> <a class="b-close">x</a> New Train Added!</div>
+
+</body>
+
 </html>
