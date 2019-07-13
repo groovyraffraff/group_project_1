@@ -32,13 +32,23 @@ font-family: 'Damion', cursive; */
             color: #fff;
         }
         
+        .select-wrapper,
+        input.select-dropdown {
+            font-family: 'Abel', sans-serif !important;
+            color: grey;
+        }
+        
         #cardbox {
             width: 40%;
             margin: auto;
+            font-family: 'Abel', sans-serif;
         }
         
+        span,
+        option,
+        form,
         .card {
-            font-family: 'Abel', sans-serif;
+            font-family: 'Abel', sans-serif !important;
             /* background: rgba(255, 255, 255, 0.2) !important; */
             background: transparent !important;
             color: grey;
