@@ -215,3 +215,10 @@ media query ends
         i.maps {
             font-size: 50px;
         }
+        
+        #weather {
+            margin: auto;
+            display: grid;
+            grid-template-columns: 50% 50%;
+            position: relative;
+        }

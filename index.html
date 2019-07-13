@@ -50,7 +50,7 @@
         <div class="title">
             <h1>Airports</h1>
         </div>
-        <!-- Card -->
+        <!-- Card starts -->
         <div class="card" id="cardbox" style="display:none;">
             <div class="row">
                 <form class="col s12">
@@ -60,7 +60,7 @@
                     <div class="input-field col s12" style="display:flex">
                         <i class="material-icons prefix">flight_takeoff</i>
 
-                        <select class="airports">
+                        <select class="airports" id="pointAinput">
                           <option value="" disabled selected>Flying from</option>
                         </select>
                     </div>
@@ -69,7 +69,7 @@
 
                     <div class="input-field col s12" style="display:flex">
                         <i class="material-icons prefix">flight_land</i>
-                        <select class="airports">
+                        <select class="airports" id="pointBinput">
                           <option value="" disabled selected>Flying To</option>
                       </select>
                     </div>
@@ -91,8 +91,23 @@
 
         <div class="mapstext"><i class="material-icons prefix maps">add_location</i><br><br>Choose from maps</div>
     </div>
-    <!-- Card -->
+    <!-- End of  Card -->
+
+    <!-- Result div -->
+    <div id="weather">
+        <div class="left" id="pointAresult">
+        </div>
+        <div class="right" id="pointBresult">
+        </div>
+
     </div>
+    <!--End of Result div -->
+    </div>
+
+
+
+
+
     <button onclick="topFunction()" id="topBtn" title="Go to top"><b>⌃</b></button>
 
 
