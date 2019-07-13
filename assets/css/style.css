@@ -33,44 +33,15 @@ font-family: 'Damion', cursive; */
         }
         
         #cardbox {
-            padding-top: 5%;
-            width: 50%;
+            width: 40%;
             margin: auto;
-        }
-        
-        .form-group {
-            margin-bottom: 0;
-        }
-        
-        .innercard {
-            padding: 2%;
         }
         
         .card {
             font-family: 'Abel', sans-serif;
-            font-size: 20px;
-            background: rgba(255, 255, 255, 0.2);
+            /* background: rgba(255, 255, 255, 0.2) !important; */
+            background: transparent !important;
             color: grey;
-        }
-        
-        .jumbotron {
-            margin: auto;
-            text-align: center;
-            background-color: #fff8ed;
-            outline: 7px solid #fbb426;
-            outline-offset: 3px;
-            background: rgba(255, 248, 238, 0.6);
-            text-align: center;
-        }
-        
-        .panel-heading {
-            /* background-color: #ffefcf !important; */
-            padding-bottom: 2%;
-        }
-        
-        .addtime {
-            padding-top: 2%;
-            padding-bottom: 0% !important;
         }
         
         .submit {
@@ -120,45 +91,6 @@ font-family: 'Damion', cursive; */
         #topBtn:hover {
             background-color: #dce6e6;
         }
-        /* changing color of form input  */
-        
-        .custom-file-control,
-        .form-control,
-        .is-focused .custom-file-control,
-        .is-focused .form-control {
-            background-image: linear-gradient(0deg, #8ec2c0 2px, rgba(0, 150, 136, 0) 0), linear-gradient(0deg, rgba(0, 0, 0, .26) 1px, transparent 0)!important;
-            /* border-bottom: 1px solid #fbb426 !important; */
-            /* box-shadow: 0 1px 0 0 #fbb426 !important; */
-        }
-        
-        .is-focused [class*=" bmd-label"],
-        .is-focused [class^=bmd-label] {
-            color: #8ec2c0 !important;
-        }
-        /* popup window */
-        
-        #popup {
-            display: none;
-            background-color: #fff;
-            border-radius: 10px 10px 10px 10px;
-            /* box-shadow: 0 0 25px 5px #999; */
-            color: #999;
-            min-width: 450px;
-            padding: 25px
-        }
-        
-        .b-close {
-            background-color: #fbb426;
-            border-radius: 7px 7px 7px 7px;
-            box-shadow: none;
-            font: bold 131% sans-serif;
-            padding: 0 6px 2px;
-            position: absolute;
-            right: -7px;
-            top: -7px;
-            color: #fff !important;
-        }
-        /* end of popup window */
         /************************************************************************************
     smaller than 640
     *************************************************************************************/
@@ -201,6 +133,7 @@ media query ends
 *************************************************************************************/
         
         body {
+            font-family: 'Abel', sans-serif;
             /* Location of the image */
             background-image: url('../images/sky1.jpg');
             /* Background image is centered vertically and horizontally at all times */
@@ -213,4 +146,62 @@ media query ends
             background-size: cover;
             /* Set a background color that will be displayed while the background image is loading */
             background-color: #fff;
+        }
+        
+        .z-depth-1,
+        nav,
+        .card-panel,
+        .card,
+        .toast,
+        .btn,
+        .btn-large,
+        .btn-floating,
+        .dropdown-content,
+        .collapsible,
+        .side-nav {
+            box-shadow: none !important;
+        }
+        
+        input[type=text]:focus:not([readonly]),
+        input[type=password]:focus:not([readonly]),
+        input[type=email]:focus:not([readonly]),
+        input[type=url]:focus:not([readonly]),
+        input[type=time]:focus:not([readonly]),
+        input[type=date]:focus:not([readonly]),
+        input[type=datetime-local]:focus:not([readonly]),
+        input[type=tel]:focus:not([readonly]),
+        input[type=number]:focus:not([readonly]),
+        input[type=search]:focus:not([readonly]),
+        textarea.materialize-textarea:focus:not([readonly]) {
+            border-bottom: 1px solid #7abbb9 !important;
+            box-shadow: 0 1px 0 0 #7abbb9 !important;
+        }
+        
+        input[type=text]:focus:not([readonly])+label,
+        input[type=password]:focus:not([readonly])+label,
+        input[type=email]:focus:not([readonly])+label,
+        input[type=url]:focus:not([readonly])+label,
+        input[type=time]:focus:not([readonly])+label,
+        input[type=date]:focus:not([readonly])+label,
+        input[type=datetime-local]:focus:not([readonly])+label,
+        input[type=tel]:focus:not([readonly])+label,
+        input[type=number]:focus:not([readonly])+label,
+        input[type=search]:focus:not([readonly])+label,
+        textarea.materialize-textarea:focus:not([readonly])+label {
+            color: #7abbb9 !important;
+        }
+        
+        .input-field .prefix.active {
+            color: #7abbb9 !important;
+        }
+        
+        i.maps,
+        .mapstext {
+            text-align: center;
+            margin: auto;
+            color: gray;
+        }
+        
+        i.maps {
+            font-size: 50px;
         }

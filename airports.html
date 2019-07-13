@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Normalize CSS -->
+    <!-- <link rel="stylesheet" href="assets/css/normalize.css" /> -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+
+    <!-- Custom CSS -->
+    <!-- <link rel="stylesheet" href="assets/css/styles.css" /> -->
+
+    <title>Airports</title>
+</head>
+
+<body>
+    <!-- Main container div -->
+    <div class="container">
+        <!-- Jombotron div -->
+        <div class="jumbotron text-center">
+            <h1 class="display-4">Airports</h1>
+            <p class="lead">Get the Airports and Weather Info</p>
+            <!-- End Jumbotron -->
+        </div>
+
+        <!-- Div to hold the select -->
+        <div class="card my-2">
+            <div class="card-header">
+                Airports
+            </div>
+            <div class="card-body">
+                <select id='airports'>
+          <option value="">Choose an Airport</option>
+        </select>
+            </div>
+        </div>
+
+        <!-- Weather info div for selected airport -->
+        <div class="card">
+            <div class="card-header">
+                Current Weather Information
+            </div>
+            <div id="weather" class="card-body"></div>
+        </div>
+        <!-- End Container Div -->
+    </div>
+
+    <!-- JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <!-- Moment.js -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> -->
+
+    <!-- Firebase -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script> -->
+
+    <!-- Custom js -->
+    <!-- <script src="assets/js/app.js"></script> -->
+</body>
+
+</html>
+
+<!-- Javascript -->
+<script>
+    // Wait for the page to load before running js
+    $(document).ready(() => {
+        console.log('Document is Ready!');
+        // Setup Variables
+        // *********************************************
+        //State variable - will limit weather info to TX
+        var state = "TX";
+        // Constructing a queryURL variable for the "All Stations in TX" api call
+        var queryURL = "https://api.weather.gov/stations?state=" + state;
+        // Functions
+        // ***********************************************
+        //When the aiports select changes
+        $("#airports").change(function() {
+            console.log("Airport was Selected.");
+            //Clear the weather div
+            $("#weather").empty();
+            //Get the value of the selected airport and its coordinates
+            var station = $(this).val();
+            console.log(station);
+            var coordinates = $('#airports option:selected').attr('coordinates');
+            console.log(coordinates);
+            // Constructing a queryURL variable for the "Latest Observation" api call
+            var queryURL = "https://api.weather.gov/stations/" + station + "/observations/latest";
+            //Get the selected airport's latest weather
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function(response) {
+                //console.log(response);
+                console.log(response.properties);
+                //Update the page
+                $("#weather").append(
+                    "<strong>Station:</strong> ", station,
+                    "<br>",
+                    "<strong>Timestamp:</strong> ", response.properties.timestamp,
+                    "<br>",
+                    "<strong>Coordinates:</strong> ", coordinates,
+                    "<br>",
+                    "<strong>Field Elevation:</strong> ", response.properties.elevation.value, " ", response
+                    .properties.elevation
+                    .unitCode,
+                    "<br>",
+                    "<strong>Temperature:</strong> ", response.properties.temperature.value, " ", response
+                    .properties.temperature
+                    .unitCode,
+                    "<br>",
+                    "<strong>Dew Point:</strong> ", response.properties.dewpoint.value, " ", response.properties
+                    .dewpoint.unitCode,
+                    "<br>",
+                    "<strong>Barometric Pressure:</strong> ", response.properties.barometricPressure.value, " ",
+                    response.properties
+                    .barometricPressure.unitCode,
+                    "<br>",
+                    "<strong>Wind Speed:</strong> ", response.properties.windSpeed.value, " ", response.properties
+                    .windSpeed
+                    .unitCode,
+                    "<br>",
+                    "<strong>Wind Direction:</strong> ", response.properties.windDirection.value, " ", response
+                    .properties
+                    .windDirection
+                    .unitCode,
+                    "<br>",
+                    "<strong>Wind Gust:</strong> ", response.properties.windGust.value, " ", response.properties
+                    .windGust
+                    .unitCode,
+                    "<br>",
+                    "<strong>Visiblility:</strong> ", response.properties.visibility.value, " ", response.properties
+                    .visibility
+                    .unitCode,
+                    "<br>",
+                );
+                //Cloud Layers returns an array, can have multiple cloud layers
+                for (var i = 0; i < response.properties.cloudLayers.length; i++) {
+                    $("#weather").append(
+                        "<strong>Cloud Layers: ", response.properties.cloudLayers[i].amount, " - ", response
+                        .properties
+                        .cloudLayers[i].base.value, " ", response.properties.cloudLayers[i].base.unitCode,
+                    );
+                } //End loop through cloud layers
+            }); //End Get the selected weather info
+        }); //End Airport Select Change Function
+        // Main Processes
+        // *******************************************************
+        //Get All the TX airports from the api
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function(response) {
+            //console.log(response);
+            //console.log(response.features);
+            //Get just the features from the response
+            var featuresArray = response.features;
+            //Create a new sorted array variable
+            var sortedStations = [];
+            //Push the values to the new array
+            for (var i = 0; i < featuresArray.length; i++) {
+                // console.log(featuresArray[i].properties.stationIdentifier + " - " + featuresArray[i].properties.name +
+                //   " - " + featuresArray[i].geometry.coordinates);
+                sortedStations.push({
+                    "station": featuresArray[i].properties.stationIdentifier,
+                    "name": featuresArray[i].properties.name,
+                    "coordinates": featuresArray[i].geometry.coordinates
+                })
+            } //End create new array from api result
+            //Sort the new array by the name of the town
+            sortedStations.sort(function(a, b) {
+                var a1 = a.name,
+                    b1 = b.name;
+                if (a1 == b1) return 0;
+                return a1 > b1 ? 1 : -1;
+            }); //End sort airport array
+            //Loop through sorted array of airports and display airport identifier, name, and coordinates
+            for (var i = 0; i < sortedStations.length; i++) {
+                console.log(sortedStations[i].station + " - " + sortedStations[i].name + " - " + sortedStations[i]
+                    .coordinates);
+            } //End loop through sorted airports
+            //Add to the Select Element on the aiports.html page
+            $.each(sortedStations, function(key, value) {
+                $('#airports')
+                    .append($("<option></option>")
+                        .attr("value", value.station)
+                        .attr("coordinates", value.coordinates)
+                        .text(value.station + " - " + value.name));
+            });
+        });
+        // Pseudocode
+        // 1. Get all the airports in TX with there station identifier, name, and coordinates
+        // 2. Put those airports in a select
+        // 3. Choose an airport from the select element, get that value, send to the api to get the latest weather observation
+        // 4. Display info on the page
+        // ToDos
+        // Need to convert units
+        // Need to calculate density altitude
+        // Pressure altitude = (29.92 - current altimeter) x 1,000 + field elevation in feet
+        // Let’s say our current altimeter setting is 29.45 and the field elevation is 5,000 feet. 
+        // That means Pressure Altitude = (29.92 - 29.45) x 1,000 + 5,000 = 5,470 feet.
+        // OAT is degrees Celsius read off our thermometer (let’s say it’s a balmy 35 °C today) and ISA Temp is always 15 °C at sea level
+        // Density altitude = pressure altitude + [120 x (OAT in Celsius - ISA Temp in deg celsius)]
+        // Calculate ISA Temp: 
+        // The first step is to check what the standard (ISA) temperature is for your chosen altitude. 
+        // Remember that according to ISA, the temperature will decrease by 1.98°C per 1000ft from mean sea level (MSL). 
+        // For practical, and exam purposes, we can safely use a 2°C decrease per 1000ft that we climb. 
+        // So, as an example, if the chosen altitude is 8000ft then we calculate it like this:
+        // 5 x -2 = -10 now add +15 (15 is the ISA temperature at MSL) = 5°C
+        // Density altitude = 5,470 + [120 x (35 - 5)] = 9070
+    }); // End Document Ready
+</script>
