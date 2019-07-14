@@ -1,49 +1,102 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-plusplus */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable max-len */
+/* eslint-disable func-names */
+/* eslint-disable no-undef */
 // Wait for the page to load before running js
 $(document).ready(() => {
-  console.log("Document is Ready!");
+  console.log('Document is Ready!');
 
   // Setup Variables
   // *********************************************
-  let reportTime = "";
-  let reportTimeFromNow = "";
-  let fieldElev = "";
-  let tempC = "";
-  let tempF = "";
-  let dewpointC = "";
-  let dewpointF = "";
-  let dewPointSpread = "";
-  let baro = "";
-  let windSpeed = "";
-  let windDir = "";
-  let windGust = "";
-  let visibility = "";
-  let description = "";
+  let reportTime = '';
+  let reportTimeFromNow = '';
+  let fieldElev = '';
+  let tempC = '';
+  let tempF = '';
+  let dewpointC = '';
+  let dewpointF = '';
+  let dewPointSpread = '';
+  let baro = '';
+  let windSpeed = '';
+  let windDir = '';
+  let windGust = '';
+  let visibility = '';
+  let description = '';
   let clouds = [];
-  let cloudBase = "";
-  let cloudAmount = "";
+  let cloudBase = '';
+  let cloudAmount = '';
 
   // State variable - will limit weather info to TX
-  let state = "TX";
+  const state = 'TX';
+  let queryURL = '';
 
   // Constructing a queryURL variable for the "All Stations in TX" api call
-  let queryURL = "https://api.weather.gov/stations?state=" + state;
+  queryURL = `https://api.weather.gov/stations?state=${state}`;
 
   // Functions
   // ***********************************************
 
+  /**
+   * Changes XML to JSON
+   * Modified version from here: http://davidwalsh.name/convert-xml-json
+   * @param {string} xml XML DOM tree
+   */
+  function xmlToJson(xml) {
+    // Create the return object
+    let obj = {};
+
+    if (xml.nodeType == 1) {
+      // element
+      // do attributes
+      if (xml.attributes.length > 0) {
+        obj['@attributes'] = {};
+        for (let j = 0; j < xml.attributes.length; j++) {
+          const attribute = xml.attributes.item(j);
+          obj['@attributes'][attribute.nodeName] = attribute.nodeValue;
+        }
+      }
+    } else if (xml.nodeType == 3) {
+      // text
+      obj = xml.nodeValue;
+    }
+
+    // do children
+    // If all text nodes inside, get concatenated text from them.
+    const textNodes = [].slice.call(xml.childNodes).filter(node => node.nodeType === 3);
+    if (xml.hasChildNodes() && xml.childNodes.length === textNodes.length) {
+      obj = [].slice.call(xml.childNodes).reduce((text, node) => text + node.nodeValue, '');
+    } else if (xml.hasChildNodes()) {
+      for (let i = 0; i < xml.childNodes.length; i++) {
+        const item = xml.childNodes.item(i);
+        const nodeName = item.nodeName;
+        if (typeof obj[nodeName] === 'undefined') {
+          obj[nodeName] = xmlToJson(item);
+        } else {
+          if (typeof obj[nodeName].push === 'undefined') {
+            const old = obj[nodeName];
+            obj[nodeName] = [];
+            obj[nodeName].push(old);
+          }
+          obj[nodeName].push(xmlToJson(item));
+        }
+      }
+    }
+    return obj;
+  }
+
   // Function to convert Meters to Feet
   function convertMetersToFeet(meters) {
     if (meters < 0) {
-      return "input cannot be less than zero";
-    } else {
-      return meters / 0.3048;
+      return 'input cannot be less than zero';
     }
+    return meters / 0.3048;
   } // End convert meters to feet
 
   // Function to convert celsius to fahrenheit
   function convertToF(celsius) {
-    let fahrenheit;
-    fahrenheit = (celsius * 9) / 5 + 32;
+    const fahrenheit = (celsius * 9) / 5 + 32;
     return fahrenheit;
   } // End convert to Farenheit
 
@@ -71,76 +124,79 @@ $(document).ready(() => {
   // Ceilings are less than 500 feet above ground level and/or visibility is less than 1 mile.
   // LIFR = <500′ and/or <1 mile - Magenta
   //
-  // Instrument Flight Rules (IFR): Ceilings 500 to less than 1,000 feet and/or visibility 1 to less than 3 miles.
+  // Instrument Flight Rules (IFR): Ceilings 500 to less than 1,000 feet
+  // and/or visibility 1 to less than 3 miles.
   // IFR = 500-1000′ and/or 1-3 miles - Red
   //
-  // Marginal VFR (MVFR): Ceilings 1,000 to 3,000 feet and/or visibility is 3-5 miles inclusive.
+  // Marginal VFR (MVFR): Ceilings 1,000 to 3,000 feet
+  // and/or visibility is 3-5 miles inclusive.
   // MVFR = 1000-3000′ and/or 3-5 miles - Blue
   //
-  // VFR: Ceiling greater than 3000 feet and visibility greater than 5 miles (includes sky clear).
+  // VFR: Ceiling greater than 3000 feet and visibility greater than 5 miles
+  // (includes sky clear).
   // VFR = >3000′ and >5 miles - Green
+  // eslint-disable-next-line consistent-return
   function calculateCat(visibility, cloudAmount, cloudBase, description) {
-    console.log("Vis: " + visibility + ", Amount: " + cloudAmount + ", Ceiling: " + cloudBase +
-      ", Description: " + description);
+    console.log(
+      `Vis: ${visibility}, Amount: ${cloudAmount}, Ceiling: ${cloudBase}, Description: ${description}`,
+    );
 
-    //console.log(typeof cloudBase);
+    // console.log(typeof cloudBase);
 
     // Check for LIFR using visibility
     // Is Rounding affecting*************************
-    if (visibility != "Not Reported" && visibility < 1) {
-      console.log("LIFR-vis");
-      return "LIFR";
+    if (visibility !== 'Not Reported' && visibility < 1) {
+      console.log('LIFR-vis');
+      return 'LIFR';
     }
     // Check for LIFR using ceiling
-    if (cloudBase != 'null' && cloudBase < 500) {
-      console.log("LIFR-ceil");
-      return "LIFR";
+    if (cloudBase !== 'null' && cloudBase < 500) {
+      console.log('LIFR-ceil');
+      return 'LIFR';
     }
 
     // Check for IFR using visibility
-    if (visibility != "Not Reported" && visibility >= 1 && visibility < 3) {
-      console.log("IFR-vis");
-      return "IFR";
+    if (visibility !== 'Not Reported' && visibility >= 1 && visibility < 3) {
+      console.log('IFR-vis');
+      return 'IFR';
     }
     // Check for IFR using ceiling
-    if (cloudBase != 'null' && cloudBase >= 500 && cloudBase < 1000) {
-      console.log("IFR-ceil");
-      return "IFR";
+    if (cloudBase !== 'null' && cloudBase >= 500 && cloudBase < 1000) {
+      console.log('IFR-ceil');
+      return 'IFR';
     }
 
     // Check for MVFR using visibility
-    if (visibility != "Not Reported" && visibility >= 3 && visibility <= 5) {
-      console.log("MVFR-vis");
-      return "MVFR";
+    if (visibility !== 'Not Reported' && visibility >= 3 && visibility <= 5) {
+      console.log('MVFR-vis');
+      return 'MVFR';
     }
     // Check for MVFR using ceiling
-    if (cloudBase != 'null' && cloudBase >= 1000 && cloudBase <= 3000) {
-      console.log("MVFR-ceil");
-      return "MVFR";
+    if (cloudBase !== 'null' && cloudBase >= 1000 && cloudBase <= 3000) {
+      console.log('MVFR-ceil');
+      return 'MVFR';
     }
 
     // Check for VFR
-    if (visibility != "Not Reported" && visibility > 5 && cloudBase > 3000) {
-      console.log("VFR - Have Vis and Ceil");
-      return "VFR";
+    if (visibility !== 'Not Reported' && visibility > 5 && cloudBase > 3000) {
+      console.log('VFR - Have Vis and Ceil');
+      return 'VFR';
     }
 
-    if (visibility != "Not Reported" && visibility > 5 && cloudBase === 'null') {
-      console.log("VFR - Have Vis, but No Ceil");
-      return "VFR";
+    if (visibility !== 'Not Reported' && visibility > 5 && cloudBase === 'null') {
+      console.log('VFR - Have Vis, but No Ceil');
+      return 'VFR';
     }
 
-    if (visibility === "Not Reported" && cloudBase === 'null' && description === "Clear") {
-      console.log("VFR - No Vis or Ceil, only have Description of Clear");
-      return "VFR";
+    if (visibility === 'Not Reported' && cloudBase === 'null' && description === 'Clear') {
+      console.log('VFR - No Vis or Ceil, only have Description of Clear');
+      return 'VFR';
     }
   } // End calculate weather categories
 
-  //Function to calculate Density Altitude
+  // Function to calculate Density Altitude
   function calcDensityAlt(baro, fieldElev, temp) {
-    console.log("Baro: " +  baro + " - Elev: " + fieldElev + " - Temp: " + temp);
-
-    
+    console.log(`Baro: ${baro} - Elev: ${fieldElev} - Temp: ${temp}`);
 
     // Need to calculate density altitude
     // Pressure altitude = (29.92 - current altimeter) x 1,000 + field elevation in feet
@@ -152,338 +208,358 @@ $(document).ready(() => {
     // The first step is to check what the standard (ISA) temperature is for your chosen altitude.
     // Remember that according to ISA, the temperature will decrease by 1.98°C per 1000ft from mean sea level (MSL).
     // For practical, and exam purposes, we can safely use a 2°C decrease per 1000ft that we climb.
-    
-    //Now, before your eyes glaze over, here’s how simple this density formula is: 
-    //We already have the value for pressure altitude from our last calculation; 
-    //OAT is degrees Celsius read off our thermometer (let’s say it’s a balmy 35 °C today) and 
-    //ISA Temp is always 15 °C at sea level. 
-    //To find ISA standard temperature for a given altitude, here’s a rule of thumb: 
-    //double the altitude, subtract 15 and place a - sign in front of it. 
-    //(For example, to find ISA Temp at 10,000 feet, 
-    //we multiply the altitude by 2 to get 20; 
-    //we then subtract 15 to get 5; finally, we add a - sign to get -5.)
-    
+
+    // Now, before your eyes glaze over, here’s how simple this density formula is:
+    // We already have the value for pressure altitude from our last calculation;
+    // OAT is degrees Celsius read off our thermometer (let’s say it’s a balmy 35 °C today) and
+    // ISA Temp is always 15 °C at sea level.
+    // To find ISA standard temperature for a given altitude, here’s a rule of thumb:
+    // double the altitude, subtract 15 and place a - sign in front of it.
+    // (For example, to find ISA Temp at 10,000 feet,
+    // we multiply the altitude by 2 to get 20;
+    // we then subtract 15 to get 5; finally, we add a - sign to get -5.)
+
     // Density altitude = 5,470 + [120 x (35 - 5)] = 9070
 
-    //The first step is to check what the standard (ISA) temperature is for your chosen altitude. 
-    //Remember that according to ISA, the temperature will decrease by 1.98°C per 1000ft from mean sea level (MSL). 
-    //For practical, and exam purposes, we can safely use a 2°C decrease per 1000ft that we climb. 
-    //So, as an example, if the chosen altitude is 8000ft then we calculate it like this:
-    //8 x -2 = -16 now add +15 (which is the ISA temperature at MSL) = -1°C
-    
+    // The first step is to check what the standard (ISA) temperature is for your chosen altitude.
+    // Remember that according to ISA, the temperature will decrease by 1.98°C per 1000ft from mean sea level (MSL).
+    // For practical, and exam purposes, we can safely use a 2°C decrease per 1000ft that we climb.
+    // So, as an example, if the chosen altitude is 8000ft then we calculate it like this:
+    // 8 x -2 = -16 now add +15 (which is the ISA temperature at MSL) = -1°C
 
-    //Calc Pressure Altitude
+    // Calc Pressure Altitude
     pressAlt = Math.round((29.92 - baro) * 1000 + fieldElev);
-    console.log("Press. Alt.: " + pressAlt);
+    console.log(`Press. Alt.: ${pressAlt}`);
 
-    //Get the elevation and check if it is at least 1000
-    if (fieldElev >= 1000){
-      //Convert to String and get the 1st Character
-      let strElev = fieldElev.toString()[0];
-      //Convert back to number
+    // Get the elevation and check if it is at least 1000
+    if (fieldElev >= 1000) {
+      // Convert to String and get the 1st Character
+      const strElev = fieldElev.toString()[0];
+      // Convert back to number
+      // eslint-disable-next-line radix
       let intElev = parseInt(strElev);
       console.log(strElev);
-      intElev = 2 * intElev;
+      intElev *= 2;
 
-      isaTemp = (intElev * -2) + 15; 
-    }else{
-      //MSL ISA Temp
-      isaTemp = 15; 
+      isaTemp = intElev * -2 + 15;
+    } else {
+      // MSL ISA Temp
+      isaTemp = 15;
     }
 
-    densityAlt = pressAlt + (120 * (temp - isaTemp));
+    densityAlt = pressAlt + 120 * (temp - isaTemp);
 
-    return densityAlt; 
-    
+    return densityAlt;
   }
 
-
   // When the aiports select changes
-  $("#airports").change(function () {
-    console.log("Airport was Selected.");
+  $('#airports').change(function () {
+    console.log('Airport was Selected.');
 
     // Clear the weather div
-    $("#weather").empty();
+    $('#weather').empty();
 
     // Get the value of the selected airport and its coordinates
-    let station = $(this).val();
+    const station = $(this).val();
     console.log(station);
-    let coordinates = $("#airports option:selected").attr("coordinates");
+    const coordinates = $('#airports option:selected').attr('coordinates');
     console.log(coordinates);
 
-    // Constructing a queryURL variable for the "Latest Observation" api call
-    let queryURL =
-      "https://api.weather.gov/stations/" + station + "/observations/latest";
+    queryURL = `https://cors-anywhere.herokuapp.com/https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=${station}&hoursBeforeNow=1`;
 
     // Get the selected airport's latest weather
     $.ajax({
       url: queryURL,
-      method: "GET"
-    }).then(function (response) {
+      method: 'GET',
+      dataType: 'xml',
+      contentType: 'application/xml',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, POST, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Max-Age': '86400',
+      },
+    }).then((response) => {
+      console.log(response);
+
+      const xml = xmlToJson(response);
+      // const xml = JSON.stringify(xmlToJson(response));
+      console.log(xml);
+
+      console.log(xml.response.data.METAR[0]);
+      console.log(xml.response.data.METAR[0].wind_speed_kt);
+    });
+
+    // Constructing a queryURL variable for the "Latest Observation" api call
+    queryURL = `https://api.weather.gov/stations/${station}/observations/latest?require_qc=true`;
+
+    // Get the selected airport's latest weather
+    $.ajax({
+      url: queryURL,
+      method: 'GET',
+    }).then((response) => {
       // console.log(response);
       console.log(response.properties);
 
+      const raw = response.properties.rawMessage;
+      console.log(raw);
+
       // Get all the variables and do the calculations
       // Timestamp
-      reportTime = moment(response.properties.timestamp).format("LLLL");
+      reportTime = moment(response.properties.timestamp).format('LLLL');
       reportTimeFromNow = moment(response.properties.timestamp).fromNow();
       // .toLocalString puts in the comma
-      fieldElev = Math.round(convertMetersToFeet(response.properties.elevation.value))
-        .toLocaleString();
+      fieldElev = Math.round(
+        convertMetersToFeet(response.properties.elevation.value),
+      ).toLocaleString();
       // For Farenheit - &#8457; , Celsius - &#8451;, For Degrees - &deg;
 
       // Check if the temp has been reported
-      if (response.properties.temperature.value != null) {
+      if (response.properties.temperature.value !== null) {
         tempC = Math.round(response.properties.temperature.value);
         tempF = Math.round(convertToF(response.properties.temperature.value));
       } else {
-        tempC = "Not Reported";
-        tempF = "Not Reported";
+        tempC = 'Not Reported';
+        tempF = 'Not Reported';
       } // End check if temp reported
 
       // Check if the dewpoint has been reported
-      if (response.properties.dewpoint.value != null) {
+      if (response.properties.dewpoint.value !== null) {
         dewpointC = Math.round(response.properties.dewpoint.value);
         dewpointF = Math.round(convertToF(response.properties.dewpoint.value));
         dewPointSpread = tempF - dewpointF;
       } else {
-        dewpointC = "Not Reported";
-        dewpointF = "Not Reported";
-        dewPointSpread = "Not Reported";
+        dewpointC = 'Not Reported';
+        dewpointF = 'Not Reported';
+        dewPointSpread = 'Not Reported';
       } // End check if dewpoint reported
 
       // Check if the Barometric pressure has been reported
-      if (response.properties.barometricPressure.value != null) {
+      if (response.properties.barometricPressure.value !== null) {
         baro = convertToInHg(response.properties.barometricPressure.value).toFixed(2);
       } else {
-        baro = "Not Reported";
+        baro = 'Not Reported';
       } // End check if baro reported
 
       // Check if the Wind Speed has been reported
-      if (response.properties.windSpeed.value != null) {
+      if (response.properties.windSpeed.value !== null) {
         windSpeed = Math.round(convertToMph(response.properties.windSpeed.value));
       } else {
-        windSpeed = "Not Reported";
+        windSpeed = 'Not Reported';
       } // End check if wind speed reported
 
       // Check if the Wind Direction has been reported
-      if (response.properties.windDirection.value != null) {
+      if (response.properties.windDirection.value !== null) {
         windDir = Math.round(response.properties.windDirection.value);
       } else {
-        windDir = "Not Reported"
+        windDir = 'Not Reported';
       } // End check if wind direction reported
 
       // Check if the Wind Gust has been reported
-      if (response.properties.windGust.value != null) {
+      if (response.properties.windGust.value !== null) {
         windGust = Math.round(convertToMph(response.properties.windGust.value));
       } else {
-        windGust = "Not Reported";
+        windGust = 'Not Reported';
       } // End check if wind gust reported
 
-      //Check if the Visibility has been reported
-      if (response.properties.visibility.value != null) {
+      // Check if the Visibility has been reported
+      if (response.properties.visibility.value !== null) {
         visibility = Math.round(convertToMiles(response.properties.visibility.value));
         Math.round(convertToMiles(response.properties.visibility.value));
       } else {
-        visibility = "Not Reported";
-      } //End check if visibility has been reported
+        visibility = 'Not Reported';
+      } // End check if visibility has been reported
 
-      //Set the clouds array variable
+      // Set the clouds array variable
       clouds = response.properties.cloudLayers;
-      //Check if there is a cloud array returned, then assign the cloudBase variable to send to calculateCat function
-      //Get the 1st "BKN" or "OVC" layer
+      // Check if there is a cloud array returned, then assign the cloudBase variable to send to calculateCat function
+      // Get the 1st "BKN" or "OVC" layer
       if (clouds.length > 0) {
-        //Loop through cloud array
+        // Loop through cloud array
         for (let i = 0; i < clouds.length; i++) {
-          //Set the amount variable, CLR, SCT, BKN, OVC
+          // Set the amount variable, CLR, SCT, BKN, OVC
           cloudAmount = clouds[i].amount;
-          //Check for a Broken or Overcast layer
-          if (cloudAmount === "BKN" || cloudAmount === "OVC") {
-            //Set the Ceiling
+          // Check for a Broken or Overcast layer
+          if (cloudAmount === 'BKN' || cloudAmount === 'OVC') {
+            // Set the Ceiling
             cloudBase = Math.round(convertMetersToFeet(clouds[i].base.value));
-            //Break out of the loop if get a BKN or OVC layer
+            // Break out of the loop if get a BKN or OVC layer
             break;
           } else {
-            cloudBase = "null";
-          } //End check if BKN or OVC
-        } //End loop over clouds
+            cloudBase = 'null';
+          } // End check if BKN or OVC
+        } // End loop over clouds
       } else {
-        cloudBase = "null";
-      } //End check if there is a cloud array
+        cloudBase = 'null';
+      } // End check if there is a cloud array
 
-      //Get the text description of the current weather
+      // Get the text description of the current weather
       description = response.properties.textDescription;
 
-      //Calculate the weather category, VFR, MVFR
-      let flightCat = calculateCat(visibility, cloudAmount, cloudBase, description);
+      // Calculate the weather category, VFR, MVFR
+      const flightCat = calculateCat(visibility, cloudAmount, cloudBase, description);
       console.log(flightCat);
-      
-      //Append the Flight Category
-      $("#weather").append(
-        "<strong>Flight Category:</strong> ",
+
+      // Append the Flight Category
+      $('#weather').append(
+        '<strong>Flight Category:</strong> ',
         flightCat,
-        " (VFR-Green, MVFR-Blue, IFR-Red, LIFR-Magenta)",
-        "<br><br>",
+        ' (VFR-Green, MVFR-Blue, IFR-Red, LIFR-Magenta)',
+        '<br><br>',
       );
 
-      //Calculate Density Altitude
-      let densityAlt = calcDensityAlt(baro,convertMetersToFeet(response.properties.elevation.value), tempC);
+      // Calculate Density Altitude
+      let densityAlt = calcDensityAlt(
+        baro,
+        convertMetersToFeet(response.properties.elevation.value),
+        tempC,
+      );
       console.log(densityAlt);
-      
-      if (isNaN(densityAlt)){
-        densityAlt = "Not Reported";
-      }else{
+
+      if (isNaN(densityAlt)) {
+        densityAlt = 'Not Reported';
+      } else {
         densityAlt = densityAlt.toLocaleString();
       }
-      console.log("Density Altitude: " + densityAlt);
+      console.log(`Density Altitude: ${densityAlt}`);
 
-      //Append Density Altitude
-      $("#weather").append(
-        "<strong>Density Altitude:</strong> ",
-        densityAlt, " ft",
-        "<br><br>",
-      );
+      // Append Density Altitude
+      $('#weather').append('<strong>Density Altitude:</strong> ', densityAlt, ' ft', '<br><br>');
 
-      //Update the page
-      $("#weather").append(
-        "<strong>Station:</strong> ",
+      // Update the page
+      $('#weather').append(
+        '<strong>Station:</strong> ',
         station,
-        "<br>",
-        "<strong>Timestamp:</strong> ",
+        '<br>',
+        '<strong>Timestamp:</strong> ',
         reportTime,
-        " - ",
+        ' - ',
         reportTimeFromNow,
-        "<br>",
-        "<strong>Coordinates:</strong> ",
+        '<br>',
+        '<strong>Coordinates:</strong> ',
         coordinates,
-        "<br>",
-        "<strong>Field Elevation:</strong> ",
+        '<br>',
+        '<strong>Field Elevation:</strong> ',
         fieldElev,
-        " ft",
-        "<br>",
-        "<strong>Temperature:</strong> ",
+        ' ft',
+        '<br>',
+        '<strong>Temperature:</strong> ',
         tempC,
-        " &#8451;",
-        " - ",
+        ' &#8451;',
+        ' - ',
         tempF,
-        " &#8457;",
-        "<br>",
-        "<strong>Dew Point:</strong> ",
+        ' &#8457;',
+        '<br>',
+        '<strong>Dew Point:</strong> ',
         dewpointC,
-        " &#8451;",
-        " - ",
+        ' &#8451;',
+        ' - ',
         dewpointF,
-        " &#8451;",
-        "<br>",
-        "<strong>Dew Point Spread:</strong> ",
+        ' &#8451;',
+        '<br>',
+        '<strong>Dew Point Spread:</strong> ',
         dewPointSpread,
-        " &#8457;",
-        "<br>",
-        "<strong>Barometric Pressure:</strong> ",
+        ' &#8457;',
+        '<br>',
+        '<strong>Barometric Pressure:</strong> ',
         baro,
-        " inHg",
-        "<br>",
-        "<strong>Wind Speed:</strong> ",
+        ' inHg',
+        '<br>',
+        '<strong>Wind Speed:</strong> ',
         windSpeed,
-        " mph",
-        "<br>",
-        "<strong>Wind Direction:</strong> ",
+        ' mph',
+        '<br>',
+        '<strong>Wind Direction:</strong> ',
         windDir,
-        " &deg;",
-        "<br>",
-        "<strong>Wind Gust:</strong> ",
+        ' &deg;',
+        '<br>',
+        '<strong>Wind Gust:</strong> ',
         windGust,
-        " mph",
-        "<br>",
-        "<strong>Visiblility:</strong> ",
+        ' mph',
+        '<br>',
+        '<strong>Visiblility:</strong> ',
         visibility,
-        " sm",
-        "<br>",
-        "<strong>Description:</strong> ",
+        ' sm',
+        '<br>',
+        '<strong>Description:</strong> ',
         description,
-        "<br>",
+        '<br>',
       );
 
-      //Check if clouds array has anything in it
+      // Check if clouds array has anything in it
       if (clouds.length > 0) {
-        //Cloud Layers returns an array, can have multiple cloud layers
-        $("#weather").append(
-          "<strong>Cloud Layers: ",
-        );
+        // Cloud Layers returns an array, can have multiple cloud layers
+        $('#weather').append('<strong>Cloud Layers: ');
         for (let i = 0; i < clouds.length; i++) {
-          $("#weather").append(
+          $('#weather').append(
             clouds[i].amount,
-            " - ",
+            ' - ',
             Math.round(convertMetersToFeet(clouds[i].base.value)).toLocaleString(),
-            " ft",
-            " , ",
+            ' ft',
+            ' , ',
           );
-        } //End loop through cloud layers
+        } // End loop through cloud layers
 
-        //No Clouds reported
+        // No Clouds reported
       } else {
-        $("#weather").append(
-          "<strong>Cloud Layers: ",
-          "Clear Below 12,000 ft",
-        );
-      }//End Check if cloud array is populated
-    }); //End Get the selected weather info
-  }); //End Airport Select Change Function
+        $('#weather').append('<strong>Cloud Layers: ', 'Clear Below 12,000 ft');
+      } // End Check if cloud array is populated
+    }); // End Get the selected weather info
+  }); // End Airport Select Change Function
 
   // Main Processes
   // *******************************************************
 
-  //Get All the TX airports from the api
+  // Get All the TX airports from the api
   $.ajax({
     url: queryURL,
-    method: "GET"
-  }).then(function (response) {
-    //console.log(response);
-    //console.log(response.features);
+    method: 'GET',
+  }).then((response) => {
+    // console.log(response);
+    // console.log(response.features);
 
-    //Get just the features from the response
-    let featuresArray = response.features;
+    // Get just the features from the response
+    const featuresArray = response.features;
 
-    //Create a new sorted array variable
-    let sortedStations = [];
+    // Create a new sorted array variable
+    const sortedStations = [];
 
-    //Push the values to the new array
+    // Push the values to the new array
     for (let i = 0; i < featuresArray.length; i++) {
       // console.log(featuresArray[i].properties.stationIdentifier + " - " + featuresArray[i].properties.name +
       //   " - " + featuresArray[i].geometry.coordinates);
       sortedStations.push({
         station: featuresArray[i].properties.stationIdentifier,
         name: featuresArray[i].properties.name,
-        coordinates: featuresArray[i].geometry.coordinates
+        coordinates: featuresArray[i].geometry.coordinates,
       });
-    } //End create new array from api result
+    } // End create new array from api result
 
-    //Sort the new array by the name of the town
-    sortedStations.sort(function (a, b) {
-      let a1 = a.name,
-        b1 = b.name;
-      if (a1 == b1) return 0;
+    // Sort the new array by the name of the town
+    sortedStations.sort((a, b) => {
+      const a1 = a.name;
+
+      const b1 = b.name;
+      if (a1 === b1) return 0;
       return a1 > b1 ? 1 : -1;
-    }); //End sort airport array
+    }); // End sort airport array
 
-    //Loop through sorted array of airports and display airport identifier, name, and coordinates
-    for (let i = 0; i < sortedStations.length; i++) {
-      console.log(
-        sortedStations[i].station +
-        " - " +
-        sortedStations[i].name +
-        " : " +
-        sortedStations[i].coordinates
-      );
-    } //End loop through sorted airports
+    // Loop through sorted array of airports and display airport identifier, name, and coordinates
+    // for (let i = 0; i < sortedStations.length; i++) {
+    //   console.log(
+    //     `${sortedStations[i].station} - ${sortedStations[i].name} : ${
+    //       sortedStations[i].coordinates
+    //     }`,
+    //   );
+    // } // End loop through sorted airports
 
-    //Add to the Select Element on the index.html page
-    $.each(sortedStations, function (key, value) {
-      $("#airports").append(
-        $("<option></option>")
-        .attr("value", value.station)
-        .attr("coordinates", value.coordinates)
-        .text(value.station + " - " + value.name)
+    // Add to the Select Element on the index.html page
+    $.each(sortedStations, (key, value) => {
+      $('#airports').append(
+        $('<option></option>')
+          .attr('value', value.station)
+          .attr('coordinates', value.coordinates)
+          .text(`${value.station} - ${value.name}`),
       );
     });
   });

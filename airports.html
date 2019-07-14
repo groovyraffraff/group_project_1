@@ -1,76 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Normalize CSS -->
+    <!-- <link rel="stylesheet" href="assets/css/normalize.css" /> -->
 
-  <!-- Normalize CSS -->
-  <!-- <link rel="stylesheet" href="assets/css/normalize.css" /> -->
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <!-- Custom CSS -->
+    <!-- <link rel="stylesheet" href="assets/css/styles.css" /> -->
 
-  <!-- Custom CSS -->
-  <!-- <link rel="stylesheet" href="assets/css/styles.css" /> -->
+    <title>Airports</title>
+  </head>
 
-  <title>Airports</title>
-</head>
+  <body>
+    <!-- Main container div -->
+    <div class="container">
+      <!-- Jombotron div -->
+      <div class="jumbotron text-center">
+        <h1 class="display-4">Airports</h1>
+        <p class="lead">Get the Airports and Weather Info</p>
+        <!-- End Jumbotron -->
+      </div>
 
-<body>
-  <!-- Main container div -->
-  <div class="container">
-    <!-- Jombotron div -->
-    <div class="jumbotron text-center">
-      <h1 class="display-4">Airports</h1>
-      <p class="lead">Get the Airports and Weather Info</p>
-      <!-- End Jumbotron -->
+      <!-- Div to hold the select -->
+      <div class="card my-2">
+        <div class="card-header">
+          Airports
+        </div>
+        <div class="card-body">
+          <select id="airports">
+            <option value="">Choose an Airport</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Weather info div for selected airport -->
+      <div class="card">
+        <div class="card-header">
+          Current Weather Information
+        </div>
+        <div id="weather" class="card-body"></div>
+      </div>
+      <!-- End Container Div -->
     </div>
 
-    <!-- Div to hold the select -->
-    <div class="card my-2">
-      <div class="card-header">
-        Airports
-      </div>
-      <div class="card-body">
-        <select id="airports">
-          <option value="">Choose an Airport</option>
-        </select>
-      </div>
-    </div>
+    <!-- JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
 
-    <!-- Weather info div for selected airport -->
-    <div class="card">
-      <div class="card-header">
-        Current Weather Information
-      </div>
-      <div id="weather" class="card-body"></div>
-    </div>
-    <!-- End Container Div -->
-  </div>
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
-  <!-- JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-  </script>
+    <!-- Firebase -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script> -->
 
-  <!-- Moment.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- XML to JSON Parser -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fast-xml-parser/3.12.16/parser.min.js"></script> -->
 
-  <!-- Firebase -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script> -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script> -->
-
-  <!-- Custom js -->
-  <script src="weather.js"></script>
-</body>
-
+    <!-- Custom js -->
+    <script src="weather.js"></script>
+  </body>
 </html>
