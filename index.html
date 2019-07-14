@@ -1,12 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content=" ">
+    <meta property="og:description" content=" ">
+    <meta property="og:image" content=" ">
+    <meta property="og:url" content=" ">
+    <link rel="shortcut icon" type="image/png" href="" />
     <title>Project 1</title>
-  </head>
-  <body>
-    <h1>Project 1</h1>
-  </body>
+
+
+
+    <!-- Linking Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Abel|Dosis|Faster+One|Julius+Sans+One|Lily+Script+One|Lobster|Meddon|Montez|Open+Sans|Open+Sans+Condensed:300|Damion|Pacifico|Satisfy&display=swap" rel="stylesheet">
+    <!-- Linking jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!-- Linking CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('select').formSelect();
+        });
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>Airports</h1>
+        </div>
+        <div class="searchContainer">
+            <!-- Card starts -->
+            <div class="card" id="cardbox" style="display:none;">
+                <div class="row">
+                    <form class="col s12">
+
+                        <!-- Point A Dropdown-->
+
+                        <div class="input-field col s12" style="display:flex">
+                            <i class="material-icons prefix">flight_takeoff</i>
+
+                            <select class="airports" id="pointAinput">
+                          <option value="" disabled selected>Flying from</option>
+                        </select>
+                        </div>
+                        <!-- End of Point A Dropdown-->
+                        <!-- Point B Dropdown-->
+
+                        <div class="input-field col s12" style="display:flex">
+                            <i class="material-icons prefix">flight_land</i>
+                            <select class="airports" id="pointBinput">
+                          <option value="" disabled selected>Flying To</option>
+                      </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- End of Point B Dropdown-->
+
+
+            <!--Submit button -->
+
+            <div class="submit">
+                <button type="button" class="btn btn-raised" id="submitbtn">Let's go</button>
+            </div>
+            <!--End of Submit button -->
+
+
+            <br><br>
+
+            <div class="mapstext"><i class="material-icons prefix maps">add_location</i><br><br>Choose from maps</div>
+        </div>
+        <!-- End of  Card -->
+        <!-- Result div -->
+        <div id="weather" style="display:none;">
+            <div class="left" id="pointAresult">
+            </div>
+            <div class="right" id="pointBresult">
+            </div>
+
+        </div>
+        <!--End of Result div -->
+    </div>
+
+    </div>
+
+
+
+
+
+    <button onclick="topFunction()" id="topBtn" title="Go to top"><b>⌃</b></button>
+
+
+
+    <!-- JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+
+
+    <!-- Linking JavaScript file -->
+    <script type="text/javascript " src="assets/javascript/app.js"></script>
+
+</body>
+
 </html>

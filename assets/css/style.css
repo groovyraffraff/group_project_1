@@ -1,0 +1,231 @@
+        /*font-family: 'Lobster', cursive;
+font-family: 'Pacifico', cursive;
+font-family: 'Poiret One', cursive;
+font-family: 'Parisienne', cursive;
+font-family: 'Faster One', cursive;
+font-family: 'Montez', cursive;
+font-family: 'Meddon', cursive;
+font-family: 'Lily Script One', cursive;
+font-family: 'Julius Sans One', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Open Sans Condensed', sans-serif;
+font-family: 'Dosis', sans-serif;
+font-family: 'Abel', sans-serif;
+font-family: 'Pacifico', cursive;
+font-family: 'Satisfy', cursive;
+font-family: 'Damion', cursive; */
+        
+        .title {
+            padding-top: 10%;
+            color: #fff8ee !important;
+            /* text-align: center; */
+            font-family: 'Pacifico', cursive;
+            text-shadow: 2px 2px #dce6e6;
+            margin: auto;
+        }
+        
+        h1 {
+            font-family: 'Pacifico', cursive;
+            sans-serif;
+            font-size: 80px;
+            text-align: center;
+            color: #fff;
+        }
+        
+        .select-wrapper,
+        input.select-dropdown {
+            font-family: 'Abel', sans-serif !important;
+            color: grey;
+        }
+        
+        #cardbox {
+            width: 40%;
+            margin: auto;
+            font-family: 'Abel', sans-serif;
+        }
+        
+        span,
+        option,
+        form,
+        .card {
+            font-family: 'Abel', sans-serif !important;
+            /* background: rgba(255, 255, 255, 0.2) !important; */
+            background: transparent !important;
+            color: grey;
+        }
+        
+        .submit {
+            margin: auto;
+            text-align: center;
+        }
+        
+        .btn {
+            background-color: #bfdad9 !important;
+            border: 0 none !important;
+            color: grey !important;
+            margin-top: 3%;
+        }
+        
+        .btn:hover {
+            background-color: #dce6e6 !important;
+        }
+        /* Box shadow color */
+        
+         ::selection {
+            background: #fcffff;
+            /* WebKit/Blink Browsers */
+        }
+        
+         ::-moz-selection {
+            background: #fcffff;
+            /* Gecko Browsers */
+        }
+        /* top button */
+        
+        #topBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #93ccca;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+        }
+        
+        #topBtn:hover {
+            background-color: #dce6e6;
+        }
+        /************************************************************************************
+    smaller than 640
+    *************************************************************************************/
+        
+        @media screen and (max-width: 640px) {
+            body {
+                margin: auto;
+                text-align: center;
+                font-size: 18px !important;
+                display: block !important;
+            }
+            .card {
+                margin: auto;
+                text-align: center;
+                font-size: 18px !important;
+                display: block !important;
+            }
+            .panel-heading {
+                background-color: #ffefcf !important;
+            }
+            .headline {
+                font-size: 30px;
+            }
+            .choo {
+                font-size: 20px;
+            }
+            .bmd-form-group [class*=" bmd-label"],
+            .bmd-form-group [class^=bmd-label] {
+                position: static !important;
+            }
+            .bmd-form-group .custom-file-control,
+            .bmd-form-group .form-control,
+            .bmd-form-group input::placeholder,
+            .bmd-form-group label {
+                line-height: 0 !important;
+            }
+        }
+        /************************************************************************************
+media query ends
+*************************************************************************************/
+        
+        body {
+            font-family: 'Abel', sans-serif;
+            /* Location of the image */
+            background-image: url('../images/sky1.jpg');
+            /* Background image is centered vertically and horizontally at all times */
+            background-position: center center;
+            /* Background image doesn't tile */
+            background-repeat: no-repeat;
+            /* Background image is fixed in the viewport so that it doesn't move when the content's height is greater than the image's height */
+            background-attachment: fixed;
+            /* This is what makes the background image rescale based on the container's size */
+            background-size: cover;
+            /* Set a background color that will be displayed while the background image is loading */
+            background-color: #fff;
+        }
+        
+        .z-depth-1,
+        nav,
+        .card-panel,
+        .card,
+        .toast,
+        .btn,
+        .btn-large,
+        .btn-floating,
+        .dropdown-content,
+        .collapsible,
+        .side-nav {
+            box-shadow: none !important;
+        }
+        
+        input[type=text]:focus:not([readonly]),
+        input[type=password]:focus:not([readonly]),
+        input[type=email]:focus:not([readonly]),
+        input[type=url]:focus:not([readonly]),
+        input[type=time]:focus:not([readonly]),
+        input[type=date]:focus:not([readonly]),
+        input[type=datetime-local]:focus:not([readonly]),
+        input[type=tel]:focus:not([readonly]),
+        input[type=number]:focus:not([readonly]),
+        input[type=search]:focus:not([readonly]),
+        textarea.materialize-textarea:focus:not([readonly]) {
+            border-bottom: 1px solid #7abbb9 !important;
+            box-shadow: 0 1px 0 0 #7abbb9 !important;
+        }
+        
+        input[type=text]:focus:not([readonly])+label,
+        input[type=password]:focus:not([readonly])+label,
+        input[type=email]:focus:not([readonly])+label,
+        input[type=url]:focus:not([readonly])+label,
+        input[type=time]:focus:not([readonly])+label,
+        input[type=date]:focus:not([readonly])+label,
+        input[type=datetime-local]:focus:not([readonly])+label,
+        input[type=tel]:focus:not([readonly])+label,
+        input[type=number]:focus:not([readonly])+label,
+        input[type=search]:focus:not([readonly])+label,
+        textarea.materialize-textarea:focus:not([readonly])+label {
+            color: #7abbb9 !important;
+        }
+        
+        .input-field .prefix.active {
+            color: #7abbb9 !important;
+        }
+        
+        i.maps,
+        .mapstext {
+            text-align: center;
+            margin: auto;
+            color: gray;
+        }
+        
+        i.maps {
+            font-size: 50px;
+        }
+        
+        #weather {
+            margin: auto;
+            display: grid;
+            grid-template-columns: 50% 50%;
+            position: relative;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 25px;
+        }
+        
+        .left,
+        .right {
+            padding: 5%;
+        }
