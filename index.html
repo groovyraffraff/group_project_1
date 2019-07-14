@@ -50,58 +50,60 @@
         <div class="title">
             <h1>Airports</h1>
         </div>
-        <!-- Card starts -->
-        <div class="card" id="cardbox" style="display:none;">
-            <div class="row">
-                <form class="col s12">
+        <div class="searchContainer">
+            <!-- Card starts -->
+            <div class="card" id="cardbox" style="display:none;">
+                <div class="row">
+                    <form class="col s12">
 
-                    <!-- Point A Dropdown-->
+                        <!-- Point A Dropdown-->
 
-                    <div class="input-field col s12" style="display:flex">
-                        <i class="material-icons prefix">flight_takeoff</i>
+                        <div class="input-field col s12" style="display:flex">
+                            <i class="material-icons prefix">flight_takeoff</i>
 
-                        <select class="airports" id="pointAinput">
+                            <select class="airports" id="pointAinput">
                           <option value="" disabled selected>Flying from</option>
                         </select>
-                    </div>
-                    <!-- End of Point A Dropdown-->
-                    <!-- Point B Dropdown-->
+                        </div>
+                        <!-- End of Point A Dropdown-->
+                        <!-- Point B Dropdown-->
 
-                    <div class="input-field col s12" style="display:flex">
-                        <i class="material-icons prefix">flight_land</i>
-                        <select class="airports" id="pointBinput">
+                        <div class="input-field col s12" style="display:flex">
+                            <i class="material-icons prefix">flight_land</i>
+                            <select class="airports" id="pointBinput">
                           <option value="" disabled selected>Flying To</option>
                       </select>
-                    </div>
-                </form>
+                        </div>
+                    </form>
+                </div>
             </div>
+            <!-- End of Point B Dropdown-->
+
+
+            <!--Submit button -->
+
+            <div class="submit">
+                <button type="button" class="btn btn-raised" id="submitbtn">Let's go</button>
+            </div>
+            <!--End of Submit button -->
+
+
+            <br><br>
+
+            <div class="mapstext"><i class="material-icons prefix maps">add_location</i><br><br>Choose from maps</div>
         </div>
-        <!-- End of Point B Dropdown-->
+        <!-- End of  Card -->
+        <!-- Result div -->
+        <div id="weather">
+            <div class="left" id="pointAresult">
+            </div>
+            <div class="right" id="pointBresult">
+            </div>
 
-
-        <!--Submit button -->
-
-        <div class="submit">
-            <button type="button" class="btn btn-raised" id="submitbtn">Let's go</button>
         </div>
-        <!--End of Submit button -->
-
-
-        <br><br>
-
-        <div class="mapstext"><i class="material-icons prefix maps">add_location</i><br><br>Choose from maps</div>
+        <!--End of Result div -->
     </div>
-    <!-- End of  Card -->
 
-    <!-- Result div -->
-    <div id="weather">
-        <div class="left" id="pointAresult">
-        </div>
-        <div class="right" id="pointBresult">
-        </div>
-
-    </div>
-    <!--End of Result div -->
     </div>
 
 
