@@ -556,3 +556,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.FormSelect.init(elems, {});
 });
 //// End of Materialize Select UI initialization////
+
+
+$('#submitbtn').on('click', function() {
+    $(".searchContainer").remove();
+    $("#weather").show();
+});
