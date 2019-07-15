@@ -221,8 +221,9 @@ media query ends
             display: grid;
             grid-template-columns: 50% 50%;
             position: relative;
+            padding-top: 0;
             /* background: rgba(255, 255, 255, 0.5); */
-            border-radius: 25px;
+            /* border-radius: 25px; */
         }
         
         .left,
@@ -268,4 +269,8 @@ media query ends
             -webkit-transform: rotate(90deg);
             /* Chrome, Safari, Opera */
             transform: rotate(90deg);
+        }
+        
+        span {
+            line-height: 1.6;
         }
