@@ -257,3 +257,15 @@ media query ends
             background-color: #FF1493;
         }
         /* End of Flight Category */
+        
+        .modal-close {
+            transition: all 0.5s ease-in-out;
+        }
+        
+        .modal-close:hover {
+            -ms-transform: rotate(90deg);
+            /* IE 9 */
+            -webkit-transform: rotate(90deg);
+            /* Chrome, Safari, Opera */
+            transform: rotate(90deg);
+        }
