@@ -1,3 +1,16 @@
+//////////// Polyfill code for report validity for not compatible browsers///////
+if (!HTMLFormElement.prototype.reportValidity) {
+    HTMLFormElement.prototype.reportValidity = function() {
+        if (this.checkValidity()) return true;
+        var btn = document.createElement('button');
+        this.appendChild(btn);
+        btn.click();
+        this.removeChild(btn);
+        return false;
+    };
+}
+///////////////////////////// Polyfill code ends///////////////////////////////
+
 ////////////////////////////////// Fade in effect//////////////////////////////
 $(document).ready(function($) {
     window.setTimeout(function() {
@@ -557,8 +570,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 //// End of Materialize Select UI initialization////
 
-
-$('#submitbtn').on('click', function() {
-    $(".searchContainer").remove();
-    $("#weather").show();
+$("#submitbtn").on("click", function(event) {
+    event.preventDefault();
+    const form = document.querySelector('form');
+    if (!form.reportValidity()) {
+        M.Modal.init(document.querySelector('#validationError'), {}).open(); //Initializing Modal
+        return;
+    }
+    M.Modal.init(document.querySelector('#popup'), {}).open(); //Initializing Modal
+    console.log(true);
 });

@@ -221,11 +221,34 @@ media query ends
             display: grid;
             grid-template-columns: 50% 50%;
             position: relative;
-            background: rgba(255, 255, 255, 0.5);
+            /* background: rgba(255, 255, 255, 0.5); */
             border-radius: 25px;
         }
         
         .left,
         .right {
-            padding: 5%;
+            /* padding: 5%; */
         }
+        
+        .modal-overlay {
+            background: #e0eeed !important;
+        }
+        /* Flight Category buttons*/
+        
+        button {
+            border: none;
+            /* border-radius: 8px; */
+            color: #eee;
+        }
+        
+        .VFR {
+            /* background-color: #4CAF50; */
+            background-image: linear-gradient(to top, #ffffff, #4CAF50);
+        }
+        
+        .MVFR {}
+        
+        .IFR {}
+        
+        .LIFR {}
+        /* End of Flight Category */
