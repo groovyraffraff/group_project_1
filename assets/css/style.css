@@ -233,3 +233,27 @@ media query ends
         .modal-overlay {
             background: #e0eeed !important;
         }
+        /* Flight Category buttons*/
+        
+        button {
+            border: none;
+            border-radius: 8px;
+            color: #eee;
+        }
+        
+        .VFR {
+            background-color: #4CAF50;
+        }
+        
+        .MVFR {
+            background-color: #87CEFA;
+        }
+        
+        .IFR {
+            background-color: #FF0000;
+        }
+        
+        .LIFR {
+            background-color: #FF1493;
+        }
+        /* End of Flight Category */

@@ -367,8 +367,8 @@ $(document).ready(() => {
                 //Append the Flight Category
                 $(resultsSelector).append(
                     "<strong>Flight Category:</strong> ",
-                    flightCat,
-                    " (VFR-Green, MVFR-Blue, IFR-Red, LIFR-Magenta)",
+                    "<button class='" + flightCat + "'>" + flightCat + "</button>",
+                    // " (VFR-Green, MVFR-Blue, IFR-Red, LIFR-Magenta)",
                     "<br><br>",
                 );
 
