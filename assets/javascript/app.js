@@ -1,3 +1,16 @@
+//////////// Polyfill code for report validity for not compatible browsers///////
+if (!HTMLFormElement.prototype.reportValidity) {
+    HTMLFormElement.prototype.reportValidity = function() {
+        if (this.checkValidity()) return true;
+        var btn = document.createElement('button');
+        this.appendChild(btn);
+        btn.click();
+        this.removeChild(btn);
+        return false;
+    };
+}
+///////////////////////////// Polyfill code ends///////////////////////////////
+
 ////////////////////////////////// Fade in effect//////////////////////////////
 $(document).ready(function($) {
     window.setTimeout(function() {
@@ -347,17 +360,10 @@ $(document).ready(() => {
                 //Get the text description of the current weather
                 description = response.properties.textDescription;
 
+
                 //Calculate the weather category, VFR, MVFR
                 let flightCat = calculateCat(visibility, cloudAmount, cloudBase, description);
                 console.log(flightCat);
-
-                //Append the Flight Category
-                $(resultsSelector).append(
-                    "<strong>Flight Category:</strong> ",
-                    flightCat,
-                    " (VFR-Green, MVFR-Blue, IFR-Red, LIFR-Magenta)",
-                    "<br><br>",
-                );
 
                 //Calculate Density Altitude
                 let densityAlt = calcDensityAlt(baro, convertMetersToFeet(response.properties.elevation.value), tempC);
@@ -370,69 +376,68 @@ $(document).ready(() => {
                 }
                 console.log("Density Altitude: " + densityAlt);
 
-                //Append Density Altitude
-                $(resultsSelector).append(
-                    "<strong>Density Altitude:</strong> ",
-                    densityAlt, " ft",
-                    "<br><br>",
-                );
 
                 //Update the page
                 $(resultsSelector).append(
-                    "<strong>Station:</strong> ",
-                    station,
+                    "<span>Station: </span> ",
+                    station + " ",
+                    "<button class='" + flightCat + "'>" + flightCat + "</button>",
+                    // " (VFR-Green, MVFR-Blue, IFR-Red, LIFR-Magenta)",
                     "<br>",
-                    "<strong>Timestamp:</strong> ",
+                    "<span>Density Altitude:</span> ",
+                    densityAlt, " ft",
+                    "<br>",
+                    "<span>Timestamp:</span> ",
                     reportTime,
                     " - ",
                     reportTimeFromNow,
                     "<br>",
-                    "<strong>Coordinates:</strong> ",
+                    "<span>Coordinates:</span> ",
                     coordinates,
                     "<br>",
-                    "<strong>Field Elevation:</strong> ",
+                    "<span>Field Elevation:</span> ",
                     fieldElev,
                     " ft",
                     "<br>",
-                    "<strong>Temperature:</strong> ",
+                    "<span>Temperature:</span> ",
                     tempC,
                     " &#8451;",
                     " - ",
                     tempF,
                     " &#8457;",
                     "<br>",
-                    "<strong>Dew Point:</strong> ",
+                    "<span>Dew Point:</span> ",
                     dewpointC,
                     " &#8451;",
                     " - ",
                     dewpointF,
                     " &#8451;",
                     "<br>",
-                    "<strong>Dew Point Spread:</strong> ",
+                    "<span>Dew Point Spread:</span> ",
                     dewPointSpread,
                     " &#8457;",
                     "<br>",
-                    "<strong>Barometric Pressure:</strong> ",
+                    "<span>Barometric Pressure:</span> ",
                     baro,
                     " inHg",
                     "<br>",
-                    "<strong>Wind Speed:</strong> ",
+                    "<span>Wind Speed:</span> ",
                     windSpeed,
                     " mph",
                     "<br>",
-                    "<strong>Wind Direction:</strong> ",
+                    "<span>Wind Direction:</span> ",
                     windDir,
                     " &deg;",
                     "<br>",
-                    "<strong>Wind Gust:</strong> ",
+                    "<span>Wind Gust:</span> ",
                     windGust,
                     " mph",
                     "<br>",
-                    "<strong>Visiblility:</strong> ",
+                    "<span>Visiblility:</span> ",
                     visibility,
                     " sm",
                     "<br>",
-                    "<strong>Description:</strong> ",
+                    "<span>Description:</span> ",
                     description,
                     "<br>",
                 );
@@ -441,7 +446,7 @@ $(document).ready(() => {
                 if (clouds.length > 0) {
                     //Cloud Layers returns an array, can have multiple cloud layers
                     $(resultsSelector).append(
-                        "<strong>Cloud Layers: ",
+                        "<span>Cloud Layers: ",
                     );
                     for (let i = 0; i < clouds.length; i++) {
                         $(resultsSelector).append(
@@ -456,7 +461,7 @@ $(document).ready(() => {
                     //No Clouds reported
                 } else {
                     $(resultsSelector).append(
-                        "<strong>Cloud Layers: ",
+                        "<span>Cloud Layers: ",
                         "Clear Below 12,000 ft",
                     );
                 } //End Check if cloud array is populated
@@ -557,8 +562,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 //// End of Materialize Select UI initialization////
 
-
-$('#submitbtn').on('click', function() {
-    $(".searchContainer").remove();
-    $("#weather").show();
+$("#submitbtn").on("click", function(event) {
+    event.preventDefault();
+    const form = document.querySelector('form');
+    if (!form.reportValidity()) {
+        M.Modal.init(document.querySelector('#validationError'), {}).open(); //Initializing Modal
+        return;
+    }
+    M.Modal.init(document.querySelector('#popup'), {}).open(); //Initializing Modal
+    console.log(true);
 });
