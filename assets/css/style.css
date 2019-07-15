@@ -14,7 +14,7 @@ font-family: 'Abel', sans-serif;
 font-family: 'Pacifico', cursive;
 font-family: 'Satisfy', cursive;
 font-family: 'Damion', cursive; */
-        
+
         .title {
             padding-top: 10%;
             color: #fff8ee !important;
@@ -23,7 +23,7 @@ font-family: 'Damion', cursive; */
             text-shadow: 2px 2px #dce6e6;
             margin: auto;
         }
-        
+
         h1 {
             font-family: 'Pacifico', cursive;
             sans-serif;
@@ -31,19 +31,19 @@ font-family: 'Damion', cursive; */
             text-align: center;
             color: #fff;
         }
-        
+
         .select-wrapper,
         input.select-dropdown {
             font-family: 'Abel', sans-serif !important;
             color: grey;
         }
-        
+
         #cardbox {
             width: 40%;
             margin: auto;
             font-family: 'Abel', sans-serif;
         }
-        
+
         span,
         option,
         form,
@@ -53,35 +53,37 @@ font-family: 'Damion', cursive; */
             background: transparent !important;
             color: grey;
         }
-        
+
         .submit {
             margin: auto;
             text-align: center;
         }
-        
+
         .btn {
             background-color: #bfdad9 !important;
             border: 0 none !important;
             color: grey !important;
             margin-top: 3%;
         }
-        
+
         .btn:hover {
             background-color: #dce6e6 !important;
         }
+
         /* Box shadow color */
-        
-         ::selection {
+
+        ::selection {
             background: #fcffff;
             /* WebKit/Blink Browsers */
         }
-        
-         ::-moz-selection {
+
+        ::-moz-selection {
             background: #fcffff;
             /* Gecko Browsers */
         }
+
         /* top button */
-        
+
         #topBtn {
             display: none;
             position: fixed;
@@ -97,14 +99,15 @@ font-family: 'Damion', cursive; */
             padding: 15px;
             border-radius: 50%;
         }
-        
+
         #topBtn:hover {
             background-color: #dce6e6;
         }
+
         /************************************************************************************
     smaller than 640
     *************************************************************************************/
-        
+
         @media screen and (max-width: 640px) {
             body {
                 margin: auto;
@@ -112,25 +115,31 @@ font-family: 'Damion', cursive; */
                 font-size: 18px !important;
                 display: block !important;
             }
+
             .card {
                 margin: auto;
                 text-align: center;
                 font-size: 18px !important;
                 display: block !important;
             }
+
             .panel-heading {
                 background-color: #ffefcf !important;
             }
+
             .headline {
                 font-size: 30px;
             }
+
             .choo {
                 font-size: 20px;
             }
+
             .bmd-form-group [class*=" bmd-label"],
             .bmd-form-group [class^=bmd-label] {
                 position: static !important;
             }
+
             .bmd-form-group .custom-file-control,
             .bmd-form-group .form-control,
             .bmd-form-group input::placeholder,
@@ -138,10 +147,11 @@ font-family: 'Damion', cursive; */
                 line-height: 0 !important;
             }
         }
+
         /************************************************************************************
 media query ends
 *************************************************************************************/
-        
+
         body {
             font-family: 'Abel', sans-serif;
             /* Location of the image */
@@ -157,7 +167,7 @@ media query ends
             /* Set a background color that will be displayed while the background image is loading */
             background-color: #fff;
         }
-        
+
         .z-depth-1,
         nav,
         .card-panel,
@@ -171,7 +181,7 @@ media query ends
         .side-nav {
             box-shadow: none !important;
         }
-        
+
         input[type=text]:focus:not([readonly]),
         input[type=password]:focus:not([readonly]),
         input[type=email]:focus:not([readonly]),
@@ -186,7 +196,7 @@ media query ends
             border-bottom: 1px solid #7abbb9 !important;
             box-shadow: 0 1px 0 0 #7abbb9 !important;
         }
-        
+
         input[type=text]:focus:not([readonly])+label,
         input[type=password]:focus:not([readonly])+label,
         input[type=email]:focus:not([readonly])+label,
@@ -200,22 +210,22 @@ media query ends
         textarea.materialize-textarea:focus:not([readonly])+label {
             color: #7abbb9 !important;
         }
-        
+
         .input-field .prefix.active {
             color: #7abbb9 !important;
         }
-        
+
         i.maps,
         .mapstext {
             text-align: center;
             margin: auto;
             color: gray;
         }
-        
+
         i.maps {
             font-size: 50px;
         }
-        
+
         #weather {
             margin: auto;
             display: grid;
@@ -224,7 +234,7 @@ media query ends
             background: rgba(255, 255, 255, 0.5);
             border-radius: 25px;
         }
-        
+
         .left,
         .right {
             padding: 5%;
