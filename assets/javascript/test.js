@@ -249,7 +249,6 @@ $(document).ready(() => {
 
         // Get the value of the selected airport and its coordinates
         let station = $(inputSelector).val();
-        let stationFullName = $(inputSelector + " option:selected").attr("data-fullName");
         console.log(station);
         let coordinates = $(inputSelector + " option:selected").attr("coordinates");
         console.log(coordinates);
@@ -380,8 +379,7 @@ $(document).ready(() => {
                 "<br>",
                 // " (VFR-Green, MVFR-Blue, IFR-Red, LIFR-Magenta)",
                 "<span class='station'>" + station + "</span>",
-                "<br>",
-                stationFullName,
+
                 "<br>",
                 "<span>Reported:</span> ",
                 // reportTime,
@@ -551,7 +549,6 @@ $(document).ready(() => {
                 $("<option></option>")
                 .attr("value", value.station)
                 .attr("coordinates", value.coordinates)
-                .attr("data-fullName", value.name)
                 .text(value.station + " - " + value.name)
             );
         });

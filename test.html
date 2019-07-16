@@ -21,7 +21,7 @@
     <script src="assets/javascript/jquery.easing.1.3.js"></script>
     <!-- Linking CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/test.css">
 
     <!-- Linking jQuery UI-->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -40,7 +40,6 @@
     <script>
         $(document).ready(function() {
             $('select').formSelect();
-            $('.modal').modal();
         });
     </script>
 
@@ -80,20 +79,20 @@
                 </div>
             </div>
             <!-- End of Point B Dropdown-->
+
+
             <!--Submit button -->
+
             <div class="submit">
                 <button type="button" class="btn btn-raised" id="submitbtn">Let's go</button>
             </div>
 
             <!--End of Submit button -->
 
-            <!-- Maps Modal Trigger -->
-            <div class="mapsbtn">
-                <a class="waves-effect waves-light modal-trigger" href="#popupMaps">
-                    <div class="mapstext"><i class="material-icons prefix maps">add_location</i><br><br>Choose from maps</div>
-                </a>
-            </div>
-            <!-- End of Maps Modal Trigger -->
+            <br><br>
+
+            <div class="mapstext"><i class="material-icons prefix maps">add_location</i><br><br>Choose from maps</div>
+
         </div>
         <!-- End of  Card -->
         <!-- Result div -->
@@ -116,8 +115,68 @@
 
             </div>
             <div id="weather" class="modal-content">
-                <div class="left" id="pointAresult">
+                <div class="left">
+                    <div class="timeStamp"></div>
+                    <div class="stationName"></div>
+                    <div class="fullStationName"></div>
+                    <div class="tempNdew">
+                        <div class="temp">
+                            <!-- Animated weather icon  -->
+                            <h1>Animated Weather Icons</h1>
 
+                            <div class="icon sun-shower">
+                                <div class="cloud"></div>
+                                <div class="sun">
+                                    <div class="rays"></div>
+                                </div>
+                                <div class="rain"></div>
+                            </div>
+
+                            <div class="icon thunder-storm">
+                                <div class="cloud"></div>
+                                <div class="lightning">
+                                    <div class="bolt"></div>
+                                    <div class="bolt"></div>
+                                </div>
+                            </div>
+
+                            <div class="icon cloudy">
+                                <div class="cloud"></div>
+                                <div class="cloud"></div>
+                            </div>
+
+                            <div class="icon flurries">
+                                <div class="cloud"></div>
+                                <div class="snow">
+                                    <div class="flake"></div>
+                                    <div class="flake"></div>
+                                </div>
+                            </div>
+
+                            <div class="icon sunny">
+                                <div class="sun">
+                                    <div class="rays"></div>
+                                </div>
+                            </div>
+
+                            <div class="icon rainy">
+                                <div class="cloud"></div>
+                                <div class="rain"></div>
+                            </div>
+
+                            <p>Based on <a href="https://dribbble.com/shots/2097042-Widget-Weather" target="_blank">Dribbble</a> by kylor</p>
+                            <!-- End of Animated weather icon -->
+
+                        </div>
+                        <div class="dew"></div>
+                    </div>
+                    <div class="windNvisivility">
+                        <div class="wind"></div>
+                        <div class="visivility"></div>
+                    </div>
+                    <div class="cloudLayers"></div>
+                    <div class="coordinates"></div>
+                    <div class="tomMaps"></div>
                 </div>
                 <div class="right" id="pointBresult">
 
@@ -154,7 +213,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
     <!-- Linking JavaScript file -->
-    <script type="text/javascript " src="assets/javascript/app.js"></script>
+    <script type="text/javascript " src="assets/javascript/test.js"></script>
 
 </body>
 
