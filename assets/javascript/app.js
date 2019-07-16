@@ -243,19 +243,13 @@ $(document).ready(() => {
     }
 
 
-    function activateWeatherLookup(inputSelector, resultsSelector, queryParameterName) {
-        // When the aiports select changes
-        console.log("Airport was Selected.");
-
+    function doWeatherLookup(inputSelector, resultsSelector) {
         // Clear the weather div
         $(resultsSelector).empty();
 
         // Get the value of the selected airport and its coordinates
         let station = $(inputSelector).val();
         console.log(station);
-        let url = new URL(window.location.href);
-        url.searchParams.set(queryParameterName, station);
-        history.pushState({}, "", url.toString());
         let coordinates = $(inputSelector + " option:selected").attr("coordinates");
         console.log(coordinates);
 
@@ -470,6 +464,22 @@ $(document).ready(() => {
         }); //End Get the selected weather info
     }
 
+    function bindChangeHandler(inputSelector, queryParameterName) {
+        $(inputSelector).change(function() {
+            // When the aiports select changes
+            console.log("Airport was Selected.");
+
+            // Get the value of the selected airport and its coordinates
+            let station = $(this).val();
+            let url = new URL(window.location.href);
+            url.searchParams.set(queryParameterName, station);
+            // Updates the url parameters in the address bar
+            history.pushState({}, "", url.toString());
+        });
+    }
+    bindChangeHandler('#pointAinput', "departure");
+    bindChangeHandler('#pointBinput', "arrival");
+
     $("#submitbtn").on("click", function(event) {
         event.preventDefault();
         const form = document.querySelector('form');
@@ -477,8 +487,8 @@ $(document).ready(() => {
             M.Modal.init(document.querySelector('#validationError'), {}).open(); //Initializing Modal
             return;
         }
-        activateWeatherLookup("#pointAinput", "#pointAresult", "departure");
-        activateWeatherLookup("#pointBinput", "#pointBresult", "arrival");
+        doWeatherLookup("#pointAinput", "#pointAresult");
+        doWeatherLookup("#pointBinput", "#pointBresult");
 
         M.Modal.init(document.querySelector('#popup'), {}).open(); //Initializing Modal
         console.log(true);
@@ -541,6 +551,8 @@ $(document).ready(() => {
                 .text(value.station + " - " + value.name)
             );
         });
+
+        // Check departure and arrival URL parameters and prefill the form
         let url = new URL(window.location.href);
         let departure = url.searchParams.get('departure');
         if (departure) {
@@ -550,6 +562,7 @@ $(document).ready(() => {
         if (arrival) {
             $('#pointBinput option[value="' + arrival + '"]').attr('selected', true);
         }
+        // If both departure and arrival were specified, then simulate click on submit button
         if (departure && arrival) {
             $('#submitbtn').click();
         }
