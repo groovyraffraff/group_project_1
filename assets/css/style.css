@@ -45,7 +45,7 @@ font-family: 'Damion', cursive; */
         }
         
         span,
-        option,
+        ​option,
         form,
         .card {
             font-family: 'Abel', sans-serif !important;
@@ -108,7 +108,7 @@ font-family: 'Damion', cursive; */
         @media screen and (max-width: 640px) {
             body {
                 margin: auto;
-                text-align: center;
+                /* text-align: center; */
                 font-size: 18px !important;
                 display: block !important;
             }
@@ -234,6 +234,16 @@ media query ends
         .modal-overlay {
             background: #e0eeed !important;
         }
+        
+        .modal {
+            max-height: 100% !important;
+            width: 75% !important;
+            max-height: 100% !important;
+            /* overflow-y: hidden !important; */
+            /* increase the width, height and prevent vertical scroll! However, i don't recommend this, its better to turn on vertical scrolling. */
+            width: 75% !important;
+            max-height: 100% !important
+        }
         /* Flight Category buttons*/
         
         button {
@@ -259,8 +269,51 @@ media query ends
         }
         /* End of Flight Category */
         
+        span {
+            line-height: 1.6;
+        }
+        /* share icon style */
+        
+        #popup span.a2a_svg {
+            background-color: transparent !important;
+        }
+        
+        svg path {
+            fill: #8eb8b6;
+        }
+        
+        .a2a_i {
+            width: 30px;
+            height: 30px;
+        }
+        
+        #a2apage_mini_services,
+        #a2apage_dropdown,
+        .a2a_menu,
+        a.a2a_i:visited,
+        .a2a_more,
+        .a.a2a_more,
+        .a2a_menu a.a2a_more,
+        .a2a_menu a {
+            color: gray !important;
+            font-family: 'Abel', sans-serif !important;
+        }
+        /* End of share icon style */
+        
+        .modal-footer,
+        .a2a_kit {
+            float: right !important;
+            margin-right: 0.5%;
+        }
+        
+        .a2a_dd,
         .modal-close {
             transition: all 0.5s ease-in-out;
+        }
+        
+        .a2a_dd:hover {
+            background-color: #e8f3f3 !important;
+            border-radius: 50%;
         }
         
         .modal-close:hover {
@@ -269,8 +322,4 @@ media query ends
             -webkit-transform: rotate(90deg);
             /* Chrome, Safari, Opera */
             transform: rotate(90deg);
-        }
-        
-        span {
-            line-height: 1.6;
         }

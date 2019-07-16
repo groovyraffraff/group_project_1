@@ -53,6 +53,7 @@
         <div class="title">
             <h1>Airports</h1>
         </div>
+
         <div class="searchContainer">
             <!-- Card starts -->
             <div class="card" id="cardbox" style="display:none;">
@@ -98,12 +99,28 @@
         <!-- Result div -->
         <div id="popup" class="modal">
             <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect"><img src="assets/images/close1.png" style="width:30px;height:30px;"></a>
+
+                <!-- AddToAny BEGIN -->
+                <div class="a2a_kit a2a_kit_size_64 a2a_default_style">
+                    <a class="a2a_dd" href="https://www.addtoany.com/share"> <img class="sharebtn" src="assets/images/sharegray4.png" style="width:35px;height:35px;"></a>
+
+                    <a href="#!" class="modal-close waves-effect"><img src="assets/images/closegray1.png" style="width:35px;height:35px;"></a>
+                </div>
+                <script>
+                    var a2a_config = a2a_config || {};
+                    a2a_config.prioritize = ["sms", "email", "google_gmail", "whatsapp", "facebook_messenger", "facebook", "facebook", "twitter", "print"];
+                    a2a_config.onclick = 1;
+                </script>
+                <script async src="https://static.addtoany.com/menu/page.js"></script>
+                <!-- AddToAny END -->
+
             </div>
             <div id="weather" class="modal-content">
                 <div class="left" id="pointAresult">
+
                 </div>
                 <div class="right" id="pointBresult">
+
                 </div>
             </div>
 
