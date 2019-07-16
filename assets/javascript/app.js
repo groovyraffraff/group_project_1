@@ -243,233 +243,246 @@ $(document).ready(() => {
     }
 
 
-    function activateWeatherLookup(inputSelector, resultsSelector) {
+    function activateWeatherLookup(inputSelector, resultsSelector, queryParameterName) {
         // When the aiports select changes
-        $(inputSelector).change(function() {
-            console.log("Airport was Selected.");
+        console.log("Airport was Selected.");
 
-            // Clear the weather div
-            $(resultsSelector).empty();
+        // Clear the weather div
+        $(resultsSelector).empty();
 
-            // Get the value of the selected airport and its coordinates
-            let station = $(this).val();
-            console.log(station);
-            let coordinates = $(inputSelector + " option:selected").attr("coordinates");
-            console.log(coordinates);
+        // Get the value of the selected airport and its coordinates
+        let station = $(inputSelector).val();
+        console.log(station);
+        let url = new URL(window.location.href);
+        url.searchParams.set(queryParameterName, station);
+        history.pushState({}, "", url.toString());
+        let coordinates = $(inputSelector + " option:selected").attr("coordinates");
+        console.log(coordinates);
 
-            // Constructing a queryURL variable for the "Latest Observation" api call
-            let queryURL =
-                "https://api.weather.gov/stations/" + station + "/observations/latest";
+        // Constructing a queryURL variable for the "Latest Observation" api call
+        let queryURL =
+            "https://api.weather.gov/stations/" + station + "/observations/latest";
 
-            // Get the selected airport's latest weather
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-            }).then(function(response) {
-                // console.log(response);
-                console.log(response.properties);
+        // Get the selected airport's latest weather
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function(response) {
+            // console.log(response);
+            console.log(response.properties);
 
-                // Get all the variables and do the calculations
-                // Timestamp
-                reportTime = moment(response.properties.timestamp).format("LLLL");
-                reportTimeFromNow = moment(response.properties.timestamp).fromNow();
-                // .toLocalString puts in the comma
-                fieldElev = Math.round(convertMetersToFeet(response.properties.elevation.value))
-                    .toLocaleString();
-                // For Farenheit - &#8457; , Celsius - &#8451;, For Degrees - &deg;
+            // Get all the variables and do the calculations
+            // Timestamp
+            reportTime = moment(response.properties.timestamp).format("LLLL");
+            reportTimeFromNow = moment(response.properties.timestamp).fromNow();
+            // .toLocalString puts in the comma
+            fieldElev = Math.round(convertMetersToFeet(response.properties.elevation.value))
+                .toLocaleString();
+            // For Farenheit - &#8457; , Celsius - &#8451;, For Degrees - &deg;
 
-                // Check if the temp has been reported
-                if (response.properties.temperature.value != null) {
-                    tempC = Math.round(response.properties.temperature.value);
-                    tempF = Math.round(convertToF(response.properties.temperature.value));
-                } else {
-                    tempC = "Not Reported";
-                    tempF = "Not Reported";
-                } // End check if temp reported
+            // Check if the temp has been reported
+            if (response.properties.temperature.value != null) {
+                tempC = Math.round(response.properties.temperature.value);
+                tempF = Math.round(convertToF(response.properties.temperature.value));
+            } else {
+                tempC = "Not Reported";
+                tempF = "Not Reported";
+            } // End check if temp reported
 
-                // Check if the dewpoint has been reported
-                if (response.properties.dewpoint.value != null) {
-                    dewpointC = Math.round(response.properties.dewpoint.value);
-                    dewpointF = Math.round(convertToF(response.properties.dewpoint.value));
-                    dewPointSpread = tempF - dewpointF;
-                } else {
-                    dewpointC = "Not Reported";
-                    dewpointF = "Not Reported";
-                    dewPointSpread = "Not Reported";
-                } // End check if dewpoint reported
+            // Check if the dewpoint has been reported
+            if (response.properties.dewpoint.value != null) {
+                dewpointC = Math.round(response.properties.dewpoint.value);
+                dewpointF = Math.round(convertToF(response.properties.dewpoint.value));
+                dewPointSpread = tempF - dewpointF;
+            } else {
+                dewpointC = "Not Reported";
+                dewpointF = "Not Reported";
+                dewPointSpread = "Not Reported";
+            } // End check if dewpoint reported
 
-                // Check if the Barometric pressure has been reported
-                if (response.properties.barometricPressure.value != null) {
-                    baro = convertToInHg(response.properties.barometricPressure.value).toFixed(2);
-                } else {
-                    baro = "Not Reported";
-                } // End check if baro reported
+            // Check if the Barometric pressure has been reported
+            if (response.properties.barometricPressure.value != null) {
+                baro = convertToInHg(response.properties.barometricPressure.value).toFixed(2);
+            } else {
+                baro = "Not Reported";
+            } // End check if baro reported
 
-                // Check if the Wind Speed has been reported
-                if (response.properties.windSpeed.value != null) {
-                    windSpeed = Math.round(convertToMph(response.properties.windSpeed.value));
-                } else {
-                    windSpeed = "Not Reported";
-                } // End check if wind speed reported
+            // Check if the Wind Speed has been reported
+            if (response.properties.windSpeed.value != null) {
+                windSpeed = Math.round(convertToMph(response.properties.windSpeed.value));
+            } else {
+                windSpeed = "Not Reported";
+            } // End check if wind speed reported
 
-                // Check if the Wind Direction has been reported
-                if (response.properties.windDirection.value != null) {
-                    windDir = Math.round(response.properties.windDirection.value);
-                } else {
-                    windDir = "Not Reported"
-                } // End check if wind direction reported
+            // Check if the Wind Direction has been reported
+            if (response.properties.windDirection.value != null) {
+                windDir = Math.round(response.properties.windDirection.value);
+            } else {
+                windDir = "Not Reported"
+            } // End check if wind direction reported
 
-                // Check if the Wind Gust has been reported
-                if (response.properties.windGust.value != null) {
-                    windGust = Math.round(convertToMph(response.properties.windGust.value));
-                } else {
-                    windGust = "Not Reported";
-                } // End check if wind gust reported
+            // Check if the Wind Gust has been reported
+            if (response.properties.windGust.value != null) {
+                windGust = Math.round(convertToMph(response.properties.windGust.value));
+            } else {
+                windGust = "Not Reported";
+            } // End check if wind gust reported
 
-                //Check if the Visibility has been reported
-                if (response.properties.visibility.value != null) {
-                    visibility = Math.round(convertToMiles(response.properties.visibility.value));
-                    Math.round(convertToMiles(response.properties.visibility.value));
-                } else {
-                    visibility = "Not Reported";
-                } //End check if visibility has been reported
+            //Check if the Visibility has been reported
+            if (response.properties.visibility.value != null) {
+                visibility = Math.round(convertToMiles(response.properties.visibility.value));
+                Math.round(convertToMiles(response.properties.visibility.value));
+            } else {
+                visibility = "Not Reported";
+            } //End check if visibility has been reported
 
-                //Set the clouds array variable
-                clouds = response.properties.cloudLayers;
-                //Check if there is a cloud array returned, then assign the cloudBase variable to send to calculateCat function
-                //Get the 1st "BKN" or "OVC" layer
-                if (clouds.length > 0) {
-                    //Loop through cloud array
-                    for (let i = 0; i < clouds.length; i++) {
-                        //Set the amount variable, CLR, SCT, BKN, OVC
-                        cloudAmount = clouds[i].amount;
-                        //Check for a Broken or Overcast layer
-                        if (cloudAmount === "BKN" || cloudAmount === "OVC") {
-                            //Set the Ceiling
-                            cloudBase = Math.round(convertMetersToFeet(clouds[i].base.value));
-                            //Break out of the loop if get a BKN or OVC layer
-                            break;
-                        } else {
-                            cloudBase = "null";
-                        } //End check if BKN or OVC
-                    } //End loop over clouds
-                } else {
-                    cloudBase = "null";
-                } //End check if there is a cloud array
+            //Set the clouds array variable
+            clouds = response.properties.cloudLayers;
+            //Check if there is a cloud array returned, then assign the cloudBase variable to send to calculateCat function
+            //Get the 1st "BKN" or "OVC" layer
+            if (clouds.length > 0) {
+                //Loop through cloud array
+                for (let i = 0; i < clouds.length; i++) {
+                    //Set the amount variable, CLR, SCT, BKN, OVC
+                    cloudAmount = clouds[i].amount;
+                    //Check for a Broken or Overcast layer
+                    if (cloudAmount === "BKN" || cloudAmount === "OVC") {
+                        //Set the Ceiling
+                        cloudBase = Math.round(convertMetersToFeet(clouds[i].base.value));
+                        //Break out of the loop if get a BKN or OVC layer
+                        break;
+                    } else {
+                        cloudBase = "null";
+                    } //End check if BKN or OVC
+                } //End loop over clouds
+            } else {
+                cloudBase = "null";
+            } //End check if there is a cloud array
 
-                //Get the text description of the current weather
-                description = response.properties.textDescription;
-
-
-                //Calculate the weather category, VFR, MVFR
-                let flightCat = calculateCat(visibility, cloudAmount, cloudBase, description);
-                console.log(flightCat);
-
-                //Calculate Density Altitude
-                let densityAlt = calcDensityAlt(baro, convertMetersToFeet(response.properties.elevation.value), tempC);
-                console.log(densityAlt);
-
-                if (isNaN(densityAlt)) {
-                    densityAlt = "Not Reported";
-                } else {
-                    densityAlt = densityAlt.toLocaleString();
-                }
-                console.log("Density Altitude: " + densityAlt);
+            //Get the text description of the current weather
+            description = response.properties.textDescription;
 
 
-                //Update the page
+            //Calculate the weather category, VFR, MVFR
+            let flightCat = calculateCat(visibility, cloudAmount, cloudBase, description);
+            console.log(flightCat);
+
+            //Calculate Density Altitude
+            let densityAlt = calcDensityAlt(baro, convertMetersToFeet(response.properties.elevation.value), tempC);
+            console.log(densityAlt);
+
+            if (isNaN(densityAlt)) {
+                densityAlt = "Not Reported";
+            } else {
+                densityAlt = densityAlt.toLocaleString();
+            }
+            console.log("Density Altitude: " + densityAlt);
+
+
+            //Update the page
+            $(resultsSelector).append(
+                "<span>Station: </span> ",
+                station + " ",
+                "<button class='" + flightCat + "'>" + flightCat + "</button>",
+                // " (VFR-Green, MVFR-Blue, IFR-Red, LIFR-Magenta)",
+                "<br>",
+                "<span>Density Altitude:</span> ",
+                densityAlt, " ft",
+                "<br>",
+                "<span>Timestamp:</span> ",
+                reportTime,
+                " - ",
+                reportTimeFromNow,
+                "<br>",
+                "<span>Coordinates:</span> ",
+                coordinates,
+                "<br>",
+                "<span>Field Elevation:</span> ",
+                fieldElev,
+                " ft",
+                "<br>",
+                "<span>Temperature:</span> ",
+                tempC,
+                " &#8451;",
+                " - ",
+                tempF,
+                " &#8457;",
+                "<br>",
+                "<span>Dew Point:</span> ",
+                dewpointC,
+                " &#8451;",
+                " - ",
+                dewpointF,
+                " &#8451;",
+                "<br>",
+                "<span>Dew Point Spread:</span> ",
+                dewPointSpread,
+                " &#8457;",
+                "<br>",
+                "<span>Barometric Pressure:</span> ",
+                baro,
+                " inHg",
+                "<br>",
+                "<span>Wind Speed:</span> ",
+                windSpeed,
+                " mph",
+                "<br>",
+                "<span>Wind Direction:</span> ",
+                windDir,
+                " &deg;",
+                "<br>",
+                "<span>Wind Gust:</span> ",
+                windGust,
+                " mph",
+                "<br>",
+                "<span>Visiblility:</span> ",
+                visibility,
+                " sm",
+                "<br>",
+                "<span>Description:</span> ",
+                description,
+                "<br>",
+            );
+
+            //Check if clouds array has anything in it
+            if (clouds.length > 0) {
+                //Cloud Layers returns an array, can have multiple cloud layers
                 $(resultsSelector).append(
-                    "<span>Station: </span> ",
-                    station + " ",
-                    "<button class='" + flightCat + "'>" + flightCat + "</button>",
-                    // " (VFR-Green, MVFR-Blue, IFR-Red, LIFR-Magenta)",
-                    "<br>",
-                    "<span>Density Altitude:</span> ",
-                    densityAlt, " ft",
-                    "<br>",
-                    "<span>Timestamp:</span> ",
-                    reportTime,
-                    " - ",
-                    reportTimeFromNow,
-                    "<br>",
-                    "<span>Coordinates:</span> ",
-                    coordinates,
-                    "<br>",
-                    "<span>Field Elevation:</span> ",
-                    fieldElev,
-                    " ft",
-                    "<br>",
-                    "<span>Temperature:</span> ",
-                    tempC,
-                    " &#8451;",
-                    " - ",
-                    tempF,
-                    " &#8457;",
-                    "<br>",
-                    "<span>Dew Point:</span> ",
-                    dewpointC,
-                    " &#8451;",
-                    " - ",
-                    dewpointF,
-                    " &#8451;",
-                    "<br>",
-                    "<span>Dew Point Spread:</span> ",
-                    dewPointSpread,
-                    " &#8457;",
-                    "<br>",
-                    "<span>Barometric Pressure:</span> ",
-                    baro,
-                    " inHg",
-                    "<br>",
-                    "<span>Wind Speed:</span> ",
-                    windSpeed,
-                    " mph",
-                    "<br>",
-                    "<span>Wind Direction:</span> ",
-                    windDir,
-                    " &deg;",
-                    "<br>",
-                    "<span>Wind Gust:</span> ",
-                    windGust,
-                    " mph",
-                    "<br>",
-                    "<span>Visiblility:</span> ",
-                    visibility,
-                    " sm",
-                    "<br>",
-                    "<span>Description:</span> ",
-                    description,
-                    "<br>",
+                    "<span>Cloud Layers: ",
                 );
-
-                //Check if clouds array has anything in it
-                if (clouds.length > 0) {
-                    //Cloud Layers returns an array, can have multiple cloud layers
+                for (let i = 0; i < clouds.length; i++) {
                     $(resultsSelector).append(
-                        "<span>Cloud Layers: ",
+                        clouds[i].amount,
+                        " - ",
+                        Math.round(convertMetersToFeet(clouds[i].base.value)).toLocaleString(),
+                        " ft",
+                        " , ",
                     );
-                    for (let i = 0; i < clouds.length; i++) {
-                        $(resultsSelector).append(
-                            clouds[i].amount,
-                            " - ",
-                            Math.round(convertMetersToFeet(clouds[i].base.value)).toLocaleString(),
-                            " ft",
-                            " , ",
-                        );
-                    } //End loop through cloud layers
+                } //End loop through cloud layers
 
-                    //No Clouds reported
-                } else {
-                    $(resultsSelector).append(
-                        "<span>Cloud Layers: ",
-                        "Clear Below 12,000 ft",
-                    );
-                } //End Check if cloud array is populated
-            }); //End Get the selected weather info
-        }); //End Airport Select Change Function
+                //No Clouds reported
+            } else {
+                $(resultsSelector).append(
+                    "<span>Cloud Layers: ",
+                    "Clear Below 12,000 ft",
+                );
+            } //End Check if cloud array is populated
+        }); //End Get the selected weather info
     }
-    activateWeatherLookup("#pointAinput", "#pointAresult");
-    activateWeatherLookup("#pointBinput", "#pointBresult");
+
+    $("#submitbtn").on("click", function(event) {
+        event.preventDefault();
+        const form = document.querySelector('form');
+        if (!form.reportValidity()) {
+            M.Modal.init(document.querySelector('#validationError'), {}).open(); //Initializing Modal
+            return;
+        }
+        activateWeatherLookup("#pointAinput", "#pointAresult", "departure");
+        activateWeatherLookup("#pointBinput", "#pointBresult", "arrival");
+
+        M.Modal.init(document.querySelector('#popup'), {}).open(); //Initializing Modal
+        console.log(true);
+    });
 
     // Main Processes
     // *******************************************************
@@ -528,6 +541,19 @@ $(document).ready(() => {
                 .text(value.station + " - " + value.name)
             );
         });
+        let url = new URL(window.location.href);
+        let departure = url.searchParams.get('departure');
+        if (departure) {
+            $('#pointAinput option[value="' + departure + '"]').attr('selected', true);
+        }
+        let arrival = url.searchParams.get('arrival');
+        if (arrival) {
+            $('#pointBinput option[value="' + arrival + '"]').attr('selected', true);
+        }
+        if (departure && arrival) {
+            $('#submitbtn').click();
+        }
+
         var elems = document.querySelectorAll('select');
         var instances = M.FormSelect.init(elems, $("option"));
     });
@@ -561,14 +587,3 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.FormSelect.init(elems, {});
 });
 //// End of Materialize Select UI initialization////
-
-$("#submitbtn").on("click", function(event) {
-    event.preventDefault();
-    const form = document.querySelector('form');
-    if (!form.reportValidity()) {
-        M.Modal.init(document.querySelector('#validationError'), {}).open(); //Initializing Modal
-        return;
-    }
-    M.Modal.init(document.querySelector('#popup'), {}).open(); //Initializing Modal
-    console.log(true);
-});
