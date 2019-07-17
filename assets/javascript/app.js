@@ -613,7 +613,7 @@ $(document).ready(() => {
           '<br><br>',
         );
 
-        // Create the Compass
+        // Create the Point A Compass
         const pointAcompass = new RadialGauge({
           renderTo: 'compassA',
           width: 200,
@@ -635,10 +635,7 @@ $(document).ready(() => {
           colorCircleInner: '#fff',
           colorTitle: '#fff',
           colorUnits: '#ccc',
-
           highlights: false,
-
-
           needleType: 'arrow',
           colorNeedle: 'rgba(240, 128, 128, 1)',
           colorNeedleEnd: 'rgba(255, 160, 122, .9)',
@@ -646,13 +643,10 @@ $(document).ready(() => {
           colorNeedleCircleOuter: '#ccc',
           needleCircleSize: 15,
           needleCircleOuter: false,
-
-
           valueBox: true,
           valueTextShadow: 'true',
           valueInt: 3,
           valueDec: 0,
-
           borders: true,
           borderInnerWidth: 0,
           borderMiddleWidth: 0,
@@ -667,14 +661,14 @@ $(document).ready(() => {
           animationDuration: 1500,
         });
 
-        // Draw the compass in the testCanvas canvas element
+        // Draw the compass in the compassA canvas element
         pointAcompass.draw();
 
-        // Set the value
+        // Set the A - Wind Direction value
         pointAcompass.value = windDir;
 
 
-        // Create the Wind Speed
+        // Create the Point A Wind Speed
         const pointAwind = new RadialGauge({
           renderTo: 'windA',
           width: 200,
@@ -690,53 +684,136 @@ $(document).ready(() => {
           startAngle: 90,
           strokeTicks: true,
           colorPlate: '#fff',
-
           highlights: [
             { from: 20, to: 50, color: 'rgba(200, 50, 50, .75)' },
           ],
-
           needleType: 'arrow',
-
           needleCircleSize: 7,
           needleCircleOuter: true,
           needleCircleInner: false,
           needleWidth: 2,
-
-
           valueBox: true,
           valueTextShadow: 'true',
           valueInt: 2,
           valueDec: 0,
-
           borders: false,
-
           borderShadowWidth: 0,
-
-
           animationRule: 'linear',
           animationDuration: 1500,
-
         });
 
-        // Draw the compass in the testCanvas canvas element
+        // Draw thewind speed in the windA canvas element
         pointAwind.draw();
 
-        // Set the value
+        // Set the A - Wind Speed value
         pointAwind.value = windSpeed;
 
-        // const pointAwind = $(
-        //   '<div><canvas id="pointAwind" data-type="radial-gauge" data-width="200" data-height="200" data-units="mph" data-min-value="0" data-start-angle="90" data-ticks-angle="180" data-max-value="50" data-major-ticks="0,5,10,15,20,25,30,35,40,45,50" data-minor-ticks="5" data-stroke-ticks="true" data-highlights="[{"from: 20, "to": 50, "color": "rgba(200, 50, 50, .75)"}]" data-color-plate="#fff" data-border-shadow-width="0" data-borders="false" data-needle-type="arrow" data-needle-width="2" data-needle-circle-size="7" data-needle-circle-outer="true" data-needle-circle-inner="false" data-animation-duration="1500" data-animation-rule="linear" data-value-box="true" data-value-text-shadow="true" data-value-int="2" data-value-dec="0"></canvas></div>',
+        // Create the Point B Compass
+        const pointBcompass = new RadialGauge({
+          renderTo: 'compassB',
+          width: 200,
+          height: 200,
+          units: 'degrees',
+          title: 'Wind Direction',
+          value: 0,
+          minValue: 0,
+          maxValue: 360,
+          majorTicks: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'],
+          minorTicks: 11,
+          ticksAngle: 360,
+          startAngle: 180,
+          strokeTicks: false,
+          colorPlate: 'blue',
+          colorMajorTicks: '#f5f5f5',
+          colorMinorTicks: '#ddd',
+          colorNumbers: '#ccc',
+          colorCircleInner: '#fff',
+          colorTitle: '#fff',
+          colorUnits: '#ccc',
+          highlights: false,
+          needleType: 'arrow',
+          colorNeedle: 'rgba(240, 128, 128, 1)',
+          colorNeedleEnd: 'rgba(255, 160, 122, .9)',
+          colorNeedeShadowDown: '#222',
+          colorNeedleCircleOuter: '#ccc',
+          needleCircleSize: 15,
+          needleCircleOuter: false,
+          valueBox: true,
+          valueTextShadow: 'true',
+          valueInt: 3,
+          valueDec: 0,
+          borders: true,
+          borderInnerWidth: 0,
+          borderMiddleWidth: 0,
+          bordeRouterWidth: 10,
+          colorBordeRouter: '#ccc',
+          colorBordeRouterEnd: '#ccc',
+          borderShadowWidth: 0,
+
+          animationRule: 'bounce',
+          // animationRule: 'linear',
+          // animationDuration: 500,
+          animationDuration: 1500,
+        });
+
+        // Draw the compass in the compassB canvas element
+        pointBcompass.draw();
+
+        // Set the B - Wind Direction value
+        pointBcompass.value = windDir;
+
+
+        // Create the Point B Wind Speed
+        const pointBwind = new RadialGauge({
+          renderTo: 'windB',
+          width: 200,
+          height: 200,
+          units: 'mph',
+          title: 'Wind Speed',
+          value: 0,
+          minValue: 0,
+          maxValue: 50,
+          majorTicks: ['0', '5', '10', '15', '20', '25', '30', '35', '40', '45', '50'],
+          minorTicks: 5,
+          ticksAngle: 180,
+          startAngle: 90,
+          strokeTicks: true,
+          colorPlate: '#fff',
+          highlights: [
+            { from: 20, to: 50, color: 'rgba(200, 50, 50, .75)' },
+          ],
+          needleType: 'arrow',
+          needleCircleSize: 7,
+          needleCircleOuter: true,
+          needleCircleInner: false,
+          needleWidth: 2,
+          valueBox: true,
+          valueTextShadow: 'true',
+          valueInt: 2,
+          valueDec: 0,
+          borders: false,
+          borderShadowWidth: 0,
+          animationRule: 'linear',
+          animationDuration: 1500,
+        });
+
+        // Draw thewind speed in the windA canvas element
+        pointBwind.draw();
+
+        // Set the A - Wind Speed value
+        pointBwind.value = windSpeed;
+
+        // const compassA = $(
+        //   '<div id="compassA"><canvas id="compassA"></canvas></div>',
         // );
 
-        // const pointBcompass = $(
-        //   '<div><canvas id="pointBcompass" data-type="radial-gauge" data-width="200" data-height="200" data-min-value="0" data-max-value="360" data-major-ticks="N,NE,E,SE,S,SW,W,NW,N" data-minor-ticks="11" data-ticks-angle="360" data-start-angle="180" data-stroke-ticks="false" data-highlights="false" data-color-plate="blue" data-color-major-ticks="#f5f5f5" data-color-minor-ticks="#ddd" data-color-numbers="#ccc" data-color-needle="rgba(240, 128, 128, 1)" data-color-needle-end="rgba(255, 160, 122, .9)" data-color-circle-inner="#fff" data-value-box="true" data-value-text-shadow="true" data-value-int="3" data-value-dec="0" data-color-circle-inner="#fff" data-color-needle-circle-outer="#ccc" data-needle-circle-size="15" data-needle-circle-outer="false" data-animation-rule="linear" data-needle-type="arrow" data-borders="true" data-border-inner-width="0" data-border-middle-width="0" data-border-outer-width="10" data-color-border-outer="#ccc" data-color-border-outer-end="#ccc" data-color-needle-shadow-down="#222" data-border-shadow-width="0" data-animation-duration="1500"></canvas></div>',
+        // const windA = $(
+        //   '<div><canvas id="windA"></canvas></div>',
         // );
 
-        // const pointBwind = $('<div><canvas id="pointBwind" data-type="radial-gauge" data-width="200" data-height="200" data-units="mph" data-min-value="0" data-start-angle="90" data-ticks-angle="180" data-max-value="50" data-major-ticks="0,5,10,15,20,25,30,35,40,45,50" data-minor-ticks="5" data-stroke-ticks="true" data-highlights="[{"from": 20, "to": 50, "color": "rgba(200, 50, 50, .75)"}]" data-color-plate="#fff" data-border-shadow-width="0" data-borders="false" data-needle-type="arrow" data-needle-width="2" data-needle-circle-size="7" data-needle-circle-outer="true" data-needle-circle-inner="false" data-animation-duration="1500" data-animation-rule="linear" data-value-box="true" data-value-text-shadow="true" data-value-int="2" data-value-dec="0"></canvas></div>');
 
         // Update the page
         $(resultsSelector).append(
-          pointAcompass,
           '<strong>Station:</strong> ',
           station,
           '<br>',
