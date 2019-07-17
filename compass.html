@@ -8,10 +8,12 @@
   <body>
     <button onclick="animateGauges()">Animate</button>
     <button onclick="stopGaugesAnimation()">Stop animation</button>
+    <button onclick="newAnimation()">New animation</button>
 
     <hr />
 
     <canvas
+      id="pointAcompass"
       data-type="radial-gauge"
       data-width="200"
       data-height="200"
@@ -53,6 +55,7 @@
     </canvas>
 
     <canvas
+      id="pointAwind"
       data-type="radial-gauge"
       data-width="200"
       data-height="200"
@@ -84,12 +87,39 @@
     ></canvas>
 
     <script>
+      //let docG = document.gauges;
+      //console.log(docG);
+      document.gauges.forEach(function(gauge) {
+        console.log(gauge.type);
+      });
+
       function animateGauges() {
         document.gauges.forEach(function(gauge) {
           //gauge.value = 45;
           gauge.value = Math.floor(Math.random() * 50);
           console.log(gauge.value);
         });
+      }
+
+      function newAnimation() {
+        //document.gauges.forEach(function(gauge) {
+        //gauge.value = 45;
+        //gauge.value = Math.floor(Math.random() * 50);
+        //console.log(gauge.value);
+
+        console.log("Click");
+
+        var c = document.getElementById("pointAcompass");
+        //console.log(c);
+        //c.value = 90;
+
+        console.log(docG[0]);
+        //docG[0].value = 45;
+        //let arr0 = docG[0].gauge.value;
+        //console.log(docG[0].canvas.element);
+
+        //let newG = document.getElementById("pointAcompass");
+        //console.log(newG);
       }
 
       function stopGaugesAnimation() {

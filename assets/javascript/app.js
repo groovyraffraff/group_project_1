@@ -370,6 +370,9 @@ $(document).ready(() => {
           } else {
             $(resultsSelector).append('<span>Cloud Layers: ', 'Clear Below 12,000 ft');
           } // End Check if cloud array is populated
+
+          // Send the wind direction to the animate gauges function
+          animateGauges();
         }); // End Get the selected weather info
       }); // End Airport Select Change Function
     }
@@ -610,6 +613,12 @@ $(document).ready(() => {
           '<br><br>',
         );
 
+        const pointAcompass = $(
+          '<div><canvas id="pointAcompass" data-type="radial-gauge" data-width="200" data-height="200" data-min-value="0" data-max-value="360" data-major-ticks="N,NE,E,SE,S,SW,W,NW,N" data-minor-ticks="11" data-ticks-angle="360" data-start-angle="180" data-stroke-ticks="false" data-highlights="false" data-color-plate="blue" data-color-major-ticks="#f5f5f5" data-color-minor-ticks="#ddd" data-color-numbers="#ccc" data-color-needle="rgba(240, 128, 128, 1)" data-color-needle-end="rgba(255, 160, 122, .9)" data-color-circle-inner="#fff" data-value-box="true" data-value-text-shadow="true" data-value-int="3" data-value-dec="0" data-color-circle-inner="#fff" data-color-needle-circle-outer="#ccc" data-needle-circle-size="15" data-needle-circle-outer="false" data-animation-rule="linear" data-needle-type="arrow" data-borders="true" data-border-inner-width="0" data-border-middle-width="0" data-border-outer-width="10" data-color-border-outer="#ccc" data-color-border-outer-end="#ccc" data-color-needle-shadow-down="#222" data-border-shadow-width="0" data-animation-duration="1500"></canvas></div>',
+        );
+
+        const pointAwind = $('<div><canvas id="pointAwind" data-type="radial-gauge" data-width="200" data-height="200" data-units="mph" data-min-value="0" data-start-angle="90" data-ticks-angle="180" data-max-value="50" data-major-ticks="0,5,10,15,20,25,30,35,40,45,50" data-minor-ticks="5" data-stroke-ticks="true" data-highlights='[{"from": 20, "to": 50, "color": "rgba(200, 50, 50, .75)"}]' data-color-plate="#fff" data-border-shadow-width="0" data-borders="false" data-needle-type="arrow" data-needle-width="2" data-needle-circle-size="7" data-needle-circle-outer="true" data-needle-circle-inner="false" data-animation-duration="1500" data-animation-rule="linear" data-value-box="true" data-value-text-shadow="true" data-value-int="2" data-value-dec="0"></canvas></div>');
+
         // Update the page
         $(resultsSelector).append(
           '<strong>Station:</strong> ',
@@ -694,6 +703,16 @@ $(document).ready(() => {
 
   activateWeatherLookup('#pointAinput', '#pointAresult');
   activateWeatherLookup('#pointBinput', '#pointBresult');
+
+  function animateGauges() {
+    // document.gauges.forEach(function(gauge) {
+    //   //gauge.value = 45;
+    //   gauge.value = Math.floor(Math.random() * 50);
+    //   console.log(gauge.value);
+    // });
+    // const compA = (document.getElementById('pointAcompass').value = '45');
+    // $('#pointAcompass').val(45);
+  }
 
   // Main Processes
   // *******************************************************
