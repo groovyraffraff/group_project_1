@@ -355,18 +355,10 @@ media query ends
             max-width: 42em;
             padding: 2em;
             margin: 0 auto;
-            color: currentColor;
+            color: #fafafa;
             font-family: 'Roboto', sans-serif;
             text-align: center;
-            background-color: currentColor;
-        }
-        
-        h1 {
-            margin-bottom: 1.375em;
-            color: #fff;
-            font-weight: 100;
-            font-size: 2em;
-            text-transform: uppercase;
+            background-color: #fafafa;
         }
         
         p,
@@ -398,7 +390,7 @@ media query ends
             margin: -1.84375em;
             background: currentColor;
             border-radius: 50%;
-            box-shadow: -2.1875em 0.6875em 0 -0.6875em, 2.0625em 0.9375em 0 -0.9375em, 0 0 0 0.375em #a4c9c7, -2.1875em 0.6875em 0 -0.3125em #a4c9c7, 2.0625em 0.9375em 0 -0.5625em #a4c9c7;
+            box-shadow: -2.1875em 0.6875em 0 -0.6875em, 2.0625em 0.9375em 0 -0.9375em, 0 0 0 0.375em #bfdad9, -2.1875em 0.6875em 0 -0.3125em #bfdad9, 2.0625em 0.9375em 0 -0.5625em #bfdad9;
         }
         
         .cloud:after {
@@ -410,20 +402,20 @@ media query ends
             width: 4.5625em;
             height: 1em;
             background: currentColor;
-            box-shadow: 0 0.4375em 0 -0.0625em #a4c9c7;
+            box-shadow: 0 0.4375em 0 -0.0625em #bfdad9;
         }
         
         .cloud:nth-child(2) {
             z-index: 0;
-            background: #a4c9c7;
-            box-shadow: -2.1875em 0.6875em 0 -0.6875em #fff, 2.0625em 0.9375em 0 -0.9375em #fff, 0 0 0 0.375em #fff, -2.1875em 0.6875em 0 -0.3125em #fff, 2.0625em 0.9375em 0 -0.5625em #fff;
+            background: #6c8a89;
+            box-shadow: -2.1875em 0.6875em 0 -0.6875em #6c8a89, 2.0625em 0.9375em 0 -0.9375em #6c8a89, 0 0 0 0.375em #6c8a89, -2.1875em 0.6875em 0 -0.3125em #6c8a89, 2.0625em 0.9375em 0 -0.5625em #6c8a89;
             opacity: 0.3;
             transform: scale(0.5) translate(6em, -3em);
             animation: cloud 4s linear infinite;
         }
         
         .cloud:nth-child(2):after {
-            background: transparent;
+            background: #6c8a89;
         }
         
         .sun {
@@ -435,7 +427,7 @@ media query ends
             margin: -1.25em;
             background: currentColor;
             border-radius: 50%;
-            box-shadow: 0 0 0 0.375em #fccc36;
+            box-shadow: 0 0 0 0.375em #fbb426;
             animation: spin 12s infinite linear;
         }
         
@@ -447,9 +439,9 @@ media query ends
             width: 0.375em;
             height: 1.125em;
             margin-left: -0.1875em;
-            background: #fccc36;
+            background: #fbb426;
             border-radius: 0.25em;
-            box-shadow: 0 5.375em #fccc36;
+            box-shadow: 0 5.375em #fbb426;
         }
         
         .rays:before,
@@ -463,9 +455,9 @@ media query ends
             height: 1.125em;
             transform: rotate(60deg);
             transform-origin: 50% 3.25em;
-            background: #fccc36;
+            background: #fbb426;
             border-radius: 0.25em;
-            box-shadow: 0 5.375em #fccc36;
+            box-shadow: 0 5.375em #fbb426;
         }
         
         .rays:before {
@@ -486,7 +478,7 @@ media query ends
             width: 3.75em;
             height: 3.75em;
             margin: 0.375em 0 0 -2em;
-            background: transparent;
+            background: currentColor;
         }
         
         .rain:after {
@@ -510,7 +502,7 @@ media query ends
             top: 50%;
             left: 50%;
             margin: -0.25em 0 0 -0.125em;
-            color: #fff;
+            color: #bfdad9;
             opacity: 0.3;
             animation: lightning 2s linear infinite;
         }
@@ -571,7 +563,7 @@ media query ends
             top: 50%;
             left: 50%;
             margin: -1.025em 0 0 -1.0125em;
-            color: #a4c9c7;
+            color: #66807f;
             list-height: 1em;
             opacity: 0.2;
             animation: spin 8s linear infinite reverse;
@@ -594,7 +586,7 @@ media query ends
         .flake:nth-child(2):after {
             margin: 0.375em 0 0 0.125em;
             font-size: 2em;
-            opacity: 0.7;
+            opacity: 0.4;
             animation: spin 16s linear infinite reverse;
         }
         /* Animations */
@@ -610,11 +602,11 @@ media query ends
                 opacity: 0;
             }
             50% {
-                opacity: 0.7;
+                opacity: 0.3;
             }
             100% {
                 opacity: 0;
-                transform: scale(0.7) translate(-200%, -3em);
+                transform: scale(0.5) translate(-200%, -3em);
             }
         }
         
@@ -638,17 +630,17 @@ media query ends
         @keyframes lightning {
             45% {
                 color: #fff;
-                background: transparent;
+                background: #fff;
                 opacity: 0.2;
             }
             50% {
-                color: #fccc36;
-                background: #0cf;
+                color: #fbb426;
+                background: #fbb426;
                 opacity: 1;
             }
             55% {
-                color: #fff;
-                background: #fff;
+                color: #fbb426;
+                background: #fbb426;
                 opacity: 0.2;
             }
         }
