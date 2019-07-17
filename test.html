@@ -1,0 +1,220 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content=" ">
+    <meta property="og:description" content=" ">
+    <meta property="og:image" content=" ">
+    <meta property="og:url" content=" ">
+    <link rel="shortcut icon" type="image/png" href="" />
+    <title>Project 1</title>
+
+
+
+    <!-- Linking Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Abel|Dosis|Faster+One|Julius+Sans+One|Lily+Script+One|Lobster|Meddon|Montez|Open+Sans|Open+Sans+Condensed:300|Damion|Pacifico|Satisfy&display=swap" rel="stylesheet">
+    <!-- Linking jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="assets/javascript/jquery.easing.1.3.js"></script>
+    <!-- Linking CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/test.css">
+
+    <!-- Linking jQuery UI-->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- Linking Font Awesome 5 for icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('select').formSelect();
+        });
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>Airports</h1>
+        </div>
+
+        <div class="searchContainer">
+            <!-- Card starts -->
+            <div class="card" id="cardbox" style="display:none;">
+                <div class="row">
+                    <form class="col s12">
+
+                        <!-- Point A Dropdown-->
+
+                        <div class="input-field col s12" style="display:flex">
+                            <i class="material-icons prefix">flight_takeoff</i>
+
+                            <select class="airports" id="pointAinput" required="required">
+                          <option value="" disabled selected>Flying from</option>
+                        </select>
+                        </div>
+                        <!-- End of Point A Dropdown-->
+                        <!-- Point B Dropdown-->
+
+                        <div class="input-field col s12" style="display:flex">
+                            <i class="material-icons prefix">flight_land</i>
+                            <select class="airports" id="pointBinput" required="required">
+                          <option value="" disabled selected>Flying To</option>
+                      </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- End of Point B Dropdown-->
+
+
+            <!--Submit button -->
+
+            <div class="submit">
+                <button type="button" class="btn btn-raised" id="submitbtn">Let's go</button>
+            </div>
+
+            <!--End of Submit button -->
+
+            <br><br>
+
+            <div class="mapstext"><i class="material-icons prefix maps">add_location</i><br><br>Choose from maps</div>
+
+        </div>
+        <!-- End of  Card -->
+        <!-- Result div -->
+        <div id="popup" class="modal">
+            <div class="modal-footer">
+
+                <!-- AddToAny BEGIN -->
+                <div class="a2a_kit a2a_kit_size_64 a2a_default_style">
+                    <a class="a2a_dd" href="https://www.addtoany.com/share"> <img class="sharebtn" src="assets/images/sharegray4.png" style="width:35px;height:35px;"></a>
+
+                    <a href="#!" class="modal-close waves-effect"><img src="assets/images/closegray1.png" style="width:35px;height:35px;"></a>
+                </div>
+                <script>
+                    var a2a_config = a2a_config || {};
+                    a2a_config.prioritize = ["sms", "email", "google_gmail", "whatsapp", "facebook_messenger", "facebook", "facebook", "twitter", "print"];
+                    a2a_config.onclick = 1;
+                </script>
+                <script async src="https://static.addtoany.com/menu/page.js"></script>
+                <!-- AddToAny END -->
+
+            </div>
+            <div id="weather" class="modal-content">
+                <div class="left">
+                    <div class="timeStamp"></div>
+                    <div class="stationName"></div>
+                    <div class="fullStationName"></div>
+                    <div class="tempNdew">
+                        <div class="temp">
+                            <!-- Animated weather icon  -->
+                            <h1>Animated Weather Icons</h1>
+
+                            <div class="icon sun-shower">
+                                <div class="cloud"></div>
+                                <div class="sun">
+                                    <div class="rays"></div>
+                                </div>
+                                <div class="rain"></div>
+                            </div>
+
+                            <div class="icon thunder-storm">
+                                <div class="cloud"></div>
+                                <div class="lightning">
+                                    <div class="bolt"></div>
+                                    <div class="bolt"></div>
+                                </div>
+                            </div>
+
+                            <div class="icon cloudy">
+                                <div class="cloud"></div>
+                                <div class="cloud"></div>
+                            </div>
+
+                            <div class="icon flurries">
+                                <div class="cloud"></div>
+                                <div class="snow">
+                                    <div class="flake"></div>
+                                    <div class="flake"></div>
+                                </div>
+                            </div>
+
+                            <div class="icon sunny">
+                                <div class="sun">
+                                    <div class="rays"></div>
+                                </div>
+                            </div>
+
+                            <div class="icon rainy">
+                                <div class="cloud"></div>
+                                <div class="rain"></div>
+                            </div>
+
+                            <p>Based on <a href="https://dribbble.com/shots/2097042-Widget-Weather" target="_blank">Dribbble</a> by kylor</p>
+                            <!-- End of Animated weather icon -->
+
+                        </div>
+                        <div class="dew"></div>
+                    </div>
+                    <div class="windNvisivility">
+                        <div class="wind"></div>
+                        <div class="visivility"></div>
+                    </div>
+                    <div class="cloudLayers"></div>
+                    <div class="coordinates"></div>
+                    <div class="tomMaps"></div>
+                </div>
+                <div class="right" id="pointBresult">
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--End of Result div -->
+    </div>
+    </div>
+
+
+    <!--Form validation Warning-->
+    <div id="validationError" class="modal">
+
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect"><img src="assets/images/close1.png" style="width:30px;height:30px;"></a>
+        </div>
+        <div class="modal-content">
+            <h5>Please select both Departure and Arrival airports.</h5>
+            <p>Click anywhere to dismiss.</p>
+        </div>
+    </div>
+    <!--End of Form validation Warning -->
+
+
+    <button onclick="topFunction()" id="topBtn" title="Go to top"><b>⌃</b></button>
+
+
+
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+    <!-- Linking JavaScript file -->
+    <script type="text/javascript " src="assets/javascript/test.js"></script>
+
+</body>
+
+</html>

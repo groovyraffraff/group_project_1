@@ -21,8 +21,6 @@
     <!-- Linking jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="assets/javascript/jquery.easing.1.3.js"></script>
-
-
     <!-- Linking CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -30,21 +28,22 @@
     <!-- Linking jQuery UI-->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+    <!-- Linking Font Awesome 5 for icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
     <script>
         $(document).ready(function () {
             $('select').formSelect();
+            $('.modal').modal();
         });
     </script>
 
@@ -58,6 +57,7 @@
         <div class="title">
             <h1>Airports</h1>
         </div>
+
         <div class="searchContainer">
 
             <!-- Card starts -->
@@ -89,36 +89,81 @@
                 </div>
             </div>
             <!-- End of Point B Dropdown-->
-
-
             <!--Submit button -->
-
             <div class="submit">
                 <button type="button" class="btn btn-raised" id="submitbtn">Let's go</button>
             </div>
+
             <!--End of Submit button -->
 
-            <br><br>
-
-            <div class="mapstext"><i class="material-icons prefix maps">add_location</i><br><br>Choose from maps</div>
+            <!-- Maps Modal Trigger -->
+            <div class="mapsbtn">
+                <a class="waves-effect waves-light modal-trigger" href="#popupMaps">
+                    <div class="mapstext"><i class="material-icons prefix maps">add_location</i><br><br>Choose from maps
+                    </div>
+                </a>
+            </div>
+            <!-- End of Maps Modal Trigger -->
         </div>
         <!-- End of  Card -->
         <!-- Result div -->
         <div id="popup" class="modal">
             <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect"><img src="assets/images/close1.png"
-                        style="width:30px;height:30px;"></a>
+
+                <!-- AddToAny BEGIN -->
+                <div class="a2a_kit a2a_kit_size_64 a2a_default_style">
+                    <a class="a2a_dd" href="https://www.addtoany.com/share"> <img class="sharebtn"
+                            src="assets/images/sharegray4.png" style="width:35px;height:35px;"></a>
+
+                    <a href="#!" class="modal-close waves-effect"><img src="assets/images/closegray1.png"
+                            style="width:35px;height:35px;"></a>
+                </div>
+                <script>
+                    var a2a_config = a2a_config || {};
+                    a2a_config.prioritize = ["sms", "email", "google_gmail", "whatsapp", "facebook_messenger",
+                        "facebook", "facebook", "twitter", "print"
+                    ];
+                    a2a_config.onclick = 1;
+                </script>
+                <script async src="https://static.addtoany.com/menu/page.js"></script>
+                <!-- AddToAny END -->
+
             </div>
             <div id="weather" class="modal-content">
-                <canvas id="compassA"></canvas>
-                <canvas id="windA"></canvas>
-                <canvas id="compassB"></canvas>
-                <canvas id="windB"></canvas>
-
+                <!-- pointA result div -->
                 <div class="left" id="pointAresult">
 
+                    <div class="airportAndIconContainer">
+
+                        <div class="airportContainer">
+                            <div class="airportCode"></div>
+                            <div class="airportFullName"></div>
+                            <div class="timeContainer" style="display:flex"><i class="far fa-clock"></i>
+                                <div class="timeStamp"></div>
+                            </div>
+                        </div>
+                        <div class="weatherIconContainer">
+                            <div class="weatherIcon"></div>
+                            <div class="weatherDesc"></div>
+                        </div>
+                    </div>
+
+                    <div class="flightCat"></div>
+                    <div class="compass"></div>
+                    <div class="tempC"></div>
+                    <div class="tempF"></div>
+                    <div class="visibility"></div>
+                    <div class="cloudLayer"></div>
+                    <div class="gMaps"></div>
+
+
                 </div>
-                <div class="right" id="pointBresult"></div>
+                <!-- End of pointA result div -->
+                <!-- pointB result div -->
+                <div class="right" id="pointBresult">
+
+                </div>
+                <!-- End of pointB result div -->
             </div>
 
         </div>
@@ -142,6 +187,22 @@
         </div>
     </div>
     <!--End of Form validation Warning -->
+
+
+
+
+    <!-- Maps Modal starts here-->
+    <div id="popupMaps" class="modal bottom-sheet">
+        <div class="modal-content">
+            <h4>Maps pop up here</h4>
+            <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
+
+    <!-- End of Maps Modal starts here-->
 
 
     <button onclick="topFunction()" id="topBtn" title="Go to top"><b>⌃</b></button>

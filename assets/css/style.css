@@ -1,4 +1,4 @@
-        /*font-family: 'Lobster', cursive;
+ /*font-family: 'Lobster', cursive;
 font-family: 'Pacifico', cursive;
 font-family: 'Poiret One', cursive;
 font-family: 'Parisienne', cursive;
@@ -14,263 +14,644 @@ font-family: 'Abel', sans-serif;
 font-family: 'Pacifico', cursive;
 font-family: 'Satisfy', cursive;
 font-family: 'Damion', cursive; */
-        
-        .title {
-            padding-top: 10%;
-            color: #fff8ee !important;
-            /* text-align: center; */
-            font-family: 'Pacifico', cursive;
-            text-shadow: 2px 2px #dce6e6;
-            margin: auto;
-        }
-        
-        h1 {
-            font-family: 'Pacifico', cursive;
-            sans-serif;
-            font-size: 80px;
-            text-align: center;
-            color: #fff;
-        }
-        
-        .select-wrapper,
-        input.select-dropdown {
-            font-family: 'Abel', sans-serif !important;
-            color: grey;
-        }
-        
-        #cardbox {
-            width: 40%;
-            margin: auto;
-            font-family: 'Abel', sans-serif;
-        }
-        
-        span,
-        option,
-        form,
-        .card {
-            font-family: 'Abel', sans-serif !important;
-            /* background: rgba(255, 255, 255, 0.2) !important; */
-            background: transparent !important;
-            color: grey;
-        }
-        
-        .submit {
-            margin: auto;
-            text-align: center;
-        }
-        
-        .btn {
-            background-color: #bfdad9 !important;
-            border: 0 none !important;
-            color: grey !important;
-            margin-top: 3%;
-        }
-        
-        .btn:hover {
-            background-color: #dce6e6 !important;
-        }
-        /* Box shadow color */
-        
-         ::selection {
-            background: #fcffff;
-            /* WebKit/Blink Browsers */
-        }
-        
-         ::-moz-selection {
-            background: #fcffff;
-            /* Gecko Browsers */
-        }
-        /* top button */
-        
-        #topBtn {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 30px;
-            z-index: 99;
-            font-size: 18px;
-            border: none;
-            outline: none;
-            background-color: #93ccca;
-            color: white;
-            cursor: pointer;
-            padding: 15px;
-            border-radius: 50%;
-        }
-        
-        #topBtn:hover {
-            background-color: #dce6e6;
-        }
-        /************************************************************************************
-    smaller than 640
-    *************************************************************************************/
-        
-        @media screen and (max-width: 640px) {
-            body {
-                margin: auto;
-                text-align: center;
-                font-size: 18px !important;
-                display: block !important;
-            }
-            .card {
-                margin: auto;
-                text-align: center;
-                font-size: 18px !important;
-                display: block !important;
-            }
-            .panel-heading {
-                background-color: #ffefcf !important;
-            }
-            .headline {
-                font-size: 30px;
-            }
-            .choo {
-                font-size: 20px;
-            }
-            .bmd-form-group [class*=" bmd-label"],
-            .bmd-form-group [class^=bmd-label] {
-                position: static !important;
-            }
-            .bmd-form-group .custom-file-control,
-            .bmd-form-group .form-control,
-            .bmd-form-group input::placeholder,
-            .bmd-form-group label {
-                line-height: 0 !important;
-            }
-        }
-        /************************************************************************************
+
+ .title {
+     padding-top: 10%;
+     color: #fff8ee !important;
+     /* text-align: center; */
+     font-family: 'Pacifico', cursive;
+     text-shadow: 2px 2px #dce6e6;
+     margin: auto;
+ }
+
+ h1 {
+     font-family: 'Pacifico', cursive;
+     sans-serif;
+     font-size: 80px;
+     text-align: center;
+     color: #fff;
+ }
+
+ .select-wrapper,
+ input.select-dropdown {
+     font-family: 'Abel', sans-serif !important;
+     color: grey;
+ }
+
+ #cardbox {
+     width: 40%;
+     margin: auto;
+     font-family: 'Abel', sans-serif;
+ }
+
+ span,
+ ​option,
+ form,
+ .card {
+     font-family: 'Abel', sans-serif !important;
+     /* background: rgba(255, 255, 255, 0.2) !important; */
+     background: transparent !important;
+     color: grey;
+ }
+
+ /* Box shadow color */
+
+ ::selection {
+     background: #fcffff;
+     /* WebKit/Blink Browsers */
+ }
+
+ ::-moz-selection {
+     background: #fcffff;
+     /* Gecko Browsers */
+ }
+
+ /* top button */
+
+ #topBtn {
+     display: none;
+     position: fixed;
+     bottom: 20px;
+     right: 30px;
+     z-index: 99;
+     font-size: 18px;
+     border: none;
+     outline: none;
+     background-color: #93ccca;
+     color: white;
+     cursor: pointer;
+     padding: 15px;
+     border-radius: 50%;
+ }
+
+ #topBtn:hover {
+     background-color: #dce6e6;
+ }
+
+ /************************************************************************************
+smaller than 640
+*************************************************************************************/
+
+ @media screen and (max-width: 640px) {
+     body {
+         margin: auto;
+         /* text-align: center; */
+         font-size: 18px !important;
+         display: block !important;
+     }
+
+     .card {
+         margin: auto;
+         text-align: center;
+         font-size: 18px !important;
+         display: block !important;
+     }
+
+     .panel-heading {
+         background-color: #ffefcf !important;
+     }
+
+     .headline {
+         font-size: 30px;
+     }
+
+     .choo {
+         font-size: 20px;
+     }
+
+     .bmd-form-group [class*=" bmd-label"],
+     .bmd-form-group [class^=bmd-label] {
+         position: static !important;
+     }
+
+     .bmd-form-group .custom-file-control,
+     .bmd-form-group .form-control,
+     .bmd-form-group input::placeholder,
+     .bmd-form-group label {
+         line-height: 0 !important;
+     }
+ }
+
+ /************************************************************************************
 media query ends
 *************************************************************************************/
-        
-        body {
-            font-family: 'Abel', sans-serif;
-            /* Location of the image */
-            background-image: url('../images/sky1.jpg');
-            /* Background image is centered vertically and horizontally at all times */
-            background-position: center center;
-            /* Background image doesn't tile */
-            background-repeat: no-repeat;
-            /* Background image is fixed in the viewport so that it doesn't move when the content's height is greater than the image's height */
-            background-attachment: fixed;
-            /* This is what makes the background image rescale based on the container's size */
-            background-size: cover;
-            /* Set a background color that will be displayed while the background image is loading */
-            background-color: #fff;
-        }
-        
-        .z-depth-1,
-        nav,
-        .card-panel,
-        .card,
-        .toast,
-        .btn,
-        .btn-large,
-        .btn-floating,
-        .dropdown-content,
-        .collapsible,
-        .side-nav {
-            box-shadow: none !important;
-        }
-        
-        input[type=text]:focus:not([readonly]),
-        input[type=password]:focus:not([readonly]),
-        input[type=email]:focus:not([readonly]),
-        input[type=url]:focus:not([readonly]),
-        input[type=time]:focus:not([readonly]),
-        input[type=date]:focus:not([readonly]),
-        input[type=datetime-local]:focus:not([readonly]),
-        input[type=tel]:focus:not([readonly]),
-        input[type=number]:focus:not([readonly]),
-        input[type=search]:focus:not([readonly]),
-        textarea.materialize-textarea:focus:not([readonly]) {
-            border-bottom: 1px solid #7abbb9 !important;
-            box-shadow: 0 1px 0 0 #7abbb9 !important;
-        }
-        
-        input[type=text]:focus:not([readonly])+label,
-        input[type=password]:focus:not([readonly])+label,
-        input[type=email]:focus:not([readonly])+label,
-        input[type=url]:focus:not([readonly])+label,
-        input[type=time]:focus:not([readonly])+label,
-        input[type=date]:focus:not([readonly])+label,
-        input[type=datetime-local]:focus:not([readonly])+label,
-        input[type=tel]:focus:not([readonly])+label,
-        input[type=number]:focus:not([readonly])+label,
-        input[type=search]:focus:not([readonly])+label,
-        textarea.materialize-textarea:focus:not([readonly])+label {
-            color: #7abbb9 !important;
-        }
-        
-        .input-field .prefix.active {
-            color: #7abbb9 !important;
-        }
-        
-        i.maps,
-        .mapstext {
-            text-align: center;
-            margin: auto;
-            color: gray;
-        }
-        
-        i.maps {
-            font-size: 50px;
-        }
-        
-        #weather {
-            margin: auto;
-            display: grid;
-            grid-template-columns: 50% 50%;
-            position: relative;
-            padding-top: 0;
-            /* background: rgba(255, 255, 255, 0.5); */
-            /* border-radius: 25px; */
-        }
-        
-        .left,
-        .right {
-            /* padding: 5%; */
-        }
-        
-        .modal-overlay {
-            background: #e0eeed !important;
-        }
-        /* Flight Category buttons*/
-        
-        button {
-            border: none;
-            border-radius: 8px;
-            color: #eee;
-        }
-        
-        .VFR {
-            background-color: #4CAF50;
-        }
-        
-        .MVFR {
-            background-color: #87CEFA;
-        }
-        
-        .IFR {
-            background-color: #FF0000;
-        }
-        
-        .LIFR {
-            background-color: #FF1493;
-        }
-        /* End of Flight Category */
-        
-        .modal-close {
-            transition: all 0.5s ease-in-out;
-        }
-        
-        .modal-close:hover {
-            -ms-transform: rotate(90deg);
-            /* IE 9 */
-            -webkit-transform: rotate(90deg);
-            /* Chrome, Safari, Opera */
-            transform: rotate(90deg);
-        }
-        
-        span {
-            line-height: 1.6;
-        }
+
+ body {
+     font-family: 'Abel', sans-serif;
+     /* Location of the image */
+     background-image: url('../images/sky1.jpg');
+     /* Background image is centered vertically and horizontally at all times */
+     background-position: center center;
+     /* Background image doesn't tile */
+     background-repeat: no-repeat;
+     /* Background image is fixed in the viewport so that it doesn't move when the content's height is greater than the image's height */
+     background-attachment: fixed;
+     /* This is what makes the background image rescale based on the container's size */
+     background-size: cover;
+     /* Set a background color that will be displayed while the background image is loading */
+     background-color: #fff;
+ }
+
+ .z-depth-1,
+ nav,
+ .card-panel,
+ .card,
+ .toast,
+ .btn,
+ .btn-large,
+ .btn-floating,
+ .dropdown-content,
+ .collapsible,
+ .side-nav {
+     box-shadow: none !important;
+ }
+
+ input[type=text]:focus:not([readonly]),
+ input[type=password]:focus:not([readonly]),
+ input[type=email]:focus:not([readonly]),
+ input[type=url]:focus:not([readonly]),
+ input[type=time]:focus:not([readonly]),
+ input[type=date]:focus:not([readonly]),
+ input[type=datetime-local]:focus:not([readonly]),
+ input[type=tel]:focus:not([readonly]),
+ input[type=number]:focus:not([readonly]),
+ input[type=search]:focus:not([readonly]),
+ textarea.materialize-textarea:focus:not([readonly]) {
+     border-bottom: 1px solid #7abbb9 !important;
+     box-shadow: 0 1px 0 0 #7abbb9 !important;
+ }
+
+ input[type=text]:focus:not([readonly])+label,
+ input[type=password]:focus:not([readonly])+label,
+ input[type=email]:focus:not([readonly])+label,
+ input[type=url]:focus:not([readonly])+label,
+ input[type=time]:focus:not([readonly])+label,
+ input[type=date]:focus:not([readonly])+label,
+ input[type=datetime-local]:focus:not([readonly])+label,
+ input[type=tel]:focus:not([readonly])+label,
+ input[type=number]:focus:not([readonly])+label,
+ input[type=search]:focus:not([readonly])+label,
+ textarea.materialize-textarea:focus:not([readonly])+label {
+     color: #7abbb9 !important;
+ }
+
+ .input-field .prefix.active {
+     color: #7abbb9 !important;
+ }
+
+ .mapsbtn,
+ i.maps,
+ .mapstext {
+     text-align: center;
+     margin: auto;
+     color: gray;
+ }
+
+ i.maps {
+     font-size: 50px;
+ }
+
+ .airportAndIconContainer,
+ #weather {
+     margin: auto;
+     display: grid;
+     grid-template-columns: 50% 50%;
+     position: relative;
+     padding-top: 0;
+     /* background: rgba(255, 255, 255, 0.5); */
+     /* border-radius: 25px; */
+ }
+
+ .airportAndIconContainer {
+     grid-template-columns: 70% 30%;
+ }
+
+ .left,
+ .right {
+     color: gray;
+     line-height: 1.6;
+ }
+
+ .modal-overlay {
+     background: #e0eeed !important;
+ }
+
+ #popup {
+     font-size: 20x !important;
+ }
+
+ #popup .modal {
+     max-height: 100% !important;
+     width: 75% !important;
+     overflow-y: hidden !important;
+     /* increase the width, height and prevent vertical scroll! However, i don't recommend this, its better to turn on vertical scrolling. */
+ }
+
+ /* Flight Category buttons*/
+
+ button {
+     border: none !important;
+     /* border-radius: 8px; */
+     color: #eee;
+     font-size: 20px !important;
+     /* line-height: 2 !important; */
+ }
+
+ .VFR {
+     /* background-color: #4CAF50; */
+     background-image: linear-gradient(-90deg, #fff, #4CAF50);
+ }
+
+ .MVFR {
+     background-color: #87CEFA;
+ }
+
+ .IFR {
+     background-color: #FF0000;
+ }
+
+ .LIFR {
+     background-color: #FF1493;
+ }
+
+ /* End of Flight Category */
+ /* share icon style */
+
+ #popup span.a2a_svg {
+     background-color: transparent !important;
+ }
+
+ #a2apage_dropdown svg path {
+     fill: #8eb8b6;
+ }
+
+ .a2a_i {
+     width: 30px;
+     height: 30px;
+ }
+
+ #a2apage_mini_services,
+ #a2apage_dropdown,
+ .a2a_menu,
+ a.a2a_i:visited,
+ .a2a_more,
+ .a.a2a_more,
+ .a2a_menu a.a2a_more,
+ .a2a_menu a {
+     color: gray !important;
+     font-family: 'Abel', sans-serif !important;
+ }
+
+ /* End of share icon style */
+
+ .modal-footer,
+ .a2a_kit {
+     float: right !important;
+     margin-right: 0.5%;
+ }
+
+ .a2a_dd,
+ .modal-close {
+     transition: all 0.5s ease-in-out;
+ }
+
+ .a2a_dd:hover {
+     background-color: #e8f3f3 !important;
+     border-radius: 50%;
+ }
+
+ .modal-close:hover {
+     -ms-transform: rotate(90deg);
+     /* IE 9 */
+     -webkit-transform: rotate(90deg);
+     /* Chrome, Safari, Opera */
+     transform: rotate(90deg);
+ }
+
+ .airportCode {
+     font-size: 50px;
+     padding-top: 4%;
+ }
+
+ .weatherIconContainer {
+     float: right;
+     text-align: right;
+ }
+
+ .weatherDesc {
+     color: #cbcdcf;
+     /* margin-right: 15%; */
+ }
+
+ .submit {
+     margin: auto;
+     text-align: center;
+ }
+
+ .submitbtn,
+ .btn {
+     background-color: #bfdad9 !important;
+     border: 0 none !important;
+     color: grey !important;
+     margin-top: 3%;
+     font-size: 13px !important;
+ }
+
+ .submitbtn,
+ .btn:hover {
+     background-color: #dce6e6 !important;
+ }
+
+ /* ////////////////////////////////////////////////////////// */
+ /* ////////////////////////////////////////////////////////// */
+ /* animated weather icons */
+
+ .weatherIcon {
+     color: #fafafa;
+ }
+
+ .icon {
+     position: relative;
+     display: inline-block;
+     width: 9.6em;
+     height: 8em;
+     font-size: 0.6em;
+     /* control icon size here */
+ }
+
+ .cloud {
+     position: absolute;
+     z-index: 1;
+     top: 50%;
+     left: 50%;
+     width: 3.6875em;
+     height: 3.6875em;
+     margin: -1.84375em;
+     background: currentColor;
+     border-radius: 50%;
+     box-shadow: -2.1875em 0.6875em 0 -0.6875em, 2.0625em 0.9375em 0 -0.9375em, 0 0 0 0.375em #bfdad9, -2.1875em 0.6875em 0 -0.3125em #bfdad9, 2.0625em 0.9375em 0 -0.5625em #bfdad9;
+ }
+
+ .cloud:after {
+     content: '';
+     position: absolute;
+     bottom: 0;
+     left: -0.5em;
+     display: block;
+     width: 4.5625em;
+     height: 1em;
+     background: currentColor;
+     box-shadow: 0 0.4375em 0 -0.0625em #bfdad9;
+ }
+
+ .cloud:nth-child(2) {
+     z-index: 0;
+     background: #6c8a89;
+     box-shadow: -2.1875em 0.6875em 0 -0.6875em #6c8a89, 2.0625em 0.9375em 0 -0.9375em #6c8a89, 0 0 0 0.375em #6c8a89, -2.1875em 0.6875em 0 -0.3125em #6c8a89, 2.0625em 0.9375em 0 -0.5625em #6c8a89;
+     opacity: 0.3;
+     transform: scale(0.5) translate(6em, -3em);
+     animation: cloud 4s linear infinite;
+ }
+
+ .cloud:nth-child(2):after {
+     background: #6c8a89;
+ }
+
+ .sun {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     width: 2.5em;
+     height: 2.5em;
+     margin: -1.25em;
+     background: currentColor;
+     border-radius: 50%;
+     box-shadow: 0 0 0 0.375em #fbb426;
+     animation: spin 12s infinite linear;
+ }
+
+ .rays {
+     position: absolute;
+     top: -2em;
+     left: 50%;
+     display: block;
+     width: 0.375em;
+     height: 1.125em;
+     margin-left: -0.1875em;
+     background: #fbb426;
+     border-radius: 0.25em;
+     box-shadow: 0 5.375em #fbb426;
+ }
+
+ .rays:before,
+ .rays:after {
+     content: '';
+     position: absolute;
+     top: 0em;
+     left: 0em;
+     display: block;
+     width: 0.375em;
+     height: 1.125em;
+     transform: rotate(60deg);
+     transform-origin: 50% 3.25em;
+     background: #fbb426;
+     border-radius: 0.25em;
+     box-shadow: 0 5.375em #fbb426;
+ }
+
+ .rays:before {
+     transform: rotate(120deg);
+ }
+
+ .cloud+.sun {
+     margin: -2em 1em;
+ }
+
+ .rain,
+ .lightning,
+ .snow {
+     position: absolute;
+     z-index: 2;
+     top: 50%;
+     left: 50%;
+     width: 3.75em;
+     height: 3.75em;
+     margin: 0.375em 0 0 -2em;
+     background: currentColor;
+ }
+
+ .rain:after {
+     content: '';
+     position: absolute;
+     z-index: 2;
+     top: 50%;
+     left: 50%;
+     width: 1.125em;
+     height: 1.125em;
+     margin: -1em 0 0 -0.25em;
+     background: #0cf;
+     border-radius: 100% 0 60% 50% / 60% 0 100% 50%;
+     box-shadow: 0.625em 0.875em 0 -0.125em rgba(255, 255, 255, 0.2), -0.875em 1.125em 0 -0.125em rgba(255, 255, 255, 0.2), -1.375em -0.125em 0 rgba(255, 255, 255, 0.2);
+     transform: rotate(-28deg);
+     animation: rain 3s linear infinite;
+ }
+
+ .bolt {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     margin: -0.25em 0 0 -0.125em;
+     color: #bfdad9;
+     opacity: 0.3;
+     animation: lightning 2s linear infinite;
+ }
+
+ .bolt:nth-child(2) {
+     width: 0.5em;
+     height: 0.25em;
+     margin: -1.75em 0 0 -1.875em;
+     transform: translate(2.5em, 2.25em);
+     opacity: 0.2;
+     animation: lightning 1.5s linear infinite;
+ }
+
+ .bolt:before,
+ .bolt:after {
+     content: '';
+     position: absolute;
+     z-index: 2;
+     top: 50%;
+     left: 50%;
+     margin: -1.625em 0 0 -1.0125em;
+     border-top: 1.25em solid transparent;
+     border-right: 0.75em solid;
+     border-bottom: 0.75em solid;
+     border-left: 0.5em solid transparent;
+     transform: skewX(-10deg);
+ }
+
+ .bolt:after {
+     margin: -0.25em 0 0 -0.25em;
+     border-top: 0.75em solid;
+     border-right: 0.5em solid transparent;
+     border-bottom: 1.25em solid transparent;
+     border-left: 0.75em solid;
+     transform: skewX(-10deg);
+ }
+
+ .bolt:nth-child(2):before {
+     margin: -0.75em 0 0 -0.5em;
+     border-top: 0.625em solid transparent;
+     border-right: 0.375em solid;
+     border-bottom: 0.375em solid;
+     border-left: 0.25em solid transparent;
+ }
+
+ .bolt:nth-child(2):after {
+     margin: -0.125em 0 0 -0.125em;
+     border-top: 0.375em solid;
+     border-right: 0.25em solid transparent;
+     border-bottom: 0.625em solid transparent;
+     border-left: 0.375em solid;
+ }
+
+ .flake:before,
+ .flake:after {
+     content: '\2744';
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     margin: -1.025em 0 0 -1.0125em;
+     color: #66807f;
+     list-height: 1em;
+     opacity: 0.2;
+     animation: spin 8s linear infinite reverse;
+ }
+
+ .flake:after {
+     margin: 0.125em 0 0 -1em;
+     font-size: 1.5em;
+     opacity: 0.4;
+     animation: spin 14s linear infinite;
+ }
+
+ .flake:nth-child(2):before {
+     margin: -0.5em 0 0 0.25em;
+     font-size: 1.25em;
+     opacity: 0.2;
+     animation: spin 10s linear infinite;
+ }
+
+ .flake:nth-child(2):after {
+     margin: 0.375em 0 0 0.125em;
+     font-size: 2em;
+     opacity: 0.4;
+     animation: spin 16s linear infinite reverse;
+ }
+
+ /* Animations */
+
+ @keyframes spin {
+     100% {
+         transform: rotate(360deg);
+     }
+ }
+
+ @keyframes cloud {
+     0% {
+         opacity: 0;
+     }
+
+     50% {
+         opacity: 0.3;
+     }
+
+     100% {
+         opacity: 0;
+         transform: scale(0.5) translate(-200%, -3em);
+     }
+ }
+
+ @keyframes rain {
+     0% {
+         background: #0cf;
+         box-shadow: 0.625em 0.875em 0 -0.125em rgba(255, 255, 255, 0.2), -0.875em 1.125em 0 -0.125em rgba(255, 255, 255, 0.2), -1.375em -0.125em 0 #0cf;
+     }
+
+     25% {
+         box-shadow: 0.625em 0.875em 0 -0.125em rgba(255, 255, 255, 0.2), -0.875em 1.125em 0 -0.125em #0cf, -1.375em -0.125em 0 rgba(255, 255, 255, 0.2);
+     }
+
+     50% {
+         background: rgba(255, 255, 255, 0.3);
+         box-shadow: 0.625em 0.875em 0 -0.125em #0cf, -0.875em 1.125em 0 -0.125em rgba(255, 255, 255, 0.2), -1.375em -0.125em 0 rgba(255, 255, 255, 0.2);
+     }
+
+     100% {
+         box-shadow: 0.625em 0.875em 0 -0.125em rgba(255, 255, 255, 0.2), -0.875em 1.125em 0 -0.125em rgba(255, 255, 255, 0.2), -1.375em -0.125em 0 #0cf;
+     }
+ }
+
+ @keyframes lightning {
+     45% {
+         color: #fff;
+         background: #fff;
+         opacity: 0.2;
+     }
+
+     50% {
+         color: #fbb426;
+         background: #fbb426;
+         opacity: 1;
+     }
+
+     55% {
+         color: #fbb426;
+         background: #fbb426;
+         opacity: 0.2;
+     }
+ }
+
+ /* animated weather icons */
+ /* ////////////////////////////////////////////////////////// */
+ /* ////////////////////////////////////////////////////////// */
