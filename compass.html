@@ -4,7 +4,10 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>Gauge Test</title>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="//cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.5/all/gauge.min.js"></script>
+
 </head>
 
 <body>
@@ -36,6 +39,11 @@
     data-animation-duration="1500" data-animation-rule="linear" data-value-box="true" data-value-text-shadow="true"
     data-value-int="2" data-value-dec="0"></canvas>
 
+
+  <div id="testDiv">
+    <canvas id="testCanvas"></canvas>
+  </div>
+
   <script>
     //let docG = document.gauges;
     //console.log(docG);
@@ -59,6 +67,79 @@
 
       console.log("Click");
 
+      var radial = new RadialGauge({
+        renderTo: 'testCanvas',
+        width: 400,
+        height: 400,
+        units: 'Km/h',
+        title: false,
+        value: 0,
+        minValue: 0,
+        maxValue: 220,
+        majorTicks: [
+          '0', '20', '40', '60', '80', '100', '120', '140', '160', '180', '200', '220'
+        ],
+        minorTicks: 2,
+        strokeTicks: false,
+        highlights: [{
+            from: 0,
+            to: 50,
+            color: 'rgba(0,255,0,.15)'
+          },
+          {
+            from: 50,
+            to: 100,
+            color: 'rgba(255,255,0,.15)'
+          },
+          {
+            from: 100,
+            to: 150,
+            color: 'rgba(255,30,0,.25)'
+          },
+          {
+            from: 150,
+            to: 200,
+            color: 'rgba(255,0,225,.25)'
+          },
+          {
+            from: 200,
+            to: 220,
+            color: 'rgba(0,0,255,.25)'
+          }
+        ],
+        colorPlate: '#222',
+        colorMajorTicks: '#f5f5f5',
+        colorMinorTicks: '#ddd',
+        colorTitle: '#fff',
+        colorUnits: '#ccc',
+        colorNumbers: '#eee',
+        colorNeedle: 'rgba(240, 128, 128, 1)',
+        colorNeedleEnd: 'rgba(255, 160, 122, .9)',
+        valueBox: true,
+        animationRule: 'bounce',
+        animationDuration: 500
+      });
+
+      radial.draw();
+      // var linear = new LinearGauge({
+      //   renderTo: 'testCanvas'
+      // });
+      // var radial = new RadialGauge({
+      //   renderTo: document.createElement('canvas')
+      // });
+
+      // var gauge = new RadialGauge({
+      //   renderTo: 'testCanvas'
+      // }).draw();
+
+      // const pointAcompass = $(
+      //   '<div><canvas id="pointAcompass" data-type="radial-gauge" data-width="200" data-height="200" data-min-value="0" data-max-value="360" data-major-ticks="N,NE,E,SE,S,SW,W,NW,N" data-minor-ticks="11" data-ticks-angle="360" data-start-angle="180" data-stroke-ticks="false" data-highlights="false" data-color-plate="blue" data-color-major-ticks="#f5f5f5" data-color-minor-ticks="#ddd" data-color-numbers="#ccc" data-color-needle="rgba(240, 128, 128, 1)" data-color-needle-end="rgba(255, 160, 122, .9)" data-color-circle-inner="#fff" data-value-box="true" data-value-text-shadow="true" data-value-int="3" data-value-dec="0" data-color-circle-inner="#fff" data-color-needle-circle-outer="#ccc" data-needle-circle-size="15" data-needle-circle-outer="false" data-animation-rule="linear" data-needle-type="arrow" data-borders="true" data-border-inner-width="0" data-border-middle-width="0" data-border-outer-width="10" data-color-border-outer="#ccc" data-color-border-outer-end="#ccc" data-color-needle-shadow-down="#222" data-border-shadow-width="0" data-animation-duration="1500"></canvas></div>',
+      // );
+
+      // $("#testDiv").append(
+      //   pointAcompass
+      // );
+
       //var c = document.getElementById("pointAcompass");
       //console.log(c);
       //c.value = 90;
@@ -71,12 +152,12 @@
       //let newG = document.getElementById("pointAcompass");
       //console.log(newG);
 
-      var gaugeAc = document.gauges.get('pointAcompass');
-      var gaugeAw = document.gauges.get('pointAwind');
-      gaugeAc.value = 90;
-      gaugeAw.value = 11;
+      // var gaugeAc = document.gauges.get('pointAcompass');
+      // var gaugeAw = document.gauges.get('pointAwind');
+      // gaugeAc.value = 90;
+      // gaugeAw.value = 11;
 
-      console.log(gauge.value);
+      //console.log(gauge.value);
 
       //});
     }
