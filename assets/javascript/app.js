@@ -448,7 +448,7 @@ $(document).ready(() => {
           // Set the Wind Direction value
           compass.value = windDir;
 
-          // Set the A - Wind Speed value
+          // Set the Wind Speed value
           wind.value = windSpeed;
 
 
