@@ -1,132 +1,92 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Gauge Test</title>
-    <script src="//cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.5/all/gauge.min.js"></script>
-  </head>
-  <body>
-    <button onclick="animateGauges()">Animate</button>
-    <button onclick="stopGaugesAnimation()">Stop animation</button>
-    <button onclick="newAnimation()">New animation</button>
 
-    <hr />
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Gauge Test</title>
+  <script src="//cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.5/all/gauge.min.js"></script>
+</head>
 
-    <canvas
-      id="pointAcompass"
-      data-type="radial-gauge"
-      data-width="200"
-      data-height="200"
-      data-min-value="0"
-      data-max-value="360"
-      data-major-ticks="N,NE,E,SE,S,SW,W,NW,N"
-      data-minor-ticks="11"
-      data-ticks-angle="360"
-      data-start-angle="180"
-      data-stroke-ticks="false"
-      data-highlights="false"
-      data-color-plate="blue"
-      data-color-major-ticks="#f5f5f5"
-      data-color-minor-ticks="#ddd"
-      data-color-numbers="#ccc"
-      data-color-needle="rgba(240, 128, 128, 1)"
-      data-color-needle-end="rgba(255, 160, 122, .9)"
-      data-color-circle-inner="#fff"
-      data-value-box="true"
-      data-value-text-shadow="true"
-      data-value-int="3"
-      data-value-dec="0"
-      data-color-circle-inner="#fff"
-      data-color-needle-circle-outer="#ccc"
-      data-needle-circle-size="15"
-      data-needle-circle-outer="false"
-      data-animation-rule="linear"
-      data-needle-type="arrow"
-      data-borders="true"
-      data-border-inner-width="0"
-      data-border-middle-width="0"
-      data-border-outer-width="10"
-      data-color-border-outer="#ccc"
-      data-color-border-outer-end="#ccc"
-      data-color-needle-shadow-down="#222"
-      data-border-shadow-width="0"
-      data-animation-duration="1500"
-    >
-    </canvas>
+<body>
+  <button onclick="animateGauges()">Animate</button>
+  <button onclick="stopGaugesAnimation()">Stop animation</button>
+  <button onclick="newAnimation()">New animation</button>
 
-    <canvas
-      id="pointAwind"
-      data-type="radial-gauge"
-      data-width="200"
-      data-height="200"
-      data-units="mph"
-      data-min-value="0"
-      data-start-angle="90"
-      data-ticks-angle="180"
-      data-max-value="50"
-      data-major-ticks="0,5,10,15,20,25,30,35,40,45,50"
-      data-minor-ticks="5"
-      data-stroke-ticks="true"
-      data-highlights='[
+  <hr />
+
+  <canvas id="pointAcompass" data-type="radial-gauge" data-width="200" data-height="200" data-min-value="0"
+    data-max-value="360" data-major-ticks="N,NE,E,SE,S,SW,W,NW,N" data-minor-ticks="11" data-ticks-angle="360"
+    data-start-angle="180" data-stroke-ticks="false" data-highlights="false" data-color-plate="blue"
+    data-color-major-ticks="#f5f5f5" data-color-minor-ticks="#ddd" data-color-numbers="#ccc"
+    data-color-needle="rgba(240, 128, 128, 1)" data-color-needle-end="rgba(255, 160, 122, .9)"
+    data-color-circle-inner="#fff" data-value-box="true" data-value-text-shadow="true" data-value-int="3"
+    data-value-dec="0" data-color-circle-inner="#fff" data-color-needle-circle-outer="#ccc" data-needle-circle-size="15"
+    data-needle-circle-outer="false" data-animation-rule="linear" data-needle-type="arrow" data-borders="true"
+    data-border-inner-width="0" data-border-middle-width="0" data-border-outer-width="10" data-color-border-outer="#ccc"
+    data-color-border-outer-end="#ccc" data-color-needle-shadow-down="#222" data-border-shadow-width="0"
+    data-animation-duration="1500">
+  </canvas>
+
+  <canvas id="pointAwind" data-type="radial-gauge" data-width="200" data-height="200" data-units="mph"
+    data-min-value="0" data-start-angle="90" data-ticks-angle="180" data-max-value="50"
+    data-major-ticks="0,5,10,15,20,25,30,35,40,45,50" data-minor-ticks="5" data-stroke-ticks="true" data-highlights='[
         {"from": 20, "to": 50, "color": "rgba(200, 50, 50, .75)"}
-    ]'
-      data-color-plate="#fff"
-      data-border-shadow-width="0"
-      data-borders="false"
-      data-needle-type="arrow"
-      data-needle-width="2"
-      data-needle-circle-size="7"
-      data-needle-circle-outer="true"
-      data-needle-circle-inner="false"
-      data-animation-duration="1500"
-      data-animation-rule="linear"
-      data-value-box="true"
-      data-value-text-shadow="true"
-      data-value-int="2"
-      data-value-dec="0"
-    ></canvas>
+    ]' data-color-plate="#fff" data-border-shadow-width="0" data-borders="false" data-needle-type="arrow"
+    data-needle-width="2" data-needle-circle-size="7" data-needle-circle-outer="true" data-needle-circle-inner="false"
+    data-animation-duration="1500" data-animation-rule="linear" data-value-box="true" data-value-text-shadow="true"
+    data-value-int="2" data-value-dec="0"></canvas>
 
-    <script>
-      //let docG = document.gauges;
-      //console.log(docG);
-      document.gauges.forEach(function(gauge) {
-        console.log(gauge.type);
-      });
+  <script>
+    //let docG = document.gauges;
+    //console.log(docG);
+    document.gauges.forEach(function (gauge) {
+      console.log(gauge.type);
+    });
 
-      function animateGauges() {
-        document.gauges.forEach(function(gauge) {
-          //gauge.value = 45;
-          gauge.value = Math.floor(Math.random() * 50);
-          console.log(gauge.value);
-        });
-      }
-
-      function newAnimation() {
-        //document.gauges.forEach(function(gauge) {
+    function animateGauges() {
+      document.gauges.forEach(function (gauge) {
         //gauge.value = 45;
-        //gauge.value = Math.floor(Math.random() * 50);
-        //console.log(gauge.value);
+        gauge.value = Math.floor(Math.random() * 50);
+        console.log(gauge.value);
+      });
+    }
 
-        console.log("Click");
+    function newAnimation() {
+      //document.gauges.forEach(function (gauge) {
+      //gauge.value = 45;
+      //gauge.value = Math.floor(Math.random() * 50);
+      //console.log(gauge.value);
 
-        var c = document.getElementById("pointAcompass");
-        //console.log(c);
-        //c.value = 90;
+      console.log("Click");
 
-        console.log(docG[0]);
-        //docG[0].value = 45;
-        //let arr0 = docG[0].gauge.value;
-        //console.log(docG[0].canvas.element);
+      //var c = document.getElementById("pointAcompass");
+      //console.log(c);
+      //c.value = 90;
 
-        //let newG = document.getElementById("pointAcompass");
-        //console.log(newG);
-      }
+      //console.log(docG[0]);
+      //docG[0].value = 45;
+      //let arr0 = docG[0].gauge.value;
+      //console.log(docG[0].canvas.element);
 
-      function stopGaugesAnimation() {
-        timers.forEach(function(timer) {
-          clearInterval(timer);
-        });
-      }
-    </script>
-  </body>
+      //let newG = document.getElementById("pointAcompass");
+      //console.log(newG);
+
+      var gaugeAc = document.gauges.get('pointAcompass');
+      var gaugeAw = document.gauges.get('pointAwind');
+      gaugeAc.value = 90;
+      gaugeAw.value = 11;
+
+      console.log(gauge.value);
+
+      //});
+    }
+
+    function stopGaugesAnimation() {
+      timers.forEach(function (timer) {
+        clearInterval(timer);
+      });
+    }
+  </script>
+</body>
+
 </html>
