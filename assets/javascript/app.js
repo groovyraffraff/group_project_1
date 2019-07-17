@@ -243,10 +243,54 @@ $(document).ready(() => {
     }
 
 
-    function doWeatherLookup(inputSelector, resultsSelector) {
-        // Clear the weather div
-        $(resultsSelector).empty();
+    function getIcon(description) {
 
+        // weather icons variables
+
+        let sunShower = $('<div class="icon sun-shower"><div class="cloud"></div><div class="sun"><div class="rays"></div></div><div class="rain"></div></div>')
+
+        let thunder = $('<div class="icon thunder-storm"><div class="cloud"></div><div class="lightning"><div class="bolt"></div><div class="bolt"></div></div></div>')
+
+        let cloudy = '<div class="icon cloudy"><div class="cloud"></div><div class="cloud"></div></div>';
+
+        let snowy = $('<div class="icon flurries"><div class="cloud"></div><div class="snow"><div class="flake"></div><div class="flake"></div></div></div>')
+
+        let sunny = '<div class="icon sunny"><div class="sun"><div class="rays"></div></div></div>';
+
+        let rainy = $('<div class="icon rainy"><div class="cloud"></div><div class="rain"></div></div>')
+
+        let partCloudy = $('<div class="icon partCloudy"><div class="cloud"></div><div class="sun"><div class="rays"></div></div></div>')
+
+        // end of weather icon variables
+
+        //Update the page
+
+        // Match weather description to weather icons
+        let icon;
+
+        if (/partly\s*cloudy/i.test(description)) {
+            icon = partCloudy;
+        } else if (/cloudy/i.test(description)) {
+            icon = cloudy;
+        } else if (/clear/i.test(description)) {
+            icon = sunny;
+        } else if (/rain/i.test(description)) {
+            icon = rainy;
+        } else if (/snow/i.test(description)) {
+            icon = snowy;
+        } else if (/thunder/i.test(description)) {
+            icon = thunder;
+        } else if (/sunShower/i.test(description)) {
+            icon = sunShower;
+        } else {
+            console.log("Unknown weather condition", description);
+        }
+
+        // End of Match weather description to weather icons
+        return icon;
+    }
+
+    function doWeatherLookup(inputSelector, resultsSelector) {
         // Get the value of the selected airport and its coordinates
         let station = $(inputSelector).val();
         let stationFullName = $(inputSelector + " option:selected").attr("data-fullName");
@@ -373,97 +417,96 @@ $(document).ready(() => {
             }
             console.log("Density Altitude: " + densityAlt);
 
+            let icon = getIcon(description);
+            console.log(icon);
 
-            //Update the page
-            $(resultsSelector).append(
-                "<button class='" + flightCat + "'>" + flightCat + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0" + "</button>",
-                "<br>",
-                // " (VFR-Green, MVFR-Blue, IFR-Red, LIFR-Magenta)",
-                "<span class='station'>" + station + "</span>",
-                "<br>",
-                stationFullName,
-                "<br>",
-                "<span>Reported:</span> ",
-                // reportTime,
-                // " - ",
-                reportTimeFromNow,
-                "<br>",
-                "<span>Density Altitude:</span> ",
-                densityAlt, " ft",
-                "<br>",
-                "<span>Coordinates:</span> ",
-                coordinates,
-                "<br>",
-                "<span>Field Elevation:</span> ",
-                fieldElev,
-                " ft",
-                "<br>",
-                "<span>Temperature:</span> ",
-                tempC,
-                " &#8451;",
-                " - ",
-                tempF,
-                " &#8457;",
-                "<br>",
-                "<span>Dew Point:</span> ",
-                dewpointC,
-                " &#8451;",
-                " - ",
-                dewpointF,
-                " &#8451;",
-                "<br>",
-                "<span>Dew Point Spread:</span> ",
-                dewPointSpread,
-                " &#8457;",
-                "<br>",
-                "<span>Barometric Pressure:</span> ",
-                baro,
-                " inHg",
-                "<br>",
-                "<span>Wind Speed:</span> ",
-                windSpeed,
-                " mph",
-                "<br>",
-                "<span>Wind Direction:</span> ",
-                windDir,
-                " &deg;",
-                "<br>",
-                "<span>Wind Gust:</span> ",
-                windGust,
-                " mph",
-                "<br>",
-                "<span>Visiblility:</span> ",
-                visibility,
-                " sm",
-                "<br>",
-                "<span>Description:</span> ",
-                description,
-                "<br>",
-            );
+            $(resultsSelector + " .weatherIcon").html(icon);
+            $(resultsSelector + " .weatherDesc").html(description.toUpperCase());
+            $(resultsSelector + " .airportCode").html(station);
+            $(resultsSelector + " .airportFullName").html(stationFullName);
+            $(resultsSelector + " .timeStamp").html("Reported: " + reportTimeFromNow);
+            $(resultsSelector + " .flightCat").html("<button class='" + flightCat + "'>" + flightCat + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0" + "</button>");
+            $(resultsSelector + " .compass").text("Compass here");
+            $(resultsSelector + " .tempC").html(tempC + " &#8451;");
+            $(resultsSelector + " .tempF").html(tempF + " &#8457;");
+            $(resultsSelector + " .visibility").html("Visibility: " + visibility + " sm");
+            $(resultsSelector + " .cloudLayer").html("Cloud layers here");
+            $(resultsSelector + " .gMaps").html("Tom's maps here");
+            //     "<button class='" + flightCat + "'>" + flightCat + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0" + "</button>",
+            //     // " (VFR-Green, MVFR-Blue, IFR-Red, LIFR-Magenta)",
+            //     "<span>Reported:</span> ",
+            //     // reportTime,
+            //     // " - ",
+            //     reportTimeFromNow,
+            //     "<br>",
+            //     "<span>Density Altitude:</span> ",
+            //     densityAlt, " ft",
+            //     "<br>",
+            //     "<span>Coordinates:</span> ",
+            //     coordinates,
+            //     "<br>",
+            //     "<span>Field Elevation:</span> ",
+            //     fieldElev,
+            //     " ft",
+            //     "<br>",
+            //     "<span>Temperature:</span> ",
+            //     tempC,
+            //     " &#8451;",
+            //     " - ",
+            //     tempF,
+            //     " &#8457;",
+            //     "<br>",
+            //     "<span>Dew Point:</span> ",
+            //     dewpointC,
+            //     " &#8451;",
+            //     " - ",
+            //     dewpointF,
+            //     " &#8451;",
+            //     "<br>",
+            //     "<span>Dew Point Spread:</span> ",
+            //     dewPointSpread,
+            //     " &#8457;",
+            //     "<br>",
+            //     "<span>Barometric Pressure:</span> ",
+            //     baro,
+            //     " inHg",
+            //     "<br>",
+            //     "<span>Wind Speed:</span> ",
+            //     windSpeed,
+            //     " mph",
+            //     "<br>",
+            //     "<span>Wind Direction:</span> ",
+            //     windDir,
+            //     " &deg;",
+            //     "<br>",
+            //     "<span>Wind Gust:</span> ",
+            //     windGust,
+            //     " mph",
+            // );
 
             //Check if clouds array has anything in it
-            if (clouds.length > 0) {
-                //Cloud Layers returns an array, can have multiple cloud layers
-                $(resultsSelector).append(
-                    "<span>Cloud Layers: ",
-                );
-                for (let i = 0; i < clouds.length; i++) {
-                    $(resultsSelector).append(
-                        clouds[i].amount,
-                        " - ",
-                        Math.round(convertMetersToFeet(clouds[i].base.value)).toLocaleString(),
-                        " ft",
-                        " , ",
-                    );
-                } //End loop through cloud layers
+            //     if (clouds.length > 0) {
+            //         //Cloud Layers returns an array, can have multiple cloud layers
+            //         $(resultsSelector).append(
+            //             "<span>Cloud Layers: ",
+            //         );
+            //         for (let i = 0; i < clouds.length; i++) {
+            //             $(resultsSelector).append(
+            //                 clouds[i].amount,
+            //                 " - ",
+            //                 Math.round(convertMetersToFeet(clouds[i].base.value)).toLocaleString(),
+            //                 " ft",
+            //                 " , ",
+            //             );
+            //         } //End loop through cloud layers
 
-                //No Clouds reported
-            } else {
-                $(resultsSelector).append(
-                    "<span>Cloud Layers: ",
-                    "Clear Below 12,000 ft",
-                );
-            } //End Check if cloud array is populated
+            //         //No Clouds reported
+            //     } else {
+            //         $(resultsSelector).append(
+            //             "<span>Cloud Layers: ",
+            //             "Clear Below 12,000 ft",
+            //         );
+            //     } //End Check if cloud array is populated
         }); //End Get the selected weather info
     }
 
@@ -486,7 +529,10 @@ $(document).ready(() => {
     $("#submitbtn").on("click", function(event) {
         event.preventDefault();
         const form = document.querySelector('form');
-        if (!form.reportValidity()) {
+        let departureSelect = $("#pointAinput").val();
+        let arrivalSelect = $("#pointBinput").val();
+
+        if (!departureSelect && !arrivalSelect) {
             M.Modal.init(document.querySelector('#validationError'), {}).open(); //Initializing Modal
             return;
         }
@@ -566,8 +612,8 @@ $(document).ready(() => {
         if (arrival) {
             $('#pointBinput option[value="' + arrival + '"]').attr('selected', true);
         }
-        // If both departure and arrival were specified, then simulate click on submit button
-        if (departure && arrival) {
+        // If either or both departure and arrival were specified, then simulate click on submit button
+        if (departure || arrival) {
             $('#submitbtn').click();
         }
 
@@ -608,5 +654,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems, options);
+    var instances = M.Modal.init(elems, {});
 });
