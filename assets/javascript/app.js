@@ -1,3 +1,14 @@
+/* eslint-disable radix */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-plusplus */
+/* eslint-disable no-shadow */
+/* eslint-disable consistent-return */
+/* eslint-disable max-len */
+/* eslint-disable no-use-before-define */
+/* eslint-disable prefer-arrow-callback */
+/* eslint-disable no-undef */
+/* eslint-disable func-names */
+
 //////////// Polyfill code for report validity for not compatible browsers///////
 if (!HTMLFormElement.prototype.reportValidity) {
     HTMLFormElement.prototype.reportValidity = function() {
@@ -257,6 +268,8 @@ $(document).ready(() => {
 
         let sunny = '<div class="icon sunny"><div class="sun"><div class="rays"></div></div></div>';
 
+        let mostlyClear = '<div class="icon mostlyClear"><div class="sun"><div class="rays"></div></div><div class="cloud"></div></div>';
+
         let rainy = $('<div class="icon rainy"><div class="cloud"></div><div class="rain"></div></div>')
 
         let partCloudy = $('<div class="icon partCloudy"><div class="cloud"></div><div class="sun"><div class="rays"></div></div></div>')
@@ -272,6 +285,8 @@ $(document).ready(() => {
             icon = partCloudy;
         } else if (/cloudy/i.test(description)) {
             icon = cloudy;
+        } else if (/mostly\s*clear/i.test(description)) {
+            icon = mostlyClear;
         } else if (/clear/i.test(description)) {
             icon = sunny;
         } else if (/rain/i.test(description)) {
@@ -426,12 +441,21 @@ $(document).ready(() => {
             $(resultsSelector + " .airportFullName").html(stationFullName);
             $(resultsSelector + " .timeStamp").html("Reported: " + reportTimeFromNow);
             $(resultsSelector + " .flightCat").html("<button class='" + flightCat + "'>" + flightCat + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0" + "</button>");
-            $(resultsSelector + " .compass").text("Compass here");
+            //$(resultsSelector + " .compass").text("Compass here");
             $(resultsSelector + " .tempC").html(tempC + " &#8451;");
             $(resultsSelector + " .tempF").html(tempF + " &#8457;");
             $(resultsSelector + " .visibility").html("Visibility: " + visibility + " sm");
             $(resultsSelector + " .cloudLayer").html("Cloud layers here");
             $(resultsSelector + " .gMaps").html("Tom's maps here");
+
+
+            // Set the Wind Direction value
+            compass.value = windDir;
+
+            // Set the Wind Speed value
+            wind.value = windSpeed;
+
+
             //     "<button class='" + flightCat + "'>" + flightCat + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0" + "</button>",
             //     // " (VFR-Green, MVFR-Blue, IFR-Red, LIFR-Magenta)",
             //     "<span>Reported:</span> ",
@@ -545,6 +569,96 @@ $(document).ready(() => {
 
     // Main Processes
     // *******************************************************
+
+
+    // Create the Point A Compass
+    const compass = new RadialGauge({
+        renderTo: 'compass',
+        width: 150,
+        height: 150,
+        units: 'degrees',
+        title: 'Wind Direction',
+        value: 0,
+        minValue: 0,
+        maxValue: 360,
+        majorTicks: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'],
+        minorTicks: 11,
+        ticksAngle: 360,
+        startAngle: 180,
+        strokeTicks: false,
+        colorPlate: '#fff',
+        colorMajorTicks: '#f5f5f5',
+        colorMinorTicks: '#ddd',
+        colorNumbers: '#ccc',
+        colorCircleInner: '#fff',
+        colorTitle: '#8f8f8f',
+        colorUnits: '#8f8f8f',
+        highlights: false,
+        needleType: 'arrow',
+        colorNeedle: 'rgba(240, 128, 128, 1)',
+        colorNeedleEnd: 'rgba(255, 160, 122, .9)',
+        colorNeedeShadowDown: '#222',
+        colorNeedleCircleOuter: '#ccc',
+        needleCircleSize: 15,
+        needleCircleOuter: false,
+        valueBox: true,
+        valueTextShadow: 'true',
+        valueInt: 3,
+        valueDec: 0,
+        borders: true,
+        borderInnerWidth: 0,
+        borderMiddleWidth: 0,
+        bordeRouterWidth: 10,
+        colorBordeRouter: '#ccc',
+        colorBordeRouterEnd: '#ccc',
+        borderShadowWidth: 0,
+
+        animationRule: 'bounce',
+        // animationRule: 'linear',
+        // animationDuration: 500,
+        animationDuration: 1500,
+    });
+
+    // Draw the compass in the compass canvas element
+    compass.draw();
+
+    // Create the Wind Speed Gauge
+    const wind = new RadialGauge({
+        renderTo: 'wind',
+        width: 150,
+        height: 150,
+        units: 'mph',
+        title: 'Wind Speed',
+        value: 0,
+        minValue: 0,
+        maxValue: 50,
+        majorTicks: ['0', '5', '10', '15', '20', '25', '30', '35', '40', '45', '50'],
+        minorTicks: 5,
+        ticksAngle: 180,
+        startAngle: 90,
+        strokeTicks: true,
+        colorPlate: '#fff',
+        highlights: [
+            { from: 20, to: 50, color: 'rgba(233,130,129, 0.8)' },
+        ],
+        needleType: 'arrow',
+        needleCircleSize: 7,
+        needleCircleOuter: true,
+        needleCircleInner: false,
+        needleWidth: 2,
+        valueBox: true,
+        valueTextShadow: 'true',
+        valueInt: 2,
+        valueDec: 0,
+        borders: false,
+        borderShadowWidth: 0,
+        animationRule: 'linear',
+        animationDuration: 1500,
+    });
+
+    // Draw the wind speed in the wind canvas element
+    wind.draw();
+
 
     //Get All the TX airports from the api
     $.ajax({

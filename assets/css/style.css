@@ -315,9 +315,14 @@ media query ends
      transform: rotate(90deg);
  }
  
+ i.far {
+     padding-right: 3px;
+     vertical-align: text-bottom !important;
+ }
+ 
  .airportCode {
      font-size: 50px;
-     padding-top: 4%;
+     /* padding-top: 1%; */
  }
  
  .weatherIconContainer {
@@ -392,15 +397,15 @@ media query ends
  
  .cloud:nth-child(2) {
      z-index: 0;
-     background: #6c8a89;
-     box-shadow: -2.1875em 0.6875em 0 -0.6875em #6c8a89, 2.0625em 0.9375em 0 -0.9375em #6c8a89, 0 0 0 0.375em #6c8a89, -2.1875em 0.6875em 0 -0.3125em #6c8a89, 2.0625em 0.9375em 0 -0.5625em #6c8a89;
+     background: #838383;
+     box-shadow: -2.1875em 0.6875em 0 -0.6875em #838383, 2.0625em 0.9375em 0 -0.9375em #838383, 0 0 0 0.375em #838383, -2.1875em 0.6875em 0 -0.3125em #838383, 2.0625em 0.9375em 0 -0.5625em #838383;
      opacity: 0.3;
      transform: scale(0.5) translate(6em, -3em);
      animation: cloud 4s linear infinite;
  }
  
  .cloud:nth-child(2):after {
-     background: #6c8a89;
+     background: #838383;
  }
  
  .sun {
