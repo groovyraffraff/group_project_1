@@ -60,49 +60,33 @@
         </div>
 
         <div class="searchContainer">
-
             <!-- Card starts -->
-            <div class="card" id="cardbox" style="display:none;">
-                <div class="row">
-                    <form class="col s12">
-                        <!-- Autocomplete Point A Dropdown-->
-                        <div class="row">
-                            <div class="col s12">
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <i class="material-icons prefix">flight_takeoff</i>
-                                        <input type="text" id="pointAinput" class="autocomplete">
-                                        <label for="autocomplete-input">ICAO Code, City, or Airport Name</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End of Point A Dropdown-->
-
-                        <!-- End of Autocomplete Point A Dropdown-->
-
-
-                        <!-- Autocomplete Point B Dropdown-->
-
-                        <div class="row">
-                            <div class="col s12">
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <i class="material-icons prefix">flight_land</i>
-                                        <input type="text" id="pointBinput" class="autocomplete">
-                                        <label for="autocomplete-input">ICAO Code, City, or Airport Name</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End of Point B Dropdown-->
-
-                        <!-- End of Autocomplete Point B Dropdown-->
-
-                    </form>
+            <div class="card row" id="cardbox" style="display:none;">
+                <!-- Autocomplete Point A Dropdown-->
+                <div class="col s12 m6">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">flight_takeoff</i>
+                        <input type="text" id="pointAinput" class="autocomplete">
+                        <label for="autocomplete-input">ICAO Code, City, or Airport Name</label>
+                    </div>
                 </div>
+
+                <!-- End of Autocomplete Point A Dropdown-->
+
+
+                <!-- Autocomplete Point B Dropdown-->
+
+                <div class="col s12 m6">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">flight_land</i>
+                        <input type="text" id="pointBinput" class="autocomplete">
+                        <label for="autocomplete-input">ICAO Code, City, or Airport Name</label>
+                    </div>
+                </div>
+
+                <!-- End of Point B Dropdown-->
+
+                <!-- End of Autocomplete Point B Dropdown-->
             </div>
 
 
@@ -127,14 +111,14 @@
 
 
         <!-- Result div -->
-        <div id="popup" class="modal">
-            <div class="modal-footer">
+        <div id="popup" style="display: none;">
+            <div class="shareIcon">
 
                 <!-- AddToAny BEGIN -->
                 <div class="a2a_kit a2a_kit_size_64 a2a_default_style">
                     <a class="a2a_dd" href="https://www.addtoany.com/share"> <img class="sharebtn" src="assets/images/sharegray4.png" style="width:35px;height:35px;"></a>
 
-                    <a href="#!" class="modal-close waves-effect"><img src="assets/images/closegray1.png" style="width:35px;height:35px;"></a>
+                    <a href="#!" class="closeBtn"><img src="assets/images/closegray1.png" style="width:35px;height:35px;"></a>
                 </div>
                 <script>
                     var a2a_config = a2a_config || {};
@@ -147,7 +131,9 @@
                 <!-- AddToAny END -->
 
             </div>
-            <div id="weather" class="modal-content">
+
+
+            <div id="weather" class="">
                 <!-- pointA result div -->
                 <div class="left" id="pointAresult">
 
@@ -179,10 +165,28 @@
                     <div class="timeContainer" style="display:flex"><i class="far fa-clock"></i>
                         <div class="timeStamp"></div>
                     </div>
-
+                    <!-- 
                     <div class="compass">
-                        <canvas id="compass"></canvas>
-                        <canvas id="wind"></canvas>
+                        <canvas id="compassA"></canvas>
+                        <canvas id="windA"></canvas>
+                    </div> -->
+
+                    <div class="staticWindContainer">
+                        <div class="staticWindDirContainer">
+                            <div class="staticWindDirImg">
+                                <span>Wind Direction</span><br>
+                                <img src="assets/images/wind1.png">
+                            </div>
+                            <div class="staticWindDir"></div>
+                        </div>
+                        <div class="staticWindSpeedContainer">
+
+                            <div class="staticWindSpeedImg">
+                                <span>Wind Speed</span><br>
+                                <img src="assets/images/speed3.png">
+                            </div>
+                            <div class="staticWindSpeed"></div>
+                        </div>
                     </div>
 
                     <div class="visibility"></div>
@@ -193,7 +197,7 @@
                 </div>
                 <!-- End of pointA result div -->
                 <!-- pointB result div -->
-                <div class="right" id="pointBresult">
+                <div class="left" id="pointBresult">
 
                     <div class="airportAndTempAndIconContainer grid-container">
 
@@ -225,9 +229,27 @@
                     </div>
 
                     <div class="compass">
-                        <canvas id="compass"></canvas>
-                        <canvas id="wind"></canvas>
+                        <canvas id="compassB"></canvas>
+                        <canvas id="windB"></canvas>
                     </div>
+                    <!-- 
+                    <div class="staticWindContainer">
+                        <div class="staticWindDirContainer">
+                            <div class="staticWindDirImg">
+                                <span>Wind Direction</span><br>
+                                <img src="assets/images/wind1.png">
+                            </div>
+                            <div class="staticWindDir"></div>
+                        </div>
+                        <div class="staticWindSpeedContainer">
+
+                            <div class="staticWindSpeedImg">
+                                <span>Wind Speed</span><br>
+                                <img src="assets/images/speed1.png">
+                            </div>
+                            <div class="staticWindSpeed"></div>
+                        </div>
+                    </div> -->
 
                     <div class="visibility"></div>
                     <div class="cloudLayer"></div>
@@ -237,6 +259,7 @@
                 </div>
                 <!-- End of pointB result div -->
             </div>
+
 
         </div>
 
@@ -257,7 +280,7 @@
             <a href="#!" class="modal-close waves-effect"><img src="assets/images/close1.png" style="width:30px;height:30px;"></a>
         </div>
         <div class="modal-content">
-            <h5>Please select both Departure and Arrival airports.</h5>
+            <h5>Please select at least one airport.</h5>
             <p>Click anywhere to dismiss.</p>
         </div>
     </div>
