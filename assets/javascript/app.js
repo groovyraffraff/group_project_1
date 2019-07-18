@@ -723,20 +723,26 @@ $(document).ready(() => {
 
         $('input.autocomplete').autocomplete({
             data: icao,
-            //   Apple: null,
-            //   Microsoft: 'VS Code',
-            //   Google: 'https://placehold.it/250x250',
+            minLength: 0
+                //   Apple: null,
+                //   Microsoft: 'VS Code',
+                //   Google: 'https://placehold.it/250x250',
         });
 
         // Add to the Select Element on the index.html page
         $.each(sortedStations, (key, value) => {
             $('.airports').append(
-                $('<option></option>')
+                $(`<li><a href="#!">${value.station} - ${value.name}</a></li>`)
                 .attr('value', value.station)
                 .attr('coordinates', value.coordinates)
-                .text(`${value.station} - ${value.name}`),
+                .attr('data-fullName', value.name)
             );
         });
+        $('.airports').on('click', 'li', function() {
+            const autocompleteInput = $(this).parents('.row').first().find('input.autocomplete');
+            autocompleteInput.autocomplete('selectOption', $(this));
+        });
+
 
         //Loop through sorted array of airports and display airport identifier, name, and coordinates
         for (let i = 0; i < sortedStations.length; i++) {
@@ -748,18 +754,6 @@ $(document).ready(() => {
                 sortedStations[i].coordinates
             );
         } //End loop through sorted airports
-
-        //Add to the Select Element on the index.html page
-        $.each(sortedStations, function(key, value) {
-
-            $(".airports").append(
-                $("<option></option>")
-                .attr("value", value.station)
-                .attr("coordinates", value.coordinates)
-                .attr("data-fullName", value.name)
-                .text(value.station + " - " + value.name)
-            );
-        });
 
         // Check departure and arrival URL parameters and prefill the form
         let url = new URL(window.location.href);
