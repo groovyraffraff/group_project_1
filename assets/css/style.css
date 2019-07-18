@@ -121,6 +121,10 @@ smaller than 640
      .bmd-form-group label {
          line-height: 0 !important;
      }
+     #weather {
+         margin: auto;
+         display: block !important;
+     }
  }
  /************************************************************************************
 media query ends
@@ -201,7 +205,6 @@ media query ends
      font-size: 50px;
  }
  
- .airportAndIconContainer,
  #weather {
      margin: auto;
      display: grid;
@@ -212,8 +215,20 @@ media query ends
      /* border-radius: 25px; */
  }
  
- .airportAndIconContainer {
-     grid-template-columns: 70% 30%;
+ .tempF {
+     font-size: 30px;
+     color: #c2c2c2;
+ }
+ 
+ .tempC {
+     font-size: 20px;
+     color: #c2c2c2;
+ }
+ 
+ .airportAndTempAndIconContainer {
+     display: grid;
+     grid-template-columns: 55% 25% 20%;
+     position: relative;
  }
  
  .left,
@@ -231,9 +246,11 @@ media query ends
  }
  
  #popup .modal {
+     width: 90% !important;
      max-height: 100% !important;
-     width: 75% !important;
-     overflow-y: hidden !important;
+     height: 100%;
+     top: 0 !important;
+     /* overflow-y: hidden !important; */
      /* increase the width, height and prevent vertical scroll! However, i don't recommend this, its better to turn on vertical scrolling. */
  }
  /* Flight Category buttons*/
@@ -315,11 +332,17 @@ media query ends
      transform: rotate(90deg);
  }
  
- .airportCode {
-     font-size: 50px;
-     padding-top: 4%;
+ i.far {
+     padding-right: 3px;
+     vertical-align: text-bottom !important;
  }
  
+ .airportCode {
+     font-size: 50px;
+ }
+ 
+ .tempF,
+ .tempC,
  .weatherIconContainer {
      float: right;
      text-align: right;
@@ -348,9 +371,7 @@ media query ends
  .btn:hover {
      background-color: #dce6e6 !important;
  }
- /* ////////////////////////////////////////////////////////// */
- /* ////////////////////////////////////////////////////////// */
- /* animated weather icons */
+ /* ///////////////////////////animated weather icons/////////////////////////////// */
  
  .weatherIcon {
      color: #fafafa;
@@ -392,15 +413,15 @@ media query ends
  
  .cloud:nth-child(2) {
      z-index: 0;
-     background: #6c8a89;
-     box-shadow: -2.1875em 0.6875em 0 -0.6875em #6c8a89, 2.0625em 0.9375em 0 -0.9375em #6c8a89, 0 0 0 0.375em #6c8a89, -2.1875em 0.6875em 0 -0.3125em #6c8a89, 2.0625em 0.9375em 0 -0.5625em #6c8a89;
+     background: #838383;
+     box-shadow: -2.1875em 0.6875em 0 -0.6875em #838383, 2.0625em 0.9375em 0 -0.9375em #838383, 0 0 0 0.375em #838383, -2.1875em 0.6875em 0 -0.3125em #838383, 2.0625em 0.9375em 0 -0.5625em #838383;
      opacity: 0.3;
      transform: scale(0.5) translate(6em, -3em);
      animation: cloud 4s linear infinite;
  }
  
  .cloud:nth-child(2):after {
-     background: #6c8a89;
+     background: #838383;
  }
  
  .sun {
@@ -629,6 +650,4 @@ media query ends
          opacity: 0.2;
      }
  }
- /* animated weather icons */
- /* ////////////////////////////////////////////////////////// */
- /* ////////////////////////////////////////////////////////// */
+ /* //////////////////////////End of animated weather icons//////////////////////////////// */
