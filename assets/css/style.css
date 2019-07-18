@@ -121,6 +121,10 @@ smaller than 640
      .bmd-form-group label {
          line-height: 0 !important;
      }
+     #weather {
+         margin: auto;
+         display: block !important;
+     }
  }
  /************************************************************************************
 media query ends
@@ -201,7 +205,6 @@ media query ends
      font-size: 50px;
  }
  
- .airportAndIconContainer,
  #weather {
      margin: auto;
      display: grid;
@@ -212,8 +215,20 @@ media query ends
      /* border-radius: 25px; */
  }
  
- .airportAndIconContainer {
-     grid-template-columns: 70% 30%;
+ .tempF {
+     font-size: 30px;
+     color: #c2c2c2;
+ }
+ 
+ .tempC {
+     font-size: 20px;
+     color: #c2c2c2;
+ }
+ 
+ .airportAndTempAndIconContainer {
+     display: grid;
+     grid-template-columns: 55% 25% 20%;
+     position: relative;
  }
  
  .left,
@@ -231,9 +246,11 @@ media query ends
  }
  
  #popup .modal {
+     width: 90% !important;
      max-height: 100% !important;
-     width: 75% !important;
-     overflow-y: hidden !important;
+     height: 100%;
+     top: 0 !important;
+     /* overflow-y: hidden !important; */
      /* increase the width, height and prevent vertical scroll! However, i don't recommend this, its better to turn on vertical scrolling. */
  }
  /* Flight Category buttons*/
@@ -322,9 +339,10 @@ media query ends
  
  .airportCode {
      font-size: 50px;
-     /* padding-top: 1%; */
  }
  
+ .tempF,
+ .tempC,
  .weatherIconContainer {
      float: right;
      text-align: right;

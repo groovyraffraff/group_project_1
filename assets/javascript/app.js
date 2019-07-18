@@ -693,6 +693,51 @@ $(document).ready(() => {
             return a1 > b1 ? 1 : -1;
         }); //End sort airport array
 
+
+
+        // Create an object to hold the stations for the autocomplete
+        const icao = {};
+
+        // Loop through sorted array of airports and display airport identifier, name, and coordinates
+        for (let i = 0; i < sortedStations.length; i++) {
+            // Create the string to put into the autocomplete objectg
+            const strStation = `${sortedStations[i].station} - ${sortedStations[i].name}`;
+
+            // Add the stations to the autocomplete object
+            icao[strStation] = null;
+
+            //   console.log(
+            //     `${sortedStations[i].station} - ${sortedStations[i].name} : ${
+            //       sortedStations[i].coordinates
+            //     }`,
+            // );
+        } // End loop through sorted airports
+
+        console.log(icao);
+
+        // const test = {
+        //   Apple: null,
+        //   Microsoft: 'VS Code',
+        //   Google: 'https://placehold.it/250x250',
+        // };
+
+        $('input.autocomplete').autocomplete({
+            data: icao,
+            //   Apple: null,
+            //   Microsoft: 'VS Code',
+            //   Google: 'https://placehold.it/250x250',
+        });
+
+        // Add to the Select Element on the index.html page
+        $.each(sortedStations, (key, value) => {
+            $('.airports').append(
+                $('<option></option>')
+                .attr('value', value.station)
+                .attr('coordinates', value.coordinates)
+                .text(`${value.station} - ${value.name}`),
+            );
+        });
+
         //Loop through sorted array of airports and display airport identifier, name, and coordinates
         for (let i = 0; i < sortedStations.length; i++) {
             console.log(
