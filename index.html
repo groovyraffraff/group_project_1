@@ -98,15 +98,9 @@
             </div>
 
             <!--End of Submit button -->
+            <br>
+            <br>
 
-            <!-- Maps Modal Trigger -->
-            <div class="mapsbtn">
-                <a class="waves-effect waves-light modal-trigger" href="#popupMaps">
-                    <div class="mapstext"><i class="material-icons prefix maps">add_location</i><br><br>Choose from maps
-                    </div>
-                </a>
-            </div>
-            <!-- End of Maps Modal Trigger -->
         </div>
         <!-- End of  Card -->
 
@@ -138,24 +132,20 @@
                 <!-- pointA result div -->
                 <div class="left" id="pointAresult">
 
-                    <div class="airportAndTempAndIconContainer grid-container">
+                    <div class="airportAndTempAndIconContainer">
 
-                        <div class="airportContainer grid-item">
-                            <div class="airportCode"></div>
-                            <div class="timeContainer" style="display:flex">
-                                <!-- <i class="material-icons">flight</i> -->
-                                <div class="airportFullName"></div>
-                            </div>
-                        </div>
-
-
-                        <div class="tempContainer grid-item">
-                            <div class="tempF"></div>
-                            <div class="tempC"></div>
+                        <div class="airportContainer">
                             <div class="flightCat"></div>
+                            <div class="airportCode"></div>
                         </div>
 
-                        <div class="weatherIconContainer grid-item">
+
+                        <div class="tempContainer">
+                            <div class="tempF"></div><br>
+                            <div class="tempC"></div>
+                        </div>
+
+                        <div class="weatherIconContainer">
                             <div class="weatherIcon"></div>
                             <div class="weatherDesc"></div>
                         </div>
@@ -163,14 +153,6 @@
 
                     </div>
 
-                    <div class="timeContainer" style="display:flex"><i class="far fa-clock"></i>
-                        <div class="timeStamp"></div>
-                    </div>
-                    <!-- 
-                    <div class="compass">
-                        <canvas id="compassA"></canvas>
-                        <canvas id="windA"></canvas>
-                    </div> -->
 
                     <div class="staticWindContainer">
                         <div class="staticWindDirContainer">
@@ -190,15 +172,34 @@
                                 <div class="compass">
                                     <canvas id="windA"></canvas>
                                 </div>
-                                <!-- <img src="assets/images/speed3.png"> -->
                             </div>
                             <div class="staticWindSpeed"></div>
                         </div>
                     </div>
 
-                    <div class="visibility"></div>
+                    <div class="airportFullNameContainer" style="display:flex">
+                        <i class="material-icons">place</i>
+                        <div class="airportFullName"></div>
+                    </div>
 
-                    <div class="cloudLayerContainer">
+                    <div class="timeContainer" style="display:flex"><i class="material-icons">
+                            access_time
+                            </i>
+
+
+                        <div class="timeStamp"></div>
+                    </div>
+
+
+                    <div class="visivilityContainer" style="display:flex"><i class="material-icons">
+                            visibility
+                            </i>
+                        <div class="visibility"></div>
+                    </div>
+
+                    <div class="cloudLayerContainer" style="display:flex"><i class="material-icons">
+                            cloud_queue
+                            </i>
                         <span>Cloud layer: </span>
                         <span class="cloudLayer"></span>
                     </div>
@@ -208,27 +209,24 @@
 
                 </div>
                 <!-- End of pointA result div -->
+
                 <!-- pointB result div -->
                 <div class="right" id="pointBresult">
 
-                    <div class="airportAndTempAndIconContainer grid-container">
+                    <div class="airportAndTempAndIconContainer">
 
-                        <div class="airportContainer grid-item">
-                            <div class="airportCode"></div>
-                            <div class="timeContainer" style="display:flex">
-                                <!-- <i class="material-icons">flight</i> -->
-                                <div class="airportFullName"></div>
-                            </div>
-                        </div>
-
-
-                        <div class="tempContainer grid-item">
-                            <div class="tempF"></div>
-                            <div class="tempC"></div>
+                        <div class="airportContainer">
                             <div class="flightCat"></div>
+                            <div class="airportCode"></div>
                         </div>
 
-                        <div class="weatherIconContainer grid-item">
+
+                        <div class="tempContainer">
+                            <div class="tempF"></div><br>
+                            <div class="tempC"></div>
+                        </div>
+
+                        <div class="weatherIconContainer">
                             <div class="weatherIcon"></div>
                             <div class="weatherDesc"></div>
                         </div>
@@ -236,20 +234,14 @@
 
                     </div>
 
-                    <div class="timeContainer" style="display:flex"><i class="far fa-clock"></i>
-                        <div class="timeStamp"></div>
-                    </div>
 
-                    <div class="compass">
-                        <canvas id="compassB"></canvas>
-                        <canvas id="windB"></canvas>
-                    </div>
-                    <!-- 
                     <div class="staticWindContainer">
                         <div class="staticWindDirContainer">
                             <div class="staticWindDirImg">
                                 <span>Wind Direction</span><br>
-                                <img src="assets/images/wind1.png">
+                                <div class="compass">
+                                    <canvas id="compassB"></canvas>
+                                </div>
                             </div>
                             <div class="staticWindDir"></div>
                         </div>
@@ -257,18 +249,42 @@
 
                             <div class="staticWindSpeedImg">
                                 <span>Wind Speed</span><br>
-                                <img src="assets/images/speed1.png">
+
+                                <div class="compass">
+                                    <canvas id="windB"></canvas>
+                                </div>
                             </div>
                             <div class="staticWindSpeed"></div>
                         </div>
-                    </div> -->
+                    </div>
 
-                    <div class="visibility"></div>
+                    <div class="airportFullNameContainer" style="display:flex">
+                        <i class="material-icons">place</i>
+                        <div class="airportFullName"></div>
+                    </div>
 
-                    <div class="cloudLayerContainer">
+                    <div class="timeContainer" style="display:flex"><i class="material-icons">
+                                access_time
+                                </i>
+
+
+                        <div class="timeStamp"></div>
+                    </div>
+
+
+                    <div class="visivilityContainer" style="display:flex"><i class="material-icons">
+                                visibility
+                                </i>
+                        <div class="visibility"></div>
+                    </div>
+
+                    <div class="cloudLayerContainer" style="display:flex"><i class="material-icons">
+                                cloud_queue
+                                </i>
                         <span>Cloud layer: </span>
                         <span class="cloudLayer"></span>
                     </div>
+
                     <div class="gMaps"></div>
 
 
@@ -282,9 +298,6 @@
 
         <!--End of Result div -->
     </div>
-
-
-
 
     </div>
 
@@ -301,22 +314,6 @@
         </div>
     </div>
     <!--End of Form validation Warning -->
-
-
-
-
-    <!-- Maps Modal starts here-->
-    <div id="popupMaps" class="modal bottom-sheet">
-        <div class="modal-content">
-            <h4>Maps pop up here</h4>
-            <p>A bunch of text</p>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-        </div>
-    </div>
-
-    <!-- End of Maps Modal starts here-->
 
 
     <button onclick="topFunction()" id="topBtn" title="Go to top"><b>⌃</b></button>

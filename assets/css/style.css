@@ -9,24 +9,25 @@
 
 
 /*font-family: 'Lobster', cursive;
-font-family: 'Pacifico', cursive;
 font-family: 'Poiret One', cursive;
-font-family: 'Parisienne', cursive;
 font-family: 'Faster One', cursive;
-font-family: 'Montez', cursive;
-font-family: 'Meddon', cursive;
-font-family: 'Lily Script One', cursive;
 font-family: 'Julius Sans One', sans-serif;
 font-family: 'Open Sans', sans-serif;
-font-family: 'Open Sans Condensed', sans-serif;
 font-family: 'Dosis', sans-serif;
 font-family: 'Abel', sans-serif;
-font-family: 'Pacifico', cursive;
 font-family: 'Satisfy', cursive;
 font-family: 'Damion', cursive; */
 
+.material-icons {
+    padding-right: 2%;
+}
+
+.tempContainer {
+    display: block;
+}
+
 h1 {
-    font-family: 'Lobster', cursive;
+    font-family: 'Damion', cursive;
     font-size: 80px;
     text-align: center;
     color: #fff;
@@ -83,7 +84,7 @@ form,
     color: white;
     cursor: pointer;
     padding: 15px;
-    border-radius: 50%;
+    border-radius: 10%;
 }
 
 #topBtn:hover {
@@ -130,6 +131,12 @@ smaller than 640
     #weather {
         margin: auto;
         display: block !important;
+    }
+    .left {
+        border: 0 !important;
+    }
+    .right {
+        border-top: 1px solid #cfcfcf;
     }
 }
 
@@ -215,7 +222,6 @@ i.maps {
 
 .staticWindContainer,
 #weather {
-    margin: auto;
     display: grid;
     grid-template-columns: 50% 50%;
     position: relative;
@@ -244,7 +250,7 @@ i.maps {
 
 .airportAndTempAndIconContainer {
     display: grid;
-    grid-template-columns: 55% 25% 20%;
+    grid-template-columns: 40% 30% 30%;
     position: relative;
 }
 
@@ -256,7 +262,7 @@ i.maps {
 }
 
 .left {
-    border-right: 1px solid #cfcfcf !important;
+    border-right: 1px solid #cfcfcf;
 }
 
 .modal-overlay {
@@ -266,7 +272,7 @@ i.maps {
 #popup {
     font-size: 20x !important;
     background: rgba(250, 250, 250, 0.7);
-    border-radius: 10px;
+    border-radius: 5px;
     margin: auto;
     display: grid;
     grid-template-rows: auto;
@@ -277,8 +283,6 @@ i.maps {
     max-height: 100% !important;
     height: 100%;
     top: 0 !important;
-    /* overflow-y: hidden !important; */
-    /* increase the width, height and prevent vertical scroll! However, i don't recommend this, its better to turn on vertical scrolling. */
 }
 
 
@@ -376,15 +380,18 @@ i.far {
 }
 
 .tempF,
-.tempC,
-.weatherIconContainer {
+.tempC {
     float: right;
     text-align: right;
 }
 
+.weatherIconContainer {
+    float: center;
+    text-align: center;
+}
+
 .weatherDesc {
     color: #cbcdcf;
-    /* margin-right: 15%; */
 }
 
 .submit {
@@ -410,7 +417,8 @@ i.far {
 /* ///////////////////////////animated weather icons/////////////////////////////// */
 
 .weatherIcon {
-    color: #fafafa;
+    color: transparent;
+    /* color: #fafafa; */
 }
 
 .icon {

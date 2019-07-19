@@ -527,52 +527,6 @@ $(document).ready(() => {
                 // Set the Wind Speed value
                 wind.value = windSpeed;
 
-
-                //     "<span>Density Altitude:</span> ",
-                //     densityAlt, " ft",
-                //     "<br>",
-                //     "<span>Coordinates:</span> ",
-                //     station.coordinates,
-                //     "<br>",
-                //     "<span>Field Elevation:</span> ",
-                //     fieldElev,
-                //     " ft",
-                //     "<br>",
-                //     "<span>Temperature:</span> ",
-                //     tempC,
-                //     " &#8451;",
-                //     " - ",
-                //     tempF,
-                //     " &#8457;",
-                //     "<br>",
-                //     "<span>Dew Point:</span> ",
-                //     dewpointC,
-                //     " &#8451;",
-                //     " - ",
-                //     dewpointF,
-                //     " &#8451;",
-                //     "<br>",
-                //     "<span>Dew Point Spread:</span> ",
-                //     dewPointSpread,
-                //     " &#8457;",
-                //     "<br>",
-                //     "<span>Barometric Pressure:</span> ",
-                //     baro,
-                //     " inHg",
-                //     "<br>",
-                //     "<span>Wind Speed:</span> ",
-                //     windSpeed,
-                //     " mph",
-                //     "<br>",
-                //     "<span>Wind Direction:</span> ",
-                //     windDir,
-                //     " &deg;",
-                //     "<br>",
-                //     "<span>Wind Gust:</span> ",
-                //     windGust,
-                //     " mph",
-                // );
-
                 //Check if clouds array has anything in it
                 if (clouds.length > 0) {
                     let cloudsHtml = "";
@@ -589,6 +543,7 @@ $(document).ready(() => {
                 } else {
                     $(resultsSelector + " .cloudLayer").text("Clear Below 12,000 ft");
                 } //End Check if cloud array is populated
+                $(resultsSelector).css({ display: "block" });
             }); //End Get the selected weather info
         } else {
             $(resultsSelector + " .weatherIcon").html("");
@@ -602,6 +557,7 @@ $(document).ready(() => {
             $(resultsSelector + " .visibility").html("");
             $(resultsSelector + " .cloudLayer").html("");
             $(resultsSelector + " .gMaps").html("");
+            $(resultsSelector).css({ display: "none" });
 
             function clearCanvas(canvas) {
                 const context = canvas.getContext('2d');
