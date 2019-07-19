@@ -440,31 +440,28 @@ $(document).ready(() => {
                 $(resultsSelector + " .flightCat").html("<button class='" + flightCat + "'>" + flightCat + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0" + "</button>");
                 $(resultsSelector + " .tempC").html(tempC + " &#8451;");
                 $(resultsSelector + " .tempF").html(tempF + " &#8457;");
-                $(resultsSelector + " .staticWindDir").html(windDir);
+                $(resultsSelector + " .staticWindDir").html(windDir + "&deg;");
                 $(resultsSelector + " .staticWindSpeed").html(windSpeed + " mph");
                 $(resultsSelector + " .visibility").html("Visibility: " + visibility + " sm");
-                $(resultsSelector + " .cloudLayer").html("Cloud layers here");
                 $(resultsSelector + " .gMaps").html("Tom's maps here");
 
 
                 // Create the Point A Compass
                 const compass = new RadialGauge({
                     renderTo: 'compass' + letter,
-                    width: 150,
-                    height: 150,
-                    units: 'degrees',
-                    title: 'Wind Direction',
+                    width: 75,
+                    height: 75,
                     value: 0,
                     minValue: 0,
                     maxValue: 360,
-                    majorTicks: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'],
-                    minorTicks: 11,
+                    majorTicks: ['N', 'E', 'S', 'W', 'N'],
+                    minorTicks: 5,
                     ticksAngle: 360,
                     startAngle: 180,
                     strokeTicks: false,
-                    colorPlate: '#fff',
-                    colorMajorTicks: '#f5f5f5',
-                    colorMinorTicks: '#ddd',
+                    colorPlate: 'rgba(250, 250, 250, 0)',
+                    colorMajorTicks: '#808080',
+                    colorMinorTicks: '#808080',
                     colorNumbers: '#ccc',
                     colorCircleInner: '#fff',
                     colorTitle: '#8f8f8f',
@@ -477,21 +474,16 @@ $(document).ready(() => {
                     colorNeedleCircleOuter: '#ccc',
                     needleCircleSize: 15,
                     needleCircleOuter: false,
-                    valueBox: true,
-                    valueTextShadow: 'true',
-                    valueInt: 3,
-                    valueDec: 0,
+                    valueBox: false,
                     borders: true,
                     borderInnerWidth: 0,
                     borderMiddleWidth: 0,
                     bordeRouterWidth: 10,
-                    colorBordeRouter: '#ccc',
-                    colorBordeRouterEnd: '#ccc',
+                    colorBordeRouter: '#808080',
+                    colorBordeRouterEnd: '#808080',
                     borderShadowWidth: 0,
 
                     animationRule: 'bounce',
-                    // animationRule: 'linear',
-                    // animationDuration: 500,
                     animationDuration: 1500,
                 });
 
@@ -501,31 +493,25 @@ $(document).ready(() => {
                 // Create the Wind Speed Gauge
                 const wind = new RadialGauge({
                     renderTo: 'wind' + letter,
-                    width: 150,
-                    height: 150,
-                    units: 'mph',
-                    title: 'Wind Speed',
+                    width: 75,
+                    height: 75,
                     value: 0,
                     minValue: 0,
                     maxValue: 50,
-                    majorTicks: ['0', '5', '10', '15', '20', '25', '30', '35', '40', '45', '50'],
-                    minorTicks: 5,
+                    minorTicks: 1,
                     ticksAngle: 180,
                     startAngle: 90,
                     strokeTicks: true,
-                    colorPlate: '#fff',
+                    colorPlate: 'rgba(250, 250, 250, 0)',
                     highlights: [
                         { from: 20, to: 50, color: 'rgba(233,130,129, 0.8)' },
                     ],
                     needleType: 'arrow',
-                    needleCircleSize: 7,
-                    needleCircleOuter: true,
+                    needleCircleSize: 5,
+                    needleCircleOuter: false,
                     needleCircleInner: false,
-                    needleWidth: 2,
-                    valueBox: true,
-                    valueTextShadow: 'true',
-                    valueInt: 2,
-                    valueDec: 0,
+                    needleWidth: 8,
+                    valueBox: false,
                     borders: false,
                     borderShadowWidth: 0,
                     animationRule: 'linear',
@@ -542,13 +528,6 @@ $(document).ready(() => {
                 wind.value = windSpeed;
 
 
-                //     "<button class='" + flightCat + "'>" + flightCat + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0" + "</button>",
-                //     // " (VFR-Green, MVFR-Blue, IFR-Red, LIFR-Magenta)",
-                //     "<span>Reported:</span> ",
-                //     // reportTime,
-                //     // " - ",
-                //     reportTimeFromNow,
-                //     "<br>",
                 //     "<span>Density Altitude:</span> ",
                 //     densityAlt, " ft",
                 //     "<br>",
@@ -595,28 +574,21 @@ $(document).ready(() => {
                 // );
 
                 //Check if clouds array has anything in it
-                //     if (clouds.length > 0) {
-                //         //Cloud Layers returns an array, can have multiple cloud layers
-                //         $(resultsSelector).append(
-                //             "<span>Cloud Layers: ",
-                //         );
-                //         for (let i = 0; i < clouds.length; i++) {
-                //             $(resultsSelector).append(
-                //                 clouds[i].amount,
-                //                 " - ",
-                //                 Math.round(convertMetersToFeet(clouds[i].base.value)).toLocaleString(),
-                //                 " ft",
-                //                 " , ",
-                //             );
-                //         } //End loop through cloud layers
+                if (clouds.length > 0) {
+                    let cloudsHtml = "";
+                    //Cloud Layers returns an array, can have multiple cloud layers
+                    for (let i = 0; i < clouds.length; i++) {
+                        cloudsHtml += clouds[i].amount + " - " + Math.round(convertMetersToFeet(clouds[i].base.value)).toLocaleString() + " ft";
+                        if (i < clouds.length - 1) {
+                            cloudsHtml += ", ";
+                        }
+                    } //End loop through cloud layers
+                    $(resultsSelector + " .cloudLayer").html(cloudsHtml);
 
-                //         //No Clouds reported
-                //     } else {
-                //         $(resultsSelector).append(
-                //             "<span>Cloud Layers: ",
-                //             "Clear Below 12,000 ft",
-                //         );
-                //     } //End Check if cloud array is populated
+                    //No Clouds reported
+                } else {
+                    $(resultsSelector + " .cloudLayer").text("Clear Below 12,000 ft");
+                } //End Check if cloud array is populated
             }); //End Get the selected weather info
         } else {
             $(resultsSelector + " .weatherIcon").html("");
@@ -684,6 +656,7 @@ $(document).ready(() => {
         doWeatherLookup(departureStation, "A");
         doWeatherLookup(arrivalStation, "B");
         $("#popup").show();
+        $("#popup")[0].scrollIntoView();
 
     });
 

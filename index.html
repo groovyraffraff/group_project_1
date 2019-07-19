@@ -10,7 +10,7 @@
     <meta property="og:image" content=" ">
     <meta property="og:url" content=" ">
     <link rel="shortcut icon" type="image/png" href="" />
-    <title>Project 1</title>
+    <title>GO/NO-GO</title>
 
 
 
@@ -56,7 +56,7 @@
 <body>
     <div class="container">
         <div class="title">
-            <h1>Airports</h1>
+            <h1>Go/No-Go</h1>
         </div>
 
         <div class="searchContainer">
@@ -93,7 +93,8 @@
 
             <!--Submit button -->
             <div class="submit">
-                <button type="button" class="btn btn-raised" id="submitbtn">Let's go</button>
+
+                <button type="button" class="btn btn-raised submit" id="submitbtn">Let's go</button>
             </div>
 
             <!--End of Submit button -->
@@ -175,7 +176,9 @@
                         <div class="staticWindDirContainer">
                             <div class="staticWindDirImg">
                                 <span>Wind Direction</span><br>
-                                <img src="assets/images/wind1.png">
+                                <div class="compass">
+                                    <canvas id="compassA"></canvas>
+                                </div>
                             </div>
                             <div class="staticWindDir"></div>
                         </div>
@@ -183,21 +186,30 @@
 
                             <div class="staticWindSpeedImg">
                                 <span>Wind Speed</span><br>
-                                <img src="assets/images/speed3.png">
+
+                                <div class="compass">
+                                    <canvas id="windA"></canvas>
+                                </div>
+                                <!-- <img src="assets/images/speed3.png"> -->
                             </div>
                             <div class="staticWindSpeed"></div>
                         </div>
                     </div>
 
                     <div class="visibility"></div>
-                    <div class="cloudLayer"></div>
+
+                    <div class="cloudLayerContainer">
+                        <span>Cloud layer: </span>
+                        <span class="cloudLayer"></span>
+                    </div>
+
                     <div class="gMaps"></div>
 
 
                 </div>
                 <!-- End of pointA result div -->
                 <!-- pointB result div -->
-                <div class="left" id="pointBresult">
+                <div class="right" id="pointBresult">
 
                     <div class="airportAndTempAndIconContainer grid-container">
 
@@ -252,7 +264,11 @@
                     </div> -->
 
                     <div class="visibility"></div>
-                    <div class="cloudLayer"></div>
+
+                    <div class="cloudLayerContainer">
+                        <span>Cloud layer: </span>
+                        <span class="cloudLayer"></span>
+                    </div>
                     <div class="gMaps"></div>
 
 
