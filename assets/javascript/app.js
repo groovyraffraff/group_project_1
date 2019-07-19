@@ -307,7 +307,8 @@ $(document).ready(() => {
         return icon;
     }
 
-    function doWeatherLookup(station, resultsSelector) {
+    function doWeatherLookup(station, letter) {
+        let resultsSelector = "#point" + letter + "result";
         if (station) {
             // Constructing a queryURL variable for the "Latest Observation" api call
             let queryURL =
@@ -437,13 +438,102 @@ $(document).ready(() => {
                 $(resultsSelector + " .airportFullName").html(station.name);
                 $(resultsSelector + " .timeStamp").html("Reported: " + reportTimeFromNow);
                 $(resultsSelector + " .flightCat").html("<button class='" + flightCat + "'>" + flightCat + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0" + "</button>");
-                //$(resultsSelector + " .compass").text("Compass here");
                 $(resultsSelector + " .tempC").html(tempC + " &#8451;");
                 $(resultsSelector + " .tempF").html(tempF + " &#8457;");
+                $(resultsSelector + " .staticWindDir").html(windDir);
+                $(resultsSelector + " .staticWindSpeed").html(windSpeed + " mph");
                 $(resultsSelector + " .visibility").html("Visibility: " + visibility + " sm");
                 $(resultsSelector + " .cloudLayer").html("Cloud layers here");
                 $(resultsSelector + " .gMaps").html("Tom's maps here");
 
+
+                // Create the Point A Compass
+                const compass = new RadialGauge({
+                    renderTo: 'compass' + letter,
+                    width: 150,
+                    height: 150,
+                    units: 'degrees',
+                    title: 'Wind Direction',
+                    value: 0,
+                    minValue: 0,
+                    maxValue: 360,
+                    majorTicks: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'],
+                    minorTicks: 11,
+                    ticksAngle: 360,
+                    startAngle: 180,
+                    strokeTicks: false,
+                    colorPlate: '#fff',
+                    colorMajorTicks: '#f5f5f5',
+                    colorMinorTicks: '#ddd',
+                    colorNumbers: '#ccc',
+                    colorCircleInner: '#fff',
+                    colorTitle: '#8f8f8f',
+                    colorUnits: '#8f8f8f',
+                    highlights: false,
+                    needleType: 'arrow',
+                    colorNeedle: 'rgba(240, 128, 128, 1)',
+                    colorNeedleEnd: 'rgba(255, 160, 122, .9)',
+                    colorNeedeShadowDown: '#222',
+                    colorNeedleCircleOuter: '#ccc',
+                    needleCircleSize: 15,
+                    needleCircleOuter: false,
+                    valueBox: true,
+                    valueTextShadow: 'true',
+                    valueInt: 3,
+                    valueDec: 0,
+                    borders: true,
+                    borderInnerWidth: 0,
+                    borderMiddleWidth: 0,
+                    bordeRouterWidth: 10,
+                    colorBordeRouter: '#ccc',
+                    colorBordeRouterEnd: '#ccc',
+                    borderShadowWidth: 0,
+
+                    animationRule: 'bounce',
+                    // animationRule: 'linear',
+                    // animationDuration: 500,
+                    animationDuration: 1500,
+                });
+
+                // Draw the compass in the compass canvas element
+                compass.draw();
+
+                // Create the Wind Speed Gauge
+                const wind = new RadialGauge({
+                    renderTo: 'wind' + letter,
+                    width: 150,
+                    height: 150,
+                    units: 'mph',
+                    title: 'Wind Speed',
+                    value: 0,
+                    minValue: 0,
+                    maxValue: 50,
+                    majorTicks: ['0', '5', '10', '15', '20', '25', '30', '35', '40', '45', '50'],
+                    minorTicks: 5,
+                    ticksAngle: 180,
+                    startAngle: 90,
+                    strokeTicks: true,
+                    colorPlate: '#fff',
+                    highlights: [
+                        { from: 20, to: 50, color: 'rgba(233,130,129, 0.8)' },
+                    ],
+                    needleType: 'arrow',
+                    needleCircleSize: 7,
+                    needleCircleOuter: true,
+                    needleCircleInner: false,
+                    needleWidth: 2,
+                    valueBox: true,
+                    valueTextShadow: 'true',
+                    valueInt: 2,
+                    valueDec: 0,
+                    borders: false,
+                    borderShadowWidth: 0,
+                    animationRule: 'linear',
+                    animationDuration: 1500,
+                });
+
+                // Draw the wind speed in the wind canvas element
+                wind.draw();
 
                 // Set the Wind Direction value
                 compass.value = windDir;
@@ -535,12 +625,26 @@ $(document).ready(() => {
             $(resultsSelector + " .airportFullName").html("");
             $(resultsSelector + " .timeStamp").html("");
             $(resultsSelector + " .flightCat").html("");
-            //$(resultsSelector + " .compass").text("");
             $(resultsSelector + " .tempC").html("");
             $(resultsSelector + " .tempF").html("");
             $(resultsSelector + " .visibility").html("");
             $(resultsSelector + " .cloudLayer").html("");
             $(resultsSelector + " .gMaps").html("");
+
+            function clearCanvas(canvas) {
+                const context = canvas.getContext('2d');
+                // Store the current transformation matrix
+                context.save();
+
+                // Use the identity matrix while clearing the canvas
+                context.setTransform(1, 0, 0, 1, 0, 0);
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Restore the transform
+                context.restore();
+            }
+            clearCanvas($("#compass" + letter)[0]);
+            clearCanvas($("#wind" + letter)[0]);
         }
     }
 
@@ -577,104 +681,19 @@ $(document).ready(() => {
             return;
         }
 
-        doWeatherLookup(departureStation, "#pointAresult");
-        doWeatherLookup(arrivalStation, "#pointBresult");
+        doWeatherLookup(departureStation, "A");
+        doWeatherLookup(arrivalStation, "B");
+        $("#popup").show();
 
-        M.Modal.init(document.querySelector('#popup'), {}).open(); //Initializing Modal
-        console.log(true);
     });
 
+
+    $(".closeBtn").on("click", function(event) {
+        $("#popup").hide();
+    });
     // Main Processes
     // *******************************************************
 
-
-    // Create the Point A Compass
-    const compass = new RadialGauge({
-        renderTo: 'compass',
-        width: 150,
-        height: 150,
-        units: 'degrees',
-        title: 'Wind Direction',
-        value: 0,
-        minValue: 0,
-        maxValue: 360,
-        majorTicks: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'],
-        minorTicks: 11,
-        ticksAngle: 360,
-        startAngle: 180,
-        strokeTicks: false,
-        colorPlate: '#fff',
-        colorMajorTicks: '#f5f5f5',
-        colorMinorTicks: '#ddd',
-        colorNumbers: '#ccc',
-        colorCircleInner: '#fff',
-        colorTitle: '#8f8f8f',
-        colorUnits: '#8f8f8f',
-        highlights: false,
-        needleType: 'arrow',
-        colorNeedle: 'rgba(240, 128, 128, 1)',
-        colorNeedleEnd: 'rgba(255, 160, 122, .9)',
-        colorNeedeShadowDown: '#222',
-        colorNeedleCircleOuter: '#ccc',
-        needleCircleSize: 15,
-        needleCircleOuter: false,
-        valueBox: true,
-        valueTextShadow: 'true',
-        valueInt: 3,
-        valueDec: 0,
-        borders: true,
-        borderInnerWidth: 0,
-        borderMiddleWidth: 0,
-        bordeRouterWidth: 10,
-        colorBordeRouter: '#ccc',
-        colorBordeRouterEnd: '#ccc',
-        borderShadowWidth: 0,
-
-        animationRule: 'bounce',
-        // animationRule: 'linear',
-        // animationDuration: 500,
-        animationDuration: 1500,
-    });
-
-    // Draw the compass in the compass canvas element
-    compass.draw();
-
-    // Create the Wind Speed Gauge
-    const wind = new RadialGauge({
-        renderTo: 'wind',
-        width: 150,
-        height: 150,
-        units: 'mph',
-        title: 'Wind Speed',
-        value: 0,
-        minValue: 0,
-        maxValue: 50,
-        majorTicks: ['0', '5', '10', '15', '20', '25', '30', '35', '40', '45', '50'],
-        minorTicks: 5,
-        ticksAngle: 180,
-        startAngle: 90,
-        strokeTicks: true,
-        colorPlate: '#fff',
-        highlights: [
-            { from: 20, to: 50, color: 'rgba(233,130,129, 0.8)' },
-        ],
-        needleType: 'arrow',
-        needleCircleSize: 7,
-        needleCircleOuter: true,
-        needleCircleInner: false,
-        needleWidth: 2,
-        valueBox: true,
-        valueTextShadow: 'true',
-        valueInt: 2,
-        valueDec: 0,
-        borders: false,
-        borderShadowWidth: 0,
-        animationRule: 'linear',
-        animationDuration: 1500,
-    });
-
-    // Draw the wind speed in the wind canvas element
-    wind.draw();
 
 
     //Get All the TX airports from the api

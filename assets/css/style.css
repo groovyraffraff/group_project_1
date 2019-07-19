@@ -25,8 +25,7 @@ font-family: 'Damion', cursive; */
  }
  
  h1 {
-     font-family: 'Pacifico', cursive;
-     sans-serif;
+     font-family: 'Pacifico', cursive, sans-serif;
      font-size: 80px;
      text-align: center;
      color: #fff;
@@ -39,7 +38,7 @@ font-family: 'Damion', cursive; */
  }
  
  #cardbox {
-     width: 40%;
+     /* width: 60%; */
      margin: auto;
      font-family: 'Abel', sans-serif;
  }
@@ -205,14 +204,18 @@ media query ends
      font-size: 50px;
  }
  
+ .staticWindContainer,
  #weather {
      margin: auto;
      display: grid;
      grid-template-columns: 50% 50%;
      position: relative;
      padding-top: 0;
-     /* background: rgba(255, 255, 255, 0.5); */
-     /* border-radius: 25px; */
+ }
+ 
+ .staticWindContainer {
+     text-align: center;
+     font-size: 30px;
  }
  
  .tempF {
@@ -235,6 +238,7 @@ media query ends
  .right {
      color: gray;
      line-height: 1.6;
+     padding: 5%;
  }
  
  .modal-overlay {
@@ -243,6 +247,11 @@ media query ends
  
  #popup {
      font-size: 20x !important;
+     background: rgba(250, 250, 250, 0.5);
+     border-radius: 25px;
+     margin: auto;
+     display: grid;
+     grid-template-rows: auto;
  }
  
  #popup .modal {
@@ -258,26 +267,26 @@ media query ends
  button {
      border: none !important;
      /* border-radius: 8px; */
-     color: #eee;
+     color: #fafafa;
      font-size: 20px !important;
      /* line-height: 2 !important; */
  }
  
  .VFR {
      /* background-color: #4CAF50; */
-     background-image: linear-gradient(-90deg, #fff, #4CAF50);
+     background-image: linear-gradient(-90deg, #fafafa, #4CAF50);
  }
  
  .MVFR {
-     background-color: #87CEFA;
+     background-image: linear-gradient(-90deg, #fafafa, #87CEFA);
  }
  
  .IFR {
-     background-color: #FF0000;
+     background-image: linear-gradient(-90deg, #fafafa, #FF0000);
  }
  
  .LIFR {
-     background-color: #FF1493;
+     background-image: linear-gradient(-90deg, #fafafa, #FF1493);
  }
  /* End of Flight Category */
  /* share icon style */
@@ -308,14 +317,13 @@ media query ends
  }
  /* End of share icon style */
  
- .modal-footer,
  .a2a_kit {
      float: right !important;
      margin-right: 0.5%;
  }
  
  .a2a_dd,
- .modal-close {
+ .closeBtn {
      transition: all 0.5s ease-in-out;
  }
  
@@ -324,7 +332,7 @@ media query ends
      border-radius: 50%;
  }
  
- .modal-close:hover {
+ .closeBtn:hover {
      -ms-transform: rotate(90deg);
      /* IE 9 */
      -webkit-transform: rotate(90deg);
