@@ -7,23 +7,12 @@
     margin: auto;
 }
 
-
-/*font-family: 'Lobster', cursive;
-font-family: 'Poiret One', cursive;
-font-family: 'Faster One', cursive;
-font-family: 'Julius Sans One', sans-serif;
-font-family: 'Open Sans', sans-serif;
-font-family: 'Dosis', sans-serif;
-font-family: 'Abel', sans-serif;
-font-family: 'Satisfy', cursive;
-font-family: 'Damion', cursive; */
-
 .material-icons {
     padding-right: 2%;
 }
 
 .tempContainer {
-    display: block;
+    text-align: right;
 }
 
 h1 {
@@ -40,7 +29,6 @@ input.select-dropdown {
 }
 
 #cardbox {
-    /* width: 60%; */
     margin: auto;
     font-family: 'Abel', sans-serif;
 }
@@ -50,7 +38,6 @@ span,
 form,
 .card {
     font-family: 'Abel', sans-serif !important;
-    /* background: rgba(255, 255, 255, 0.2) !important; */
     background: transparent !important;
     color: grey;
 }
@@ -175,35 +162,6 @@ nav,
     box-shadow: none !important;
 }
 
-input[type=text]:focus:not([readonly]),
-input[type=password]:focus:not([readonly]),
-input[type=email]:focus:not([readonly]),
-input[type=url]:focus:not([readonly]),
-input[type=time]:focus:not([readonly]),
-input[type=date]:focus:not([readonly]),
-input[type=datetime-local]:focus:not([readonly]),
-input[type=tel]:focus:not([readonly]),
-input[type=number]:focus:not([readonly]),
-input[type=search]:focus:not([readonly]),
-textarea.materialize-textarea:focus:not([readonly]) {
-    border-bottom: 1px solid #7abbb9 !important;
-    box-shadow: 0 1px 0 0 #7abbb9 !important;
-}
-
-input[type=text]:focus:not([readonly])+label,
-input[type=password]:focus:not([readonly])+label,
-input[type=email]:focus:not([readonly])+label,
-input[type=url]:focus:not([readonly])+label,
-input[type=time]:focus:not([readonly])+label,
-input[type=date]:focus:not([readonly])+label,
-input[type=datetime-local]:focus:not([readonly])+label,
-input[type=tel]:focus:not([readonly])+label,
-input[type=number]:focus:not([readonly])+label,
-input[type=search]:focus:not([readonly])+label,
-textarea.materialize-textarea:focus:not([readonly])+label {
-    color: #7abbb9 !important;
-}
-
 .input-field .prefix.active {
     color: #7abbb9 !important;
 }
@@ -290,14 +248,11 @@ i.maps {
 
 button {
     border: none !important;
-    /* border-radius: 8px; */
     color: #fafafa;
     font-size: 20px !important;
-    /* line-height: 2 !important; */
 }
 
 .VFR {
-    /* background-color: #4CAF50; */
     background-image: linear-gradient(-90deg, #fafafa, #4CAF50);
 }
 
@@ -379,12 +334,6 @@ i.far {
     font-size: 50px;
 }
 
-.tempF,
-.tempC {
-    float: right;
-    text-align: right;
-}
-
 .weatherIconContainer {
     float: center;
     text-align: center;
@@ -417,8 +366,7 @@ i.far {
 /* ///////////////////////////animated weather icons/////////////////////////////// */
 
 .weatherIcon {
-    color: transparent;
-    /* color: #fafafa; */
+    color: #fff;
 }
 
 .icon {
@@ -475,7 +423,7 @@ i.far {
     width: 2.5em;
     height: 2.5em;
     margin: -1.25em;
-    background: currentColor;
+    background: #fbb426;
     border-radius: 50%;
     box-shadow: 0 0 0 0.375em #fbb426;
     animation: spin 12s infinite linear;
